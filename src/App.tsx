@@ -3,12 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Header from './components/header'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <Header/>
+      {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -26,9 +27,10 @@ function App() {
           <Button variant="text">Text</Button>
           <Button variant="contained">Contained</Button>
           <Button variant="outlined">Outlined</Button>
-        </Stack>
+        </Stack> */}
+  
 
-      </header>
+   
     </div>
   );
 }
