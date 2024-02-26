@@ -1,34 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo2 from './Pages/Landing_page/assets/DH_LOGO-BLACK.svg';
 import './App.css';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-
-
-        <Stack spacing={2} direction="row">
-          <Button variant="text">Text</Button>
-          <Button variant="contained">Contained</Button>
-          <Button variant="outlined">Outlined</Button>
-        </Stack>
 
       </header>
+
+      <body className="App-body">
+
+      </body>
+
+      <footer className="App-footer">
+        <p className="texto">  Volkswagen Digital:HUB Barcelona - Internal</p>
+        <img src={logo2} className="App-logo2" alt="logo" />
+      </footer>
+
     </div>
   );
 }
