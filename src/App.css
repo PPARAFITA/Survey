@@ -1,3 +1,38 @@
+.header {
+  background-color: #DFE2E6;
+  padding: 40px 62px;
+  height: 115px;
+  width: 100%;
+}
+
+.landing {
+  height: 72px;
+  max-width: 859px;
+  justify-content: center;
+  margin: 30px 60px;
+  
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+#btnstart {
+  Width: 188px;
+  Height: 42px;
+  border-radius: 5px;
+  Padding: 8px, 22px, 8px, 22px;
+  color:white;
+  background-color: #2196F3;
+  border: 1px solid #2196F3;
+
+}
+
+#btnstart:hover{
+  cursor: pointer;
+  color:#2196F3;
+  background-color: white;
+  border: 1px solid #2196F3;
+
 .App {
   display: grid;
   grid-template-rows: 10% 83% 6%;
@@ -7,23 +42,16 @@
   background-color: white;
 }
 
-.App-header {
-  background-color: #DFE2E6;
-  min-height: 5vh;
-  display: flex;
-  background: #DFE2E6;
-  padding: 10px;
-}
-
  
 .App-body {
+  color: #363636;
+  font-family: Roboto;
   background-color: white;
   height: 100px;
   min-height: 50vh;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: black;
 
 }
 
