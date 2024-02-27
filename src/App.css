@@ -1,9 +1,3 @@
-.app {
-  color: #363636;
-  font-family: Roboto;
-}
-
-
 .header {
   background-color: #DFE2E6;
   padding: 40px 62px;
@@ -38,4 +32,58 @@
   color:#2196F3;
   background-color: white;
   border: 1px solid #2196F3;
+
+.App {
+  display: grid;
+  grid-template-rows: 10% 83% 6%;
+  margin: 0px auto;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+}
+
+ 
+.App-body {
+  color: #363636;
+  font-family: Roboto;
+  background-color: white;
+  height: 100px;
+  min-height: 50vh;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+
+}
+
+
+.App-footer {
+  width: 100%;
+  display: grid;
+  padding: 1%;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 5%;
+  background-color: #DFE2E6;
+
+}
+
+
+.App-footer .texto {
+  display: grid;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  font-size: 12px;
+  font-family: "Roboto";
+  justify-content: flex-start;
+  text-align: center;
+  align-self: center;
+}
+
+ 
+.App-footer .App-logo2 {
+  display: grid;
+  grid-row: 3 / 4;
+  align-self: center; 
+  height: 20px;
+  position: relative;
+  left: 300px;
 }
