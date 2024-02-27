@@ -1,6 +1,41 @@
-.header{
+.app {
+  color: #363636;
+  font-family: Roboto;
+}
+
+
+.header {
   background-color: #DFE2E6;
   padding: 40px 62px;
   height: 115px;
-  max-width: 878px;
+  width: 100%;
+}
+
+.landing {
+  height: 72px;
+  max-width: 859px;
+  justify-content: center;
+  margin: 30px 60px;
+  
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+#btnstart {
+  Width: 188px;
+  Height: 42px;
+  border-radius: 5px;
+  Padding: 8px, 22px, 8px, 22px;
+  color:white;
+  background-color: #2196F3;
+  border: 1px solid #2196F3;
+
+}
+
+#btnstart:hover{
+  cursor: pointer;
+  color:#2196F3;
+  background-color: white;
+  border: 1px solid #2196F3;
 }
