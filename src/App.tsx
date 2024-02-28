@@ -7,8 +7,6 @@ import Button from '@mui/material/Button';
 import Link from './Pages/Thanks_page/Thanks';
 
 
-
-
 const buttonStyle = {
   backgroundColor: 'white', // Color de fondo del botón
   color: '#2196F3',
@@ -61,9 +59,6 @@ function App() {
         <p className="More-information">
           If you want to know more go to <a href="https://engineering.atspotify.com/2014/09/squad-health-check-model/">more information</a>
         </p>
-      </body>
-
-
 
 
 
