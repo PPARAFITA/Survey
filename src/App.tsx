@@ -1,6 +1,6 @@
 import React from 'react';
-import logo2 from './Pages/Landing_page/assets/DH_LOGO-BLACK.svg';
-import thermometer from './thermometer.svg';
+import logo2 from './assets/DH_LOGO-BLACK.svg';
+import thermometer from './assets/thermometer.svg';
 import './App.css';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -24,17 +24,17 @@ function App() {
         <p className="texto_body">
           Your insights are crucial for us to cultivate a positive work environment.
           Please take a moment to share your thoughts in our Team mood thermometer, as your feedback guides us in enhancing our team dynamics and ensuring everyone's well-being.
-          <br></br> 
+          <br></br>
           The form is completely anonymus and you will take less than 2 minutes (only 11 multiple choice questions).
         </p>
 
-            <div className='Button_start'>
-        <Stack direction="row" spacing={2}>
-          <a href="/Thanks"></a>
-          <Button variant="contained" onClick={() => { console.info("I'm a button.") }} href="/Thanks_page/Thanks"   >
-            Start the Survey
-          </Button>
-        </Stack>
+        <div className='Button_start'>
+          <Stack direction="row" spacing={2}>
+            <a href="/Thanks"></a>
+            <Button variant="contained" onClick={() => { console.info("I'm a button.") }} href="/Thanks_page/Thanks"   >
+              Start the Survey
+            </Button>
+          </Stack>
         </div>
 
 
@@ -60,7 +60,7 @@ function App() {
           If you want to know more go to <a href="https://engineering.atspotify.com/2014/09/squad-health-check-model/">more information</a>
         </p>
 
-
+      </body>
 
       <footer className="App-footer">
         <p className="texto">  Volkswagen Digital:HUB Barcelona - Internal</p>
