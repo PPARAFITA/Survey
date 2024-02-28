@@ -7,6 +7,11 @@
   background-color: white;
 }
 
+ 
+.form{
+  height: 100px;
+}
+
 .App-header {
   background-color: #DFE2E6;
   min-height: 5vh;
@@ -15,16 +20,70 @@
   padding: 10px;
 }
 
- 
+.App-thermometer{
+  align-self: flex-start;
+  height: 100px;
+}
+
+.texto_header {
+
+  padding: 20px;
+  font-size: 24px;
+  color:#000000;
+  font-weight: bold;
+}
+
 .App-body {
   background-color: white;
-  height: 100px;
   min-height: 50vh;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
+  justify-content: center; 
+  font-family: "Roboto";
+ }
 
+
+
+
+.texto_body {
+
+  padding: 20px;
+  font-size: 16px;
+  color: #363636DE;
+}
+
+
+ 
+
+.More-information {
+  padding: 24px;
+  font-size: 16px;
+  color: #363636DE;
+  background-color: #E2F1FD;
+  margin-top: 40px ;
+  margin-left: 15px ;
+  width: 72%;
+ 
+}
+
+
+
+
+.Button_analyze {
+ 
+  background-color: white;
+}
+
+
+.línea-horizontal {
+  border-bottom: 1px solid black;
+  /* Grosor, tipo y color de la línea */
+  width: 100%;
+  /* Ancho de la línea */
+}
+
+
+.App-link {
+  color: #61dafb;
 }
 
 
@@ -50,11 +109,11 @@
   align-self: center;
 }
 
- 
+
 .App-footer .App-logo2 {
   display: grid;
   grid-row: 3 / 4;
-  align-self: center; 
+  align-self: center;
   height: 20px;
   position: relative;
   left: 300px;
