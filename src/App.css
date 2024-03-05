@@ -1,68 +1,88 @@
-.form{
+.form {
   height: 100px;
 }
 
+.App {
+
+  display: grid;
+  grid-template-rows: 10% 83% 6%;
+  margin: 5px auto;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+}
+
+
 .App-header {
   background-color: #DFE2E6;
-  min-height: 5vh;
+  min-height: 10vh;
   display: flex;
   background: #DFE2E6;
   padding: 10px;
 }
 
-.App-thermometer{
-  align-self: flex-start;
+.App-thermometer {
+  align-self:center;
+  padding: 15px;
   height: 100px;
 }
 
-.texto_header {
+.App-team{
+  align-self: center;
+  height: 80px;
+}
 
-  padding: 20px;
+.texto_header {
+  padding: 15px;
   font-size: 24px;
-  color:#000000;
+  font-family: Roboto;
+  color: #000000;
   font-weight: bold;
 }
 
-.App-body {
+.App-body .texto_body {   
   color: #363636;
   font-family: Roboto;
   background-color: white;
   min-height: 50vh;
   align-items: center;
-
-  justify-content: center; 
+  justify-content: center;
   font-family: "Roboto";
- }
-
-
-
-
-.texto_body {
-
+  padding: 20px;
+  font-size: 16px;
+  color: #363636DE;
   padding: 20px;
   font-size: 16px;
   color: #363636DE;
 }
 
 
-
-.More-information {
-  padding: 24px;
+#texto_body {
+  margin-left: 14px;
   font-size: 16px;
   color: #363636DE;
-  background-color: #E2F1FD;
-  margin-top: 40px ;
-  margin-left: 15px ;
-  width: 72%;
- 
 }
 
 
 
 
-.Button_analyze {
- 
-  background-color: white;
+
+.More-information {
+  padding: 20px;
+  font-size: 16px;
+  color: #363636DE;
+  background-color: #E2F1FD;
+  margin-top: 40px;
+  margin-left: px;
+  width: 79%;
+
+}
+
+
+
+
+.Button {
+  padding:15px;
 }
 
 
