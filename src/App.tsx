@@ -1,20 +1,25 @@
 import React from 'react';
-import './App.css'; 
+import './App.css';
 import RoutesProvider from './core/routes.component';
-import * as molec from './common/components/molecules/index'; 
+import { Footer, Header } from './common';
+import { Grid } from '@mui/material';
+
 
 
 function App() {
   return (
-    <div className="App">
+    <Grid container spacing={1}>
+      <div className="App">
+        <Header />
+        
+        <div className='main'>
+          <RoutesProvider />
+        </div>
 
-      <molec.Header/> 
+       <Footer />
 
-      <RoutesProvider />
-
-      <molec.Footer/> 
-
-    </div>
+      </div>
+    </Grid>
   );
 }
 

@@ -1,132 +1,239 @@
-.form {
-  height: 100px;
-}
+    .App {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      margin: 5px auto;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: white;
+      font-family: 'Roboto';
+    }
 
-.App {
+    @media (max-width: 768px) {
+      .App {
+        grid-template-rows: 10% auto auto;
+        width: 100%;
+      }
+    }
 
-  display: grid;
-  grid-template-rows: 10% 83% 6%;
-  margin: 5px auto;
-  width: 100%;
-  height: 100vh;
-  background-color: white;
-}
+    /* MAIN   */
+    .main {
+      display: flex;
+      padding: 40px 64px 64px 64px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 40px;
+      align-self: stretch;
+      flex: 1;
+      overflow: auto;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-
-.App-header {
-  background-color: #DFE2E6;
-  min-height: 10vh;
-  display: flex;
-  background: #DFE2E6;
-  padding: 10px;
-}
-
-.App-thermometer {
-  align-self:center;
-  padding: 15px;
-  height: 100px;
-}
-
-.App-team{
-  align-self: center;
-  height: 80px;
-}
-
-.texto_header {
-  padding: 15px;
-  font-size: 24px;
-  font-family: Roboto;
-  color: #000000;
-  font-weight: bold;
-}
-
-.App-body .texto_body {   
-  color: #363636;
-  font-family: Roboto;
-  background-color: white;
-  min-height: 50vh;
-  align-items: center;
-  justify-content: center;
-  font-family: "Roboto";
-  padding: 20px;
-  font-size: 16px;
-  color: #363636DE;
-  padding: 20px;
-  font-size: 16px;
-  color: #363636DE;
-}
+    }
 
 
-#texto_body {
-  margin-left: 14px;
-  font-size: 16px;
-  color: #363636DE;
-}
+
+    .App_form {
+      padding: 1%;
+
+    }
+
+
+    .Title {
+      size: 24px;
+      color: #000000DE;
+    }
 
 
 
 
+    .Body1 {
+      font-family: Roboto;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      letter-spacing: 0.15px;
+      color: #363636DE;
+      padding: 40px 64px 64px 64px;
+      display: flex;
+      padding: 40px 64px 64px 64px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 40px;
+      align-self: stretch;
+    }
 
-.More-information {
-  padding: 20px;
-  font-size: 16px;
-  color: #363636DE;
-  background-color: #E2F1FD;
-  margin-top: 40px;
-  margin-left: px;
-  width: 79%;
+    .Body1 span.Body_bold {
+      white-space: nowrap;
+    }
 
-}
+    .header5 {
+      font-family: Roboto;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 133.4%;
+    }
 
+    .Body_bold {
+      font-weight: 700;
+    }
 
+    /* 
+    .App-body,
+    .texto_body {
 
+      background-color: white;
+      align-items: center;
+      justify-content: center;
+      font-family: "Roboto";
+      padding: 20px;
+      font-size: 16px;
 
-.Button {
-  padding:15px;
-}
-
-
-.línea-horizontal {
-  border-bottom: 1px solid black;
-  /* Grosor, tipo y color de la línea */
-  width: 100%;
-  /* Ancho de la línea */
-}
-
-
-.App-link {
-  color: #61dafb;
-}
+    }
 
 
-.App-footer {
+    #texto_body {
+      margin-left: 14px;
+      font-size: 16px;
+      padding: 1%;
+
+    } */
+
+
+
+    .More-information {
+      color: #2196F3;
+      font-family: Roboto;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%;
+      letter-spacing: 0.15px;
+      text-decoration-line: underline;
+
+    }
+
+    .sombreado {
+      background-color: #F8F8F8;
+    }
+
+    .línea-horizontal {
+      border-bottom: 1px solid black;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+
+    .App-link {
+      color: #61dafb;
+    }
+
+
+    .texto {
+      /* display: grid;
+     grid-column: 1 / 2;
+     grid-row: 3 / 4; */
+      font-size: 12px;
+      display: flex;
+      font-family: "Roboto";
+      /* justify-content: flex-start;
+     text-align: center;
+     align-self: center; */
+    }
+
+
+
+    .RedButton,
+    .GreenButton,
+    .OrangeButton,
+    .RadioButton {
+      margin-left: 12px;
+      padding: 8px 12px;
+      display: flex;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+
+    #uncheckedbutton {
+      font-size: smaller;
+    }
+
+
+    .negrita {
+      margin-left: 12px;
+      font-weight: bold;
+      color: black;
+    }
+
+    /* 
+   .RedButton {
+    font-size: smaller;
+     margin-left: 12px;
+     display: flex;
+     flex-direction: column;
+     color: red;
+   }
+
+   .GreenButton {
+
+     margin-left: 12px;
+
+     display: flex;
+     flex-direction: column;
+     color: green;
+
+   }
+
+   .OrangeButton {
+     margin-left: 12px;
+     display: flex;
+     flex-direction: column;
+     color: orange;
+   } */
+    /* .App-header {
   width: 100%;
   display: grid;
   padding: 1%;
-  grid-template-columns: 80% 20%;
-  grid-template-rows: 5%;
-  background-color: #DFE2E6;
 
+  grid-template-columns: 3% 80%;
+  grid-template-rows: 100%;
+  background-color: #DFE2E6;
+  box-sizing: border-box;
+} */
+
+
+    /*
+ @media (max-width: 768px) {
+  .App-header {
+    grid-template-columns: auto auto; 
+    padding: 1px; 
+  }
 }
 
 
-.App-footer .texto {
-  display: grid;
+ .App-thermometer {
+  height: 120px; 
+  padding: 15px;
+  display: flex;
   grid-column: 1 / 2;
-  grid-row: 3 / 4;
-  font-size: 12px;
+  grid-row: 1 / 2; 
   font-family: "Roboto";
   justify-content: flex-start;
   text-align: center;
-  align-self: center;
-}
+  align-self: center; 
+  box-sizing: border-box;
+ }
 
-
-.App-footer .App-logo2 {
-  display: grid;
-  grid-row: 3 / 4;
-  align-self: center;
-  height: 20px;
-  position: relative;
-  left: 300px;
-}
+ .Team_image{
+  display: flex;
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  align-self:center;
+  height: 80px; 
+  justify-self: flex-start;
+  justify-content: flex-start;
+  }
+}*/

@@ -1,17 +1,55 @@
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import React from 'react';
-
+import cx from 'classnames';
+import './button.styles.css';
 
 interface Props {
     color: string;
     description: string;
     path: string;
-
 }
 
+const styleAzul = 'blueButtonStyle';
+const styleBlanco = 'whiteButtonStyle';
+const color = 'blue'; 
+const buttonStyle = 'baseButtonStyle';
 
-function CustomButton({ color, description, path }: Props): React.ReactElement {
+
+export const CustomButton: React.FC<Props> = ({ color, description, path }) => {
+
+    console.log('Valor de color:', color);
+
+    const buttonClassName = cx(buttonStyle, {
+        [styleAzul]: color === 'blue',
+        [styleBlanco]: color === 'white',
+      });
+
+    return (
+
+        <Link to={path} style={{ textDecoration: 'none' }}>
+            <Button className={buttonClassName}   variant="contained">
+ 
+                {description}
+            </Button>
+        </Link>
+    );
+}
+ 
+/*  
+      const buttonStyle = {
+        padding: '15px',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        backgroundColor: color === 'blue' ? '#2196F3' : 'white',
+        color: color === 'blue' ? 'white' : '#2196F3',
+    };
+className={buttonClassName}
+
+    const buttonClassName = cx(buttonStyle, {
+        [styleAzul]: color === 'blue',
+        [styleBlanco]: color === 'white',
+      });
 
     const buttonStyle = {
         backgroundColor: color === 'blue' ? '#2196F3' : 'white',
@@ -20,19 +58,9 @@ function CustomButton({ color, description, path }: Props): React.ReactElement {
         borderRadius: '5px',
         cursor: 'pointer',
     };
-    return (
-
-        <Link to={path} style={{ textDecoration: 'none' }}>
-            <Button style={buttonStyle} variant="contained">
-                {description}
-            </Button>
-        </Link>
-    );
-}
-
-export default CustomButton;
-
-/*  
+style={buttonStyle}
+import cx from 'classnames';
+className={cx(buttonStyle, color === 'blue' ? styleAzul : styleBlanco)}
         <Link to={path}>
             <a  style={{ textDecoration: 'none' }}>
                 <Button style={buttonStyle} variant="contained" >

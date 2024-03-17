@@ -1,22 +1,25 @@
 import React from 'react';
 import logoDH from '../../../assets/DH_LOGO-BLACK.svg';
+import Grid from '@mui/material/Grid';
+import './footer.styles.css';
 
+const LITERALS ={footer: 'Volkswagen Digital:HUB Barcelona - Internal' }
 
-function Footer() {
-
+export const Footer = () => {
     return (
-        <div className='App-footer' >
 
-
-            <p className="texto">  Volkswagen Digital:HUB Barcelona - Internal</p>
-            <img src={logoDH} className="App-logo2" alt="logo" />
-
-
-
-        </div>
-
-
+        <Grid item ml={1}>
+            <div className='App-footer'>
+                <Grid item xs={12} textAlign="start">
+                    <p className="texto-footer"> {LITERALS.footer}</p>
+                </Grid>
+                <Grid item xs={12} textAlign="end">
+                    <img src={logoDH} className="App-logoDH" alt="logo" />
+                </Grid>
+            </div>
+        </Grid>
     )
 }
 
-export default Footer;
+
+
