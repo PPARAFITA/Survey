@@ -1,0 +1,28 @@
+.RedButton,
+.GreenButton,
+.OrangeButton {
+  margin-left: 12px;
+  padding: 8px 12px;
+  display: flex;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+.RedButton {
+  color: red !important;
+}
+
+.GreenButton {
+  color: green !important;
+}
+
+.OrangeButton {
+  color: orange !important;
+}
+
+.question {
+  color: black;
+  font-weight: bold !important;
+  ;
+}
