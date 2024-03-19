@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: Team happiness - Buddy program
+  description: Api that will measure the happyness of the teams
+  version: 1.0.0
+servers:
+  - url: https://localhost:8080
+tags:
+  - name: Teams
+    description: Everything about the teams in the Hub
+  - name: Questions
+    description: Questions that are going to make to the teams
+  - name: Survey
+    description: This will be use to recive user responses
+paths:
+  /team:
+    get:
+      tags:
+        - Teams
+      summary: Get all the teams in the Hub
+      description: Get all the teams
+      operationId: getTeams
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayTeams' 
+  /question:
+    get:
+      tags:
+        - Questions
+      summary: Get all the questions
+      description: Get all the question
+      operationId: getQuestions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayQuestions'
+  /survey:
+    post:
+      tags:
+        - Survey
+      summary: Insert a surver
+      description: Insert a survey data
+      operationId: postSurvey
+      requestBody:
+        description: Survey to insert in the database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Survey'
+      responses:
+        '201':
+          description: Successful operation
+components:
+  schemas:
+    ArrayTeams:
+      type: array
+      items:
+            $ref: '#/components/schemas/Team'
+    Team:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+        name:
+          type: string
+          example: SQA
+    ArrayQuestions:
+      type: array
+      items:
+            $ref: '#/components/schemas/Question'
+    Question:
+      required:
+        - id
+        - question
+        - type
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+        question:
+          type: string
+          example: How are you feeling today?
+        type:
+          type: string
+          enum: [traffic_light]
+    Survey:
+      required:
+        - teamId
+        - answers
+      type: object
+      properties:
+        teamId:
+          type: string
+          format: UUID
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+    Answer:
+      required:
+        - questionId
+        - answer
+      type: object
+      properties:
+        questionId:
+          type: string
+          format: UUID
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+        answers:
+          type: string
+          example: green
+            

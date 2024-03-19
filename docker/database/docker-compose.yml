@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.3
+    container_name: survey-thermometer-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Volkswagen2023
+      MYSQL_DATABASE: thermometer
+      MYSQL_USER: thermometer
+      MYSQL_PASSWORD: Volkswagen2023
+    ports:
+      - "3306:3306"
+    volumes:
+      - thermometer_mysql_only_data:/var/lib/mysql
+
+volumes:
+  thermometer_mysql_only_data:

@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.3
+    container_name: survey-thermometer-db-back
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpwd
+      MYSQL_DATABASE: thermometer
+      MYSQL_USER: therm_user
+      MYSQL_PASSWORD: rootpwd
+    ports:
+      - "3306:3306"
+    volumes:
+      - thermometer_mysql_back_data:/var/lib/mysql
+
+  api:
+    build:
+      context: ../../backend
+      dockerfile: local.Dockerfile
+    container_name: thermometer-api
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/thermometer
+      SPRING_DATASOURCE_USERNAME: therm_user
+      SPRING_DATASOURCE_PASSWORD: rootpwd
+    volumes:
+      - ../../backend:/app
+
+volumes:
+  thermometer_mysql_back_data:
