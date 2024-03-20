@@ -4,6 +4,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import axios from 'axios';
+
+const username = 'user';
+const password = '7f57edd8-3589-48e9-beb0-f882da413aeb';
+const credentials = btoa(`${username}:${password}`);
 
 export default function BasicSelect() {
   const [team, setTeam] = React.useState('');
@@ -11,6 +16,20 @@ export default function BasicSelect() {
   const handleChange = (event: SelectChangeEvent) => {
     setTeam(event.target.value as string);
   };
+
+
+
+  axios.get('/api/v1/thermometer/team',  {
+    headers: {
+        'Authorization': `Basic ${credentials}`
+    }
+})
+.then(response => {
+    console.log(response.data);
+})
+.catch(error => {
+    console.error('Error fetching data:', error);
+});
 
   return (
     <Box sx={{ minWidth: 450 }}>

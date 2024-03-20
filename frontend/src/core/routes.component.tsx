@@ -4,6 +4,7 @@ import Thanks_page from '../Pages/thanks_page/thanks.container'
 import { FormMood } from '../Pages/form_page/form.container'
 import React from 'react';
 
+
 function RoutesProvider() {
 
     return (
@@ -11,6 +12,7 @@ function RoutesProvider() {
             <Route path='/' element={<App />} />
             <Route path='/Thanks' element={<Thanks_page />} />
             <Route path='/FormMood' element={<FormMood />} />
+
         </Routes>
     )
 }

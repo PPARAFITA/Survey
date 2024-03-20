@@ -3,8 +3,9 @@ import { Form } from 'react-router-dom';
 import '../../App.css';
 import SelectList from '../../common/components/molecules/list.component';
 import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
-import { CustomButton, RadioButtonsGroup } from '../../common';
+//import { CustomButton, RadioButtonsGroup } from '../../common';
 import mockData from '../../data';
+import { CustomButton, RadioButtonsGroup } from '../../common/components/atom';
 
 const LITERALS ={header: 'Welcome to the Digital Hub Survey' }
 
