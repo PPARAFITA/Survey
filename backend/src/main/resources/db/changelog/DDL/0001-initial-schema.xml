@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.19.xsd">
+
+    <changeSet author="GQD-liquibase" id="initial-schema-1">
+        <createTable tableName="team">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_team_id"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="survey">
+            <column name="survey_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_survey_id"/>
+            </column>
+            <column name="team_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="question">
+            <column name="question_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_question_id"/>
+            </column>
+            <column name="question" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="question_type" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="answer">
+            <column name="answer_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_answer_id"/>
+            </column>
+            <column name="question_id" type="UUID">
+                <constraints nullable="false" validateForeignKey="true" foreignKeyName="FK_answer_question_id"/>
+            </column>
+            <column name="survey_id" type="UUID">
+                <constraints nullable="false" validateForeignKey="true" foreignKeyName="FK_answer_survey_id"/>
+            </column>
+            <column name="valor_answer" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

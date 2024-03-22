@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.objenesis.instantiator.android.AndroidSerializationInstantiator;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 public class AnswerDTO {
-    private Integer answerId;
-    private Integer surveyId;
-    private Integer questionId;
+    private UUID answerId;
+    private UUID surveyId;
+    private UUID questionId;
     private String valorAnswer;
 
     public AnswerDTO(Answer answer){

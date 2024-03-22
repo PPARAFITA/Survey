@@ -4,16 +4,21 @@ import com.sqa.thermometer.dto.QuestionDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer questionId;
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @UuidGenerator
+    private UUID questionId;
     private String questionType;
     private String question;
 

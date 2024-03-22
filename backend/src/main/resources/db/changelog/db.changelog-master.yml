@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: DDL/0001-initial-schema.xml
+      relativeToChangelogFile: true
+      context: local
+  - include:
+      file: DML/0001-initial-data.xml
+      relativeToChangelogFile: true
+      context: local
