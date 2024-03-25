@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: thermometer
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/thermometer
+    username: thermometer
+    password: Volkswagen2023
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    defer-datasource-initialization: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+        connection:
+          characterEncoding: utf8
+          useUnicode: true
+          charSet: UTF-8
+    show-sql: true
+  liquibase:
+    enabled: true
+    contexts: local
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+  security:
+    user:
+      name: user
+      password: 7f57edd8-3589-48e9-beb0-f882da413aeb
+server:
+  port: 8080

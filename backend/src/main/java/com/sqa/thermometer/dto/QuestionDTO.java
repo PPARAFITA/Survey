@@ -6,10 +6,12 @@ import com.sqa.thermometer.repository.QuestionRepository;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 public class QuestionDTO {
-    private Integer questionId;
+    private UUID questionId;
     private String question;
     private String questionType;
 
