@@ -6,11 +6,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 public class QuestionDTO {
-    private Integer questionId;
+    private UUID questionId;
     private String question;
     private String questionType;
     // private Integer optionId;

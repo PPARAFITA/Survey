@@ -3,21 +3,24 @@ package com.sqa.thermometer.embedded;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.Data;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @Embeddable
 public class OptionId implements Serializable {
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "option_id")
-    private Integer optionId;
+    private UUID optionId;
 
     @Column(name = "survey_id")
-    private Integer surveyId;
+    private UUID surveyId;
 
     @Column(name = "question_id")
-    private Integer questionId;
+    private UUID questionId;
 }
 
 

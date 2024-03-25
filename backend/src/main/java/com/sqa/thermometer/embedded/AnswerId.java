@@ -2,18 +2,19 @@ package com.sqa.thermometer.embedded;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.io.Serializable;
+import java.util.UUID;
+
 @Embeddable
 @Data
 public class AnswerId implements Serializable {
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "answer_id")
-    private Integer answerId;
+    private UUID answerId;
 
     @Column(name = "survey_id")
-    private Integer surveyId;
+    private UUID surveyId;
 
     @Column(name = "question_id")
-    private Integer questionId;
+    private UUID questionId;
 }

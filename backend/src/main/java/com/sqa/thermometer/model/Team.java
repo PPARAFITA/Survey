@@ -4,17 +4,15 @@ import com.sqa.thermometer.dto.TeamDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer teamId;
-
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID teamId;
     private String teamName;
 
     //@OneToMany( mappedBy = "team", cascade = CascadeType.ALL)

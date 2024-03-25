@@ -1,5 +1,6 @@
 package com.sqa.thermometer.dto;
 
+import java.util.UUID;
 import com.sqa.thermometer.model.OptionQuestion;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class OptionDTO {
-        private Integer optionId;
-        private Integer surveyId;
-        private Integer questionId;
+        private UUID optionId;
+        private UUID surveyId;
+        private UUID questionId;
         private String valorOption;
         private String color;
 

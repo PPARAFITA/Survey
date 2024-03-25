@@ -4,17 +4,17 @@ import com.sqa.thermometer.dto.QuestionDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer questionId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID questionId;
     private String questionType;
     private String question;
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
