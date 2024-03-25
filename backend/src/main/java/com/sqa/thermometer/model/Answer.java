@@ -2,7 +2,6 @@ package com.sqa.thermometer.model;
 
 import com.sqa.thermometer.dto.AnswerDTO;
 import com.sqa.thermometer.embedded.AnswerId;
-import com.sqa.thermometer.repository.AnswerRepository;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +35,5 @@ public class Answer {
         this.answerId.setQuestionId(answerDTO.getQuestionId());
         this.valorAnswer = answerDTO.getValorAnswer();
 
-       // this.survey = answerDTO.
-        //this.question = answerDTO.getQuestionId();
     }
 }

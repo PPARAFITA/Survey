@@ -3,7 +3,7 @@ package com.sqa.thermometer.dto;
 import com.sqa.thermometer.model.Answer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.objenesis.instantiator.android.AndroidSerializationInstantiator;
+import java.util.UUID;
 
 import java.util.UUID;
 

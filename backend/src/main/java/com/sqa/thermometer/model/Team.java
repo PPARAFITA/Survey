@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -16,12 +15,10 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Team {
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @JdbcTypeCode(SqlTypes.CHAR)
     @UuidGenerator
     private UUID teamId;
-
-    @Column(name = "name")
     private String teamName;
 
     //@OneToMany( mappedBy = "team", cascade = CascadeType.ALL)

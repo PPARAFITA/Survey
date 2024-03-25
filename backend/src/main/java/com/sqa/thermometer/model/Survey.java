@@ -1,6 +1,9 @@
 package com.sqa.thermometer.model;
 
 import com.sqa.thermometer.dto.SurveyDTO;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -10,7 +13,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
-
 import java.util.UUID;
 
 @Entity
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class Survey {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @JdbcTypeCode(SqlTypes.CHAR)
     @UuidGenerator
     private UUID surveyId;
@@ -30,14 +33,8 @@ public class Survey {
    /* @ManyToMany(mappedBy = "surveyList")
     private List<Question> questionList;*/
 
-    public Survey(SurveyDTO surveyDTO) {
-
-        //TeamService teamService = new TeamService();
-
+   public Survey(SurveyDTO surveyDTO){
         this.surveyId = surveyDTO.getSurveyId();
-        //this.team = new Team(surveyDTO.getTeamDTO());
-        this.team.setTeamId(surveyDTO.getTeamId());
-        //this.team = surveyDTO.;
-        // this.team = new Team(teamService.findById(surveyDTO.getTeamId()));
-    }
+        this.team.setTeamId( surveyDTO.getTeamId());
+  }
 }

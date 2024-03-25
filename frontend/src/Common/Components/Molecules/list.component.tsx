@@ -5,22 +5,22 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import axios from 'axios';
-
+ 
 interface Team {
   teamId: string;
   teamName: string;
 }
-
-
+ 
+ 
 const username = 'user';
 const password = '7f57edd8-3589-48e9-beb0-f882da413aeb';
 const credentials = btoa(`${username}:${password}`);
-
+ 
 export default function BasicSelect() {
   const [team, setTeam] = React.useState('');
   const [teamsData, setTeamsData] = React.useState<Team[]>([]);
-
-
+ 
+ 
   React.useEffect(() => {
     axios.get('/api/v1/thermometer/team', {
       headers: {
@@ -35,8 +35,8 @@ export default function BasicSelect() {
         console.error('Error fetching data:', error);
       });
   }, []);
-
-
+ 
+ 
   const handleChange = (event: SelectChangeEvent) => {
     const selectedTeamId = event.target.value as string;
     const selectedTeam = teamsData.find(team => team.teamId === selectedTeamId);
@@ -48,7 +48,7 @@ export default function BasicSelect() {
       setTeam(selectedTeam.teamId);
     }
   };
-
+ 
   return (
     <Box sx={{ minWidth: 450 }}>
       <FormControl sx={{ m: 2, minWidth: 450 }}>
@@ -56,8 +56,8 @@ export default function BasicSelect() {
           sx={{
             left: '-3px', // Ajuste fino para mover la etiqueta dentro del borde
             top: '-6px',
-
-
+ 
+ 
           }}>My team is </InputLabel>
         <Select
           labelId="team_questions"
