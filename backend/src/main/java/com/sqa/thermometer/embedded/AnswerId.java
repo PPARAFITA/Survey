@@ -2,6 +2,8 @@ package com.sqa.thermometer.embedded;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import java.io.Serializable;
 import java.util.UUID;
 

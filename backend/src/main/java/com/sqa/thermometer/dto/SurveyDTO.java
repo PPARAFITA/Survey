@@ -13,7 +13,7 @@ public class SurveyDTO {
    // private List<QuestionDTO> questionDTOList;
 
 
-    public SurveyDTO(Survey survey){
+    public SurveyDTO(Survey survey) {
         this.surveyId = survey.getSurveyId();
         this.teamId = survey.getTeam().getTeamId();
       /*  this.questionDTOList = new ArrayList<>();

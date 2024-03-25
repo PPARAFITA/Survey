@@ -6,11 +6,45 @@ import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
 //import { CustomButton, RadioButtonsGroup } from '../../common';
 import mockData from '../../data';
 import { CustomButton, RadioButtonsGroup } from '../../common/components/atom';
+import axios from 'axios';
 
-const LITERALS ={header: 'Welcome to the Digital Hub Survey' }
+interface Question {
+    questionId: string;
+    question: string;
+    type: string;
+}
+
+
+const username = 'user';
+const password = '7f57edd8-3589-48e9-beb0-f882da413aeb';
+const credentials = btoa(`${username}:${password}`);
+
+
+
+
+const LITERALS = { header: 'Welcome to the Digital Hub Survey' }
 
 export const FormMood = () => {
- 
+
+
+    const [question, setQuestion] = React.useState('');
+    const [questionData, setQuestionsData] = React.useState<Question[]>([]);
+
+
+    React.useEffect(() => {
+        axios.get('/api/v1/thermometer/question', {
+            headers: {
+                'Authorization': `Basic ${credentials}`
+            }
+        })
+            .then(response => {
+                console.log(response.data);
+                setQuestionsData(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -39,13 +73,20 @@ export const FormMood = () => {
                     <div className="línea-horizontal"></div>
                     <br />
 
-                    {mockData.map((dataItem) => (
+
+                    {questionData.map((questionData) => (
+                        <div key={questionData.questionId}>
+                            <RadioButtonsGroup questionId={questionData.questionId}question={questionData.question} answer1={'test'} answer2={'test2'} answer3={'test3'} />
+                            <div className="línea-horizontal"></div>
+                        </div>
+                    ))}
+                    {/* {mockData.map((dataItem) => (
                         <div key={dataItem.id}>
  
                             <RadioButtonsGroup  question = {dataItem.question} answer1={dataItem.answer1} answer2={dataItem.answer2} answer3={dataItem.answer3} />
                             <div className="línea-horizontal"></div>
                         </div>
-                    ))}
+                    ))} */}
 
 
 
@@ -64,5 +105,5 @@ export const FormMood = () => {
 
     )
 }
-;
+    ;
 

@@ -4,6 +4,10 @@ import com.sqa.thermometer.dto.TeamDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.SqlTypes;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -12,6 +16,8 @@ import java.util.UUID;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @UuidGenerator
     private UUID teamId;
     private String teamName;
 
