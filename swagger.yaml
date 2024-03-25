@@ -12,6 +12,8 @@ tags:
     description: Questions that are going to make to the teams
   - name: Survey
     description: This will be use to recive user responses
+  - name: Option_question
+    description: This will be use to retrieve options of questions   
 paths:
   /team:
     get:
@@ -58,6 +60,20 @@ paths:
       responses:
         '201':
           description: Successful operation
+  /option:
+      get:
+        tags:
+          - Option_question
+        summary: Get all the options for the question
+        description: Get all the options of a question
+        operationId: getOption
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ArrayOptionquestion'
 components:
   schemas:
     ArrayTeams:
@@ -88,6 +104,10 @@ components:
         - question
       type: object
       properties:
+        optionId:
+            type: string
+            format: UUID
+            example: 47455c16-41ee-4622-8a75-697aacfa2466
         questionId:
           type: string
           format: UUID
