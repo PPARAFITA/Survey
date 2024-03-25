@@ -3,8 +3,6 @@ package com.sqa.thermometer.service;
 import org.springframework.stereotype.Service;
 import com.sqa.thermometer.dto.OptionDTO;
 import com.sqa.thermometer.model.OptionQuestion;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 

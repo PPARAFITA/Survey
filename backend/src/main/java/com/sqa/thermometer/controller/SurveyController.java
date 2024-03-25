@@ -1,7 +1,6 @@
 package com.sqa.thermometer.controller;
 
 import com.sqa.thermometer.dto.SurveyDTO;
-import com.sqa.thermometer.model.Survey;
 import com.sqa.thermometer.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

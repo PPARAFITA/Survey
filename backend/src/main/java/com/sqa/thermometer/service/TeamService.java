@@ -1,13 +1,9 @@
 package com.sqa.thermometer.service;
 
 import com.sqa.thermometer.dto.TeamDTO;
-import com.sqa.thermometer.model.Team;
 import com.sqa.thermometer.repository.TeamRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
 
 @Service

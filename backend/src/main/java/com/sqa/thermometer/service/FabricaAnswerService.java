@@ -2,7 +2,6 @@ package com.sqa.thermometer.service;
 
 import com.sqa.thermometer.dto.AnswerDTO;
 import com.sqa.thermometer.model.Answer;
-import com.sqa.thermometer.repository.AnswerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

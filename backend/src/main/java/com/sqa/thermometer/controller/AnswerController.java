@@ -1,13 +1,10 @@
 package com.sqa.thermometer.controller;
 
 import com.sqa.thermometer.dto.AnswerDTO;
-import com.sqa.thermometer.dto.SurveyDTO;
 import com.sqa.thermometer.service.AnswerService;
-import com.sqa.thermometer.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
