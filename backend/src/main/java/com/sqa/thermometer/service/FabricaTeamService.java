@@ -14,9 +14,9 @@ public class FabricaTeamService {
         return new Team(teamDTO);
     }
 
-   /* public TeamDTO createTeamDTO(Team team){
+    public TeamDTO createTeamDTO(Team team){
         return new TeamDTO(team);
-    }*/
+    }
 
     public List<TeamDTO> createTeamsDTO(List<Team> teamList){
         List<TeamDTO> teamDTOList = new ArrayList<>();

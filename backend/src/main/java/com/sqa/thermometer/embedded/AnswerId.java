@@ -10,7 +10,7 @@ import java.util.UUID;
 @Embeddable
 @Data
 public class AnswerId implements Serializable {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "answer_id")
     private UUID answerId;
 

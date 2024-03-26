@@ -2,6 +2,7 @@ package com.sqa.thermometer.service;
 
 import com.sqa.thermometer.dto.TeamDTO;
 import com.sqa.thermometer.repository.TeamRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -14,9 +15,9 @@ public class TeamService {
     @Autowired
     private FabricaTeamService fabricaTeamService;
 
- /*   public TeamDTO save(TeamDTO teamDTO){
+    public TeamDTO save(TeamDTO teamDTO){
         return fabricaTeamService.createTeamDTO(teamRepository.save(fabricaTeamService.createTeam(teamDTO)));
-    }*/
+    }
 
     public List<TeamDTO> findAll(){
         return fabricaTeamService.createTeamsDTO(teamRepository.findAll());

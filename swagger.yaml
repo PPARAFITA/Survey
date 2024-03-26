@@ -66,15 +66,15 @@ components:
             $ref: '#/components/schemas/Team'
     Team:
       required:
-        - id
-        - name
+        - teamId
+        - teamName
       type: object
       properties:
-        id:
+        teamId:
           type: string
           format: UUID
           example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
-        name:
+        teamName:
           type: string
           example: SQA
     ArrayQuestions:
@@ -83,46 +83,52 @@ components:
             $ref: '#/components/schemas/Question'
     Question:
       required:
-        - id
-        - question
-        - type
-      type: object
-      properties:
-        id:
-          type: string
-          format: UUID
-          example: 47455c16-41ee-4622-8a75-697aacfa2466
-        question:
-          type: string
-          example: How are you feeling today?
-        type:
-          type: string
-          enum: [traffic_light]
-    Survey:
-      required:
-        - teamId
-        - answers
-      type: object
-      properties:
-        teamId:
-          type: string
-          format: UUID
-          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
-        answers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Answer'
-    Answer:
-      required:
         - questionId
-        - answer
+        - questionType
+        - question
       type: object
       properties:
         questionId:
           type: string
           format: UUID
           example: 47455c16-41ee-4622-8a75-697aacfa2466
-        answers:
+        questionType:
           type: string
-          example: green
+          enum: [traffic_light]
+        question:
+          type: string
+          example: How are you feeling today?          
+    Survey:
+      required:
+        - surveyId
+        - teamId
+      type: object
+      properties:
+        surveyId:
+          type: string
+          format: UUID
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+        teamId:
+          type: string
+          format: UUID
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+    Answer:
+      required:
+        - answerId
+        - surveyId
+        - questionId
+      type: object
+      properties:
+        answerId:
+          type: string
+          format: UUID
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+        surveyId:
+          type: string
+          format: UUID
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+        questionId:
+          type: string
+          format: UUID
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
             
