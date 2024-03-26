@@ -12,7 +12,7 @@ import java.util.UUID;
 @Data
 @Embeddable
 public class OptionId implements Serializable {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "option_id")
     private UUID optionId;
 
