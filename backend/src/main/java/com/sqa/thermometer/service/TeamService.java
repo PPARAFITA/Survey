@@ -2,6 +2,7 @@ package com.sqa.thermometer.service;
 
 import com.sqa.thermometer.dto.TeamDTO;
 import com.sqa.thermometer.repository.TeamRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
