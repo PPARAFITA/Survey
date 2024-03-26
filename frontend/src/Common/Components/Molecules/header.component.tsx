@@ -7,7 +7,7 @@ import './header.styles.css';
 export const Header =() =>{
      return (
 
-        <Grid  item ml={1}   >
+        <Grid item ml={1}   >
             <div className='App-header'>
                 <img src={thermometer} className="App-thermometer" alt="logo" />
                 <img src={team_mood1} className="Team_image" alt="logo" />

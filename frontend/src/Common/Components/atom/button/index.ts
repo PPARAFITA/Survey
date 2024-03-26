@@ -1,1 +1,1 @@
-export { CustomButton} from './button.component';
+export { CustomButton } from './button.component';

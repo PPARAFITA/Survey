@@ -1,32 +1,26 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import axios from 'axios';
+import './list.styles.css';
+// import axios from 'axios';
+// import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import { getTeams } from '../../../services/team';
 
 interface Team {
   teamId: string;
   teamName: string;
 }
-
-
-const username = 'user';
-const password = '7f57edd8-3589-48e9-beb0-f882da413aeb';
-const credentials = btoa(`${username}:${password}`);
-
+ 
 export default function BasicSelect() {
   const [team, setTeam] = React.useState('');
   const [teamsData, setTeamsData] = React.useState<Team[]>([]);
 
 
   React.useEffect(() => {
-    axios.get('/api/v1/thermometer/team', {
-      headers: {
-        'Authorization': `Basic ${credentials}`
-      }
-    })
+    getTeams()  
       .then(response => {
         console.log(response.data);
         setTeamsData(response.data);
@@ -49,12 +43,15 @@ export default function BasicSelect() {
     }
   };
 
+  
   return (
     <Box sx={{ minWidth: 450 }}>
-      <FormControl sx={{ m: 2, minWidth: 450 }}>
+      <div className='select'>
+        <FormControl className='select' sx={{ m: 2, minWidth: 450 }}>
+
         <InputLabel id="team_questions"
           sx={{
-            left: '-3px', // Ajuste fino para mover la etiqueta dentro del borde
+            left: '-3px',  
             top: '-6px',
 
 
@@ -70,8 +67,31 @@ export default function BasicSelect() {
            {teamsData.map((teamItem: any) => (
             <MenuItem key={teamItem.teamId} value={teamItem.teamId}>{teamItem.teamName}</MenuItem>
           ))}
-        </Select>
-      </FormControl>
-    </Box>
+        </Select> 
+        </FormControl>
+      </div>
+    </Box >
   );
+
+
 }
+
+/*{currencies.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+
+
+           <Select
+        labelId="team_questions"
+        id="demo-simple-select"
+        placeholder='Select your team'
+        value={team}
+        label='My team is'
+        onChange={handleChange}
+      >
+        <MenuItem value={10}>SQA</MenuItem>
+        <MenuItem value={20}>TIWH</MenuItem>
+        <MenuItem value={30}>Midas</MenuItem>
+      </Select>
+        ))}*/

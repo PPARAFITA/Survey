@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import React from 'react';
+import React, { FormEvent } from 'react';
 import cx from 'classnames';
 import './button.styles.css';
 
@@ -8,17 +8,19 @@ interface Props {
     color: string;
     description: string;
     path: string;
+    actionButton?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const styleAzul = 'blueButtonStyle';
 const styleBlanco = 'whiteButtonStyle';
-const color = 'blue'; 
 const buttonStyle = 'baseButtonStyle';
 
+ 
 
-export const CustomButton: React.FC<Props> = ({ color, description, path }) => {
 
-    console.log('Valor de color:', color);
+export const CustomButton: React.FC<Props> = ({ color, description, path, actionButton }) => {
+
+
 
     const buttonClassName = cx(buttonStyle, {
         [styleAzul]: color === 'blue',
@@ -28,8 +30,7 @@ export const CustomButton: React.FC<Props> = ({ color, description, path }) => {
     return (
 
         <Link to={path} style={{ textDecoration: 'none' }}>
-            <Button className={buttonClassName}   variant="contained">
- 
+            <Button id='custombutton' onClick={actionButton} className={buttonClassName}  variant="contained">
                 {description}
             </Button>
         </Link>

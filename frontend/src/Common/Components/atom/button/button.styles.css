@@ -1,21 +1,17 @@
 .Button {
-  display: flex;
-  padding: 8px 22px;
+  display: flex; 
   border-radius: 5px;
   cursor: pointer;
-
-  /* elevation/2 */
   box-shadow: 0px;
 }
 
-
-.blueButtonStyle {
-  background-color: #2196F3 !important;
+#custombutton.blueButtonStyle {
+  background-color: #2196F3;
   ;
   color: white;
 }
 
-.whiteButtonStyle {
+#custombutton.whiteButtonStyle {
   background-color: white;
-  color: #2196F3 !important;
+  color: #2196F3;
 }
