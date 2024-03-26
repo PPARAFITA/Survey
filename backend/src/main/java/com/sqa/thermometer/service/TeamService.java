@@ -15,9 +15,9 @@ public class TeamService {
     @Autowired
     private FabricaTeamService fabricaTeamService;
 
- /*   public TeamDTO save(TeamDTO teamDTO){
+    public TeamDTO save(TeamDTO teamDTO){
         return fabricaTeamService.createTeamDTO(teamRepository.save(fabricaTeamService.createTeam(teamDTO)));
-    }*/
+    }
 
     public List<TeamDTO> findAll(){
         return fabricaTeamService.createTeamsDTO(teamRepository.findAll());
