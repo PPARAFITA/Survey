@@ -22,7 +22,8 @@ export default function BasicSelect() {
  
  
   React.useEffect(() => {
-    axios.get('/api/v1/thermometer/team', {
+    //axios.get('/api/v1/thermometer/team', {
+    axios.get('/team', {
       headers: {
         'Authorization': `Basic ${credentials}`
       }
