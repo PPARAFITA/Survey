@@ -7,10 +7,10 @@
 
     <changeSet author="GQD-liquibase" id="initial-schema-1">
         <createTable tableName="team">
-            <column name="id" type="UUID">
+            <column name="team_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_team_id"/>
             </column>
-            <column name="name" type="VARCHAR(100)">
+            <column name="team_name" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -47,7 +47,23 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-
+        <createTable tableName="option_question">
+            <column name="option_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_option_id"/>
+            </column>
+            <column name="question_id" type="UUID">
+                <constraints nullable="false" validateForeignKey="true" foreignKeyName="FK_option_question_id"/>
+            </column>
+            <column name="survey_id" type="UUID">
+                <constraints nullable="false" validateForeignKey="true" foreignKeyName="FK_option_survey_id"/>
+            </column>
+            <column name="valor_option" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="color" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>
