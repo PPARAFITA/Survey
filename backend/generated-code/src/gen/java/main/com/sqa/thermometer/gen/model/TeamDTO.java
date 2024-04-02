@@ -22,14 +22,14 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("Team")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-24T18:53:38.194613+01:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-02T09:26:03.226880+02:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
 public class TeamDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private UUID id;
+  private UUID teamId;
 
-  private String name;
+  private String teamName;
 
   public TeamDTO() {
     super();
@@ -38,49 +38,49 @@ public class TeamDTO implements Serializable {
   /**
    * Constructor with only required parameters
    */
-  public TeamDTO(UUID id, String name) {
-    this.id = id;
-    this.name = name;
+  public TeamDTO(UUID teamId, String teamName) {
+    this.teamId = teamId;
+    this.teamName = teamName;
   }
 
-  public TeamDTO id(UUID id) {
-    this.id = id;
+  public TeamDTO teamId(UUID teamId) {
+    this.teamId = teamId;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get teamId
+   * @return teamId
   */
   @NotNull @Valid 
-  @Schema(name = "id", example = "b2f7a764-14b5-45dd-9222-0a4a746f4f7d", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("id")
-  public UUID getId() {
-    return id;
+  @Schema(name = "teamId", example = "b2f7a764-14b5-45dd-9222-0a4a746f4f7d", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("teamId")
+  public UUID getTeamId() {
+    return teamId;
   }
 
-  public void setId(UUID id) {
-    this.id = id;
+  public void setTeamId(UUID teamId) {
+    this.teamId = teamId;
   }
 
-  public TeamDTO name(String name) {
-    this.name = name;
+  public TeamDTO teamName(String teamName) {
+    this.teamName = teamName;
     return this;
   }
 
   /**
-   * Get name
-   * @return name
+   * Get teamName
+   * @return teamName
   */
   @NotNull 
-  @Schema(name = "name", example = "SQA", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("name")
-  public String getName() {
-    return name;
+  @Schema(name = "teamName", example = "SQA", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("teamName")
+  public String getTeamName() {
+    return teamName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setTeamName(String teamName) {
+    this.teamName = teamName;
   }
 
   @Override
@@ -92,21 +92,21 @@ public class TeamDTO implements Serializable {
       return false;
     }
     TeamDTO team = (TeamDTO) o;
-    return Objects.equals(this.id, team.id) &&
-        Objects.equals(this.name, team.name);
+    return Objects.equals(this.teamId, team.teamId) &&
+        Objects.equals(this.teamName, team.teamName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(teamId, teamName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TeamDTO {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    teamId: ").append(toIndentedString(teamId)).append("\n");
+    sb.append("    teamName: ").append(toIndentedString(teamName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-24T18:53:38.194613+01:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-27T15:02:18.896810+01:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
 @Controller
 @RequestMapping("${openapi.teamHappinessBuddyProgram.base-path:}")
 public class QuestionApiController implements QuestionApi {

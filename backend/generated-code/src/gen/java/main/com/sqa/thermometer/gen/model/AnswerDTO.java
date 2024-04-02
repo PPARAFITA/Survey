@@ -22,14 +22,16 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("Answer")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-25T17:24:37.245512+01:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-02T09:26:03.226880+02:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
 public class AnswerDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private UUID questionId;
+  private UUID answerId;
 
-  private Optional<String> answers = Optional.empty();
+  private UUID surveyId;
+
+  private UUID questionId;
 
   public AnswerDTO() {
     super();
@@ -38,8 +40,50 @@ public class AnswerDTO implements Serializable {
   /**
    * Constructor with only required parameters
    */
-  public AnswerDTO(UUID questionId) {
+  public AnswerDTO(UUID answerId, UUID surveyId, UUID questionId) {
+    this.answerId = answerId;
+    this.surveyId = surveyId;
     this.questionId = questionId;
+  }
+
+  public AnswerDTO answerId(UUID answerId) {
+    this.answerId = answerId;
+    return this;
+  }
+
+  /**
+   * Get answerId
+   * @return answerId
+  */
+  @NotNull @Valid 
+  @Schema(name = "answerId", example = "47455c16-41ee-4622-8a75-697aacfa2466", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("answerId")
+  public UUID getAnswerId() {
+    return answerId;
+  }
+
+  public void setAnswerId(UUID answerId) {
+    this.answerId = answerId;
+  }
+
+  public AnswerDTO surveyId(UUID surveyId) {
+    this.surveyId = surveyId;
+    return this;
+  }
+
+  /**
+   * Get surveyId
+   * @return surveyId
+  */
+  @NotNull @Valid 
+  @Schema(name = "surveyId", example = "47455c16-41ee-4622-8a75-697aacfa2466", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("surveyId")
+  public UUID getSurveyId() {
+    return surveyId;
+  }
+
+  public void setSurveyId(UUID surveyId) {
+    this.surveyId = surveyId;
   }
 
   public AnswerDTO questionId(UUID questionId) {
@@ -62,26 +106,6 @@ public class AnswerDTO implements Serializable {
     this.questionId = questionId;
   }
 
-  public AnswerDTO answers(String answers) {
-    this.answers = Optional.of(answers);
-    return this;
-  }
-
-  /**
-   * Get answers
-   * @return answers
-  */
-  
-  @Schema(name = "answers", example = "green", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("answers")
-  public Optional<String> getAnswers() {
-    return answers;
-  }
-
-  public void setAnswers(Optional<String> answers) {
-    this.answers = answers;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -91,21 +115,23 @@ public class AnswerDTO implements Serializable {
       return false;
     }
     AnswerDTO answer = (AnswerDTO) o;
-    return Objects.equals(this.questionId, answer.questionId) &&
-        Objects.equals(this.answers, answer.answers);
+    return Objects.equals(this.answerId, answer.answerId) &&
+        Objects.equals(this.surveyId, answer.surveyId) &&
+        Objects.equals(this.questionId, answer.questionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(questionId, answers);
+    return Objects.hash(answerId, surveyId, questionId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AnswerDTO {\n");
+    sb.append("    answerId: ").append(toIndentedString(answerId)).append("\n");
+    sb.append("    surveyId: ").append(toIndentedString(surveyId)).append("\n");
     sb.append("    questionId: ").append(toIndentedString(questionId)).append("\n");
-    sb.append("    answers: ").append(toIndentedString(answers)).append("\n");
     sb.append("}");
     return sb.toString();
   }

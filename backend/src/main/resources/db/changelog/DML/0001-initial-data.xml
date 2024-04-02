@@ -7,9 +7,17 @@
 
     <changeSet id="GQD-liquibase:initial-data-1" author="GQD-liquibase">
         <insert tableName="team">
-            <column name="id" value="c252189e-82af-48f3-aa40-188606a1a741" />
-            <column name="name" value="SQA" />
+            <column name="team_id" value="c252189e-82af-48f3-aa40-188606a1a741" />
+            <column name="team_name" value="SQA" />
         </insert>
+        <insert tableName="team">
+            <column name="team_id" value="c252189e-82af-48f3-aa40-188606a1a821" />
+            <column name="team_name" value="TI-SYNCRO" />
+        </insert>
+        <insert tableName="survey">
+            <column name="survey_id" value="s252189e-82af-48f3-ss40-188606a1a821" />
+            <column name="team_id" value="c252189e-82af-48f3-aa40-188606a1a741" />
+        </insert>        
     </changeSet>
 
 </databaseChangeLog>

@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-24T18:53:38.194613+01:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-02T09:26:03.226880+02:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
 @Validated
 @Tag(name = "Teams", description = "Everything about the teams in the Hub")
 public interface TeamApi {
@@ -70,7 +70,7 @@ public interface TeamApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"name\" : \"SQA\", \"id\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\" }, { \"name\" : \"SQA\", \"id\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\" } ]";
+                    String exampleString = "[ { \"teamName\" : \"SQA\", \"teamId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\" }, { \"teamName\" : \"SQA\", \"teamId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

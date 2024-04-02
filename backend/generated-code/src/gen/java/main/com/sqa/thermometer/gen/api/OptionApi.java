@@ -5,7 +5,7 @@
  */
 package com.sqa.thermometer.gen.api;
 
-import com.sqa.thermometer.gen.model.OptionQuestionDTO;
+import com.sqa.thermometer.gen.model.ArrayOptionquestionDTO;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-24T18:53:38.194613+01:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-02T09:26:03.226880+02:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
 @Validated
 @Tag(name = "Option_question", description = "This will be use to retrieve options of questions")
 public interface OptionApi {
@@ -54,7 +54,7 @@ public interface OptionApi {
         tags = { "Option_question" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = OptionQuestionDTO.class)))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ArrayOptionquestionDTO.class))
             })
         }
     )
@@ -64,13 +64,13 @@ public interface OptionApi {
         produces = { "application/json" }
     )
     
-    default ResponseEntity<List<OptionQuestionDTO>> getOption(
+    default ResponseEntity<ArrayOptionquestionDTO> getOption(
         
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"surveyId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"valor_option\" : \"good\", \"questionId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"color\" : \"green\", \"optionId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\" }, { \"surveyId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"valor_option\" : \"good\", \"questionId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"color\" : \"green\", \"optionId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\" } ]";
+                    String exampleString = "{ \"surveyId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"questionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"color\" : \"orange\", \"optionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"valorOption\" : \"neutral\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

@@ -95,19 +95,19 @@ components:
       type: array
     Team:
       example:
-        name: SQA
-        id: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+        teamName: SQA
+        teamId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
       properties:
-        id:
+        teamId:
           example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
           format: UUID
           type: string
-        name:
+        teamName:
           example: SQA
           type: string
       required:
-      - id
-      - name
+      - teamId
+      - teamName
       type: object
     ArrayQuestions:
       items:
@@ -115,25 +115,79 @@ components:
       type: array
     Question:
       example:
+        questionId: 47455c16-41ee-4622-8a75-697aacfa2466
         question: How are you feeling today?
-        id: 47455c16-41ee-4622-8a75-697aacfa2466
-        type: traffic_light
+        optionId: 47455c16-41ee-4622-8a75-697aacfa2466
+        optionDTOList:
+        - surveyId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          questionId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          color: orange
+          optionId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          valorOption: neutral
+        - surveyId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          questionId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          color: orange
+          optionId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          valorOption: neutral
+        questionType: traffic_light
       properties:
-        id:
+        optionId:
           example: 47455c16-41ee-4622-8a75-697aacfa2466
           format: UUID
+          type: string
+        questionId:
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+          format: UUID
+          type: string
+        questionType:
+          enum:
+          - traffic_light
           type: string
         question:
           example: How are you feeling today?
           type: string
-        type:
-          enum:
-          - traffic_light
+        optionDTOList:
+          items:
+            $ref: '#/components/schemas/ArrayOptionquestion'
+          type: array
+      required:
+      - optionDTOList
+      - question
+      - questionId
+      - questionType
+      type: object
+    ArrayOptionquestion:
+      example:
+        surveyId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+        questionId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+        color: orange
+        optionId: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+        valorOption: neutral
+      properties:
+        optionId:
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          format: UUID
+          type: string
+        surveyId:
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          format: UUID
+          type: string
+        questionId:
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          format: UUID
+          type: string
+        valorOption:
+          example: neutral
+          type: string
+        color:
+          example: orange
           type: string
       required:
-      - id
-      - question
-      - type
+      - color
+      - optionId
+      - questionId
+      - surveyId
+      - valorOption
       type: object
     Survey:
       properties:
@@ -149,23 +203,9 @@ components:
       - surveyId
       - teamId
       type: object
-    ArrayOptionquestion:
-      items:
-        $ref: '#/components/schemas/Option_question'
-      type: array
-    Option_question:
-      example:
-        surveyId: 47455c16-41ee-4622-8a75-697aacfa2466
-        valor_option: good
-        questionId: 47455c16-41ee-4622-8a75-697aacfa2466
-        color: green
-        optionId: 47455c16-41ee-4622-8a75-697aacfa2466
+    Answer:
       properties:
-        optionId:
-          example: 47455c16-41ee-4622-8a75-697aacfa2466
-          format: UUID
-          type: string
-        questionId:
+        answerId:
           example: 47455c16-41ee-4622-8a75-697aacfa2466
           format: UUID
           type: string
@@ -173,16 +213,12 @@ components:
           example: 47455c16-41ee-4622-8a75-697aacfa2466
           format: UUID
           type: string
-        color:
-          example: green
-          type: string
-        valor_option:
-          example: good
+        questionId:
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+          format: UUID
           type: string
       required:
-      - color
-      - optionId
+      - answerId
       - questionId
       - surveyId
-      - valor_option
       type: object

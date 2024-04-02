@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-24T18:53:38.194613+01:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-02T09:26:03.226880+02:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
 @Validated
 @Tag(name = "Questions", description = "Questions that are going to make to the teams")
 public interface QuestionApi {
@@ -70,7 +70,7 @@ public interface QuestionApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"question\" : \"How are you feeling today?\", \"id\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"type\" : \"traffic_light\" }, { \"question\" : \"How are you feeling today?\", \"id\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"type\" : \"traffic_light\" } ]";
+                    String exampleString = "[ { \"questionId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"question\" : \"How are you feeling today?\", \"optionId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"optionDTOList\" : [ { \"surveyId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"questionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"color\" : \"orange\", \"optionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"valorOption\" : \"neutral\" }, { \"surveyId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"questionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"color\" : \"orange\", \"optionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"valorOption\" : \"neutral\" } ], \"questionType\" : \"traffic_light\" }, { \"questionId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"question\" : \"How are you feeling today?\", \"optionId\" : \"47455c16-41ee-4622-8a75-697aacfa2466\", \"optionDTOList\" : [ { \"surveyId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"questionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"color\" : \"orange\", \"optionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"valorOption\" : \"neutral\" }, { \"surveyId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"questionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"color\" : \"orange\", \"optionId\" : \"b2f7a764-14b5-45dd-9222-0a4a746f4f7d\", \"valorOption\" : \"neutral\" } ], \"questionType\" : \"traffic_light\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

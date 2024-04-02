@@ -3,6 +3,8 @@ package com.sqa.thermometer.model;
 import com.sqa.thermometer.dto.AnswerDTO;
 import com.sqa.thermometer.embedded.AnswerId;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +26,8 @@ public class Answer {
     @JoinColumn(name = "question_id")
     private Question question;
 
+    @NotNull(message = "the field valorAnswer cannot be null")
+    @NotBlank(message = "the field valorAnswer cannot be blank")
     private String valorAnswer;
 
     public Answer(AnswerDTO answerDTO){

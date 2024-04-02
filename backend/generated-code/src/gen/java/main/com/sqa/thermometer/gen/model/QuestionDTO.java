@@ -6,6 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.sqa.thermometer.gen.model.ArrayOptionquestionDTO;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.io.Serializable;
@@ -23,24 +27,24 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("Question")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-24T18:53:38.194613+01:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-04-02T09:26:03.226880+02:00[Europe/Madrid]", comments = "Generator version: 7.4.0")
 public class QuestionDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private UUID id;
+  private Optional<UUID> optionId = Optional.empty();
 
-  private String question;
+  private UUID questionId;
 
   /**
-   * Gets or Sets type
+   * Gets or Sets questionType
    */
-  public enum TypeEnum {
+  public enum QuestionTypeEnum {
     TRAFFIC_LIGHT("traffic_light");
 
     private String value;
 
-    TypeEnum(String value) {
+    QuestionTypeEnum(String value) {
       this.value = value;
     }
 
@@ -55,8 +59,8 @@ public class QuestionDTO implements Serializable {
     }
 
     @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
+    public static QuestionTypeEnum fromValue(String value) {
+      for (QuestionTypeEnum b : QuestionTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -65,7 +69,12 @@ public class QuestionDTO implements Serializable {
     }
   }
 
-  private TypeEnum type;
+  private QuestionTypeEnum questionType;
+
+  private String question;
+
+  @Valid
+  private List<@Valid ArrayOptionquestionDTO> optionDTOList = new ArrayList<>();
 
   public QuestionDTO() {
     super();
@@ -74,30 +83,71 @@ public class QuestionDTO implements Serializable {
   /**
    * Constructor with only required parameters
    */
-  public QuestionDTO(UUID id, String question, TypeEnum type) {
-    this.id = id;
+  public QuestionDTO(UUID questionId, QuestionTypeEnum questionType, String question, List<@Valid ArrayOptionquestionDTO> optionDTOList) {
+    this.questionId = questionId;
+    this.questionType = questionType;
     this.question = question;
-    this.type = type;
+    this.optionDTOList = optionDTOList;
   }
 
-  public QuestionDTO id(UUID id) {
-    this.id = id;
+  public QuestionDTO optionId(UUID optionId) {
+    this.optionId = Optional.of(optionId);
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get optionId
+   * @return optionId
   */
-  @NotNull @Valid 
-  @Schema(name = "id", example = "47455c16-41ee-4622-8a75-697aacfa2466", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("id")
-  public UUID getId() {
-    return id;
+  @Valid 
+  @Schema(name = "optionId", example = "47455c16-41ee-4622-8a75-697aacfa2466", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("optionId")
+  public Optional<UUID> getOptionId() {
+    return optionId;
   }
 
-  public void setId(UUID id) {
-    this.id = id;
+  public void setOptionId(Optional<UUID> optionId) {
+    this.optionId = optionId;
+  }
+
+  public QuestionDTO questionId(UUID questionId) {
+    this.questionId = questionId;
+    return this;
+  }
+
+  /**
+   * Get questionId
+   * @return questionId
+  */
+  @NotNull @Valid 
+  @Schema(name = "questionId", example = "47455c16-41ee-4622-8a75-697aacfa2466", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("questionId")
+  public UUID getQuestionId() {
+    return questionId;
+  }
+
+  public void setQuestionId(UUID questionId) {
+    this.questionId = questionId;
+  }
+
+  public QuestionDTO questionType(QuestionTypeEnum questionType) {
+    this.questionType = questionType;
+    return this;
+  }
+
+  /**
+   * Get questionType
+   * @return questionType
+  */
+  @NotNull 
+  @Schema(name = "questionType", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("questionType")
+  public QuestionTypeEnum getQuestionType() {
+    return questionType;
+  }
+
+  public void setQuestionType(QuestionTypeEnum questionType) {
+    this.questionType = questionType;
   }
 
   public QuestionDTO question(String question) {
@@ -120,24 +170,32 @@ public class QuestionDTO implements Serializable {
     this.question = question;
   }
 
-  public QuestionDTO type(TypeEnum type) {
-    this.type = type;
+  public QuestionDTO optionDTOList(List<@Valid ArrayOptionquestionDTO> optionDTOList) {
+    this.optionDTOList = optionDTOList;
+    return this;
+  }
+
+  public QuestionDTO addOptionDTOListItem(ArrayOptionquestionDTO optionDTOListItem) {
+    if (this.optionDTOList == null) {
+      this.optionDTOList = new ArrayList<>();
+    }
+    this.optionDTOList.add(optionDTOListItem);
     return this;
   }
 
   /**
-   * Get type
-   * @return type
+   * Get optionDTOList
+   * @return optionDTOList
   */
-  @NotNull 
-  @Schema(name = "type", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("type")
-  public TypeEnum getType() {
-    return type;
+  @NotNull @Valid 
+  @Schema(name = "optionDTOList", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("optionDTOList")
+  public List<@Valid ArrayOptionquestionDTO> getOptionDTOList() {
+    return optionDTOList;
   }
 
-  public void setType(TypeEnum type) {
-    this.type = type;
+  public void setOptionDTOList(List<@Valid ArrayOptionquestionDTO> optionDTOList) {
+    this.optionDTOList = optionDTOList;
   }
 
   @Override
@@ -149,23 +207,27 @@ public class QuestionDTO implements Serializable {
       return false;
     }
     QuestionDTO question = (QuestionDTO) o;
-    return Objects.equals(this.id, question.id) &&
+    return Objects.equals(this.optionId, question.optionId) &&
+        Objects.equals(this.questionId, question.questionId) &&
+        Objects.equals(this.questionType, question.questionType) &&
         Objects.equals(this.question, question.question) &&
-        Objects.equals(this.type, question.type);
+        Objects.equals(this.optionDTOList, question.optionDTOList);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, question, type);
+    return Objects.hash(optionId, questionId, questionType, question, optionDTOList);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuestionDTO {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    optionId: ").append(toIndentedString(optionId)).append("\n");
+    sb.append("    questionId: ").append(toIndentedString(questionId)).append("\n");
+    sb.append("    questionType: ").append(toIndentedString(questionType)).append("\n");
     sb.append("    question: ").append(toIndentedString(question)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    optionDTOList: ").append(toIndentedString(optionDTOList)).append("\n");
     sb.append("}");
     return sb.toString();
   }
