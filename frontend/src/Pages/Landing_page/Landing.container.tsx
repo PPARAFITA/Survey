@@ -2,6 +2,7 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import '../../App.css';
 import { CustomButton } from '../../common';
+import Divider from '@mui/material/Divider';
 import '../../common/components/atom/button/button.styles.css';
 import './landing.styles.css';
 
@@ -32,9 +33,9 @@ export const App = () => {
                         <CustomButton color={'blue'} description={"Start the Survey"} path={"/FormMood"} />
                     </Stack>
                 </div>
-
-                <div className="divider"></div>
-
+            </p>
+            <Divider className='divider'></Divider> 
+            <p className="Body1">
                 <p className="header5">{LITERALS.p5}</p>
 
                 {LITERALS.p4}
@@ -45,9 +46,9 @@ export const App = () => {
 
                 <p className='link-more'>
                     {LITERALS.p6}<a href="https://engineering.atspotify.com/2014/09/squad-health-check-model/">
-                    <span className='More-information'>more information</span></a>
-                </p>
-            </p>
+                        <span className='More-information'>more information</span></a>
+
+                </p> </p>
         </div>
     )
 }

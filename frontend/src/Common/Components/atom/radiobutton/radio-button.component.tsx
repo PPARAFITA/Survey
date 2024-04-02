@@ -4,8 +4,17 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import "./radio-button.styles.css";
 import { SelectChangeEvent } from '@mui/material';
-import axios from 'axios';
 
+
+// interface Question {
+//   answers: any;
+//   questionId: string;
+//   optionId:string;
+//   question: string;
+//   type: string;
+// }
+
+//Propiedades de question
 interface OptionDTO {
   optionId: number;
   surveyId: number;
@@ -18,19 +27,7 @@ interface Props {
   questionId: number;
   question: string;
   options: OptionDTO[];
-  onOptionChange: (questionId: number, optionId: number) => void;
-  // answer1: string;
-  // color1: string;
-  // answer2: string;
-  // answer3: string;
-}
-
-interface Question {
-  answers: any;
-  questionId: string;
-  optionId:string;
-  question: string;
-  type: string;
+  onOptionChange: (questionId: number, optionId: number, surveyId:number ) => void;
 }
 
 
@@ -39,19 +36,10 @@ export const RadioButtonsGroup: React.FC<Props> = ({
   question,
   options,
   onOptionChange
-  // answer1,
-  // color1,
-  // answer2,
-  // answer3,
 }): React.JSX.Element => {
 
-
-  // const username = 'user';
-  // const password = '7f57edd8-3589-48e9-beb0-f882da413aeb';
-  // const credentials = btoa(`${username}:${password}`);
-
-  let [question1, setQuestion] = React.useState('');
-  const [questionsData, setQuestionsData] = React.useState<Question[]>([]);
+  // let [question1, setQuestion] = React.useState('');
+  // const [questionsData, setQuestionsData] = React.useState<Question[]>([]);
 
   // React.useEffect(() => {
   //     axios.get('/api/v1/thermometer/question', {
@@ -70,24 +58,32 @@ export const RadioButtonsGroup: React.FC<Props> = ({
 
   const handleChange = (event: SelectChangeEvent) => {
 
-     
-      // Cuando se cambia la opción, llama a la función onOptionChange y pasa la opción seleccionada
-      const optionId = parseInt(event.target.value); // Convierte el valor de cadena a número
-        // Cuando se cambia la opción, llama a la función onOptionChange y pasa el questionId y el optionId
-        onOptionChange(questionId, optionId);
- 
+    // const optionId = parseInt(event.target.value); // Convierte el valor de cadena a número
+    // onOptionChange(questionId, optionId);
+    // console.log("Selected question ID:", questionId);
+    // console.log("Selected question ID:", optionId);
+
+    const optionValue = event.target.value;
+    console.log("Option value:", optionValue); // Verifica el valor recibido
+
+    const optionId = parseInt(optionValue);
+    if (!isNaN(optionId)) {
+        onOptionChange(questionId, optionId, options[questionId].surveyId);
+        console.log("Selected question ID:", questionId);
+        console.log("Selected option ID:", optionId);
+        console.log("Survey ID:",options[questionId].surveyId)
+    } else {
+        console.error("Invalid option value:", optionValue);
+    }
 
     // const selectedAnswer = event.target.value;
-    const selectedQuestion = questionsData.find(question => question.question === question1);
+    // const selectedQuestion = questionsData.find(question => question.question === question1);
     // const selectedAnswer = questionsData.find(options =>  === question1);
     // console.log(color1);
     // if (selectedQuestion) {
     // const selectedAnswerId = selectedQuestion.answers.find((answer: { answer: string; }) => answer.answer === selectedAnswer)?.answer_id;
     // console.log("Selected question ID:", selectedQuestion.questionId);
     // console.log("Selected answer ID:", selectedAnswer);
-    console.log("Selected question ID:", questionId);
-    console.log("Selected question ID:", optionId);
-    // Aquí puedes hacer lo que necesites con los IDs recuperados
     // }
   };
   return (
@@ -104,7 +100,7 @@ export const RadioButtonsGroup: React.FC<Props> = ({
             <FormControlLabel
               key={option.optionId}
               className='RadioButton1'
-              value={option.valorOption}
+              value={option.optionId}
               control={<Radio style={{ color: option.color }} />}
               label={option.valorOption}
             />

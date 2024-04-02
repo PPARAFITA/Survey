@@ -17,8 +17,8 @@ interface Team {
 export default function BasicSelect() {
   const [team, setTeam] = React.useState('');
   const [teamsData, setTeamsData] = React.useState<Team[]>([]);
-
-
+ 
+ 
   React.useEffect(() => {
     getTeams()  
       .then(response => {
@@ -29,8 +29,8 @@ export default function BasicSelect() {
         console.error('Error fetching data:', error);
       });
   }, []);
-
-
+ 
+ 
   const handleChange = (event: SelectChangeEvent) => {
     const selectedTeamId = event.target.value as string;
     const selectedTeam = teamsData.find(team => team.teamId === selectedTeamId);
@@ -53,8 +53,8 @@ export default function BasicSelect() {
           sx={{
             left: '-3px',  
             top: '-6px',
-
-
+ 
+ 
           }}>My team is </InputLabel>
         <Select
           labelId="team_questions"

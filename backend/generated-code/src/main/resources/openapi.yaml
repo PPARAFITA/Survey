@@ -1,0 +1,188 @@
+openapi: 3.0.3
+info:
+  description: Api that will measure the happyness of the teams
+  title: Team happiness - Buddy program
+  version: 1.0.0
+servers:
+- url: https://localhost:8080
+tags:
+- description: Everything about the teams in the Hub
+  name: Teams
+- description: Questions that are going to make to the teams
+  name: Questions
+- description: This will be use to recive user responses
+  name: Survey
+- description: This will be use to retrieve options of questions
+  name: Option_question
+paths:
+  /team:
+    get:
+      description: Get all the teams
+      operationId: getTeams
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayTeams'
+          description: Successful operation
+      summary: Get all the teams in the Hub
+      tags:
+      - Teams
+      x-accepts: application/json
+      x-tags:
+      - tag: Teams
+  /question:
+    get:
+      description: Get all the question
+      operationId: getQuestions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayQuestions'
+          description: Successful operation
+      summary: Get all the questions
+      tags:
+      - Questions
+      x-accepts: application/json
+      x-tags:
+      - tag: Questions
+  /survey:
+    post:
+      description: Insert a survey data
+      operationId: postSurvey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Survey'
+        description: Survey to insert in the database
+        required: true
+      responses:
+        "201":
+          description: Successful operation
+      summary: Insert a surver
+      tags:
+      - Survey
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Survey
+  /option:
+    get:
+      description: Get all the options of a question
+      operationId: getOption
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOptionquestion'
+          description: Successful operation
+      summary: Get all the options for the question
+      tags:
+      - Option_question
+      x-accepts: application/json
+      x-tags:
+      - tag: Option_question
+components:
+  schemas:
+    ArrayTeams:
+      items:
+        $ref: '#/components/schemas/Team'
+      type: array
+    Team:
+      example:
+        name: SQA
+        id: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+      properties:
+        id:
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          format: UUID
+          type: string
+        name:
+          example: SQA
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    ArrayQuestions:
+      items:
+        $ref: '#/components/schemas/Question'
+      type: array
+    Question:
+      example:
+        question: How are you feeling today?
+        id: 47455c16-41ee-4622-8a75-697aacfa2466
+        type: traffic_light
+      properties:
+        id:
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+          format: UUID
+          type: string
+        question:
+          example: How are you feeling today?
+          type: string
+        type:
+          enum:
+          - traffic_light
+          type: string
+      required:
+      - id
+      - question
+      - type
+      type: object
+    Survey:
+      properties:
+        surveyId:
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          format: UUID
+          type: string
+        teamId:
+          example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+          format: UUID
+          type: string
+      required:
+      - surveyId
+      - teamId
+      type: object
+    ArrayOptionquestion:
+      items:
+        $ref: '#/components/schemas/Option_question'
+      type: array
+    Option_question:
+      example:
+        surveyId: 47455c16-41ee-4622-8a75-697aacfa2466
+        valor_option: good
+        questionId: 47455c16-41ee-4622-8a75-697aacfa2466
+        color: green
+        optionId: 47455c16-41ee-4622-8a75-697aacfa2466
+      properties:
+        optionId:
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+          format: UUID
+          type: string
+        questionId:
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+          format: UUID
+          type: string
+        surveyId:
+          example: 47455c16-41ee-4622-8a75-697aacfa2466
+          format: UUID
+          type: string
+        color:
+          example: green
+          type: string
+        valor_option:
+          example: good
+          type: string
+      required:
+      - color
+      - optionId
+      - questionId
+      - surveyId
+      - valor_option
+      type: object

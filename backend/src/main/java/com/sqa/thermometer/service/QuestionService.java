@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class QuestionService {
@@ -22,7 +23,7 @@ public class QuestionService {
         return fabricaQuestionService.createQuestionsDTO(questionRepository.findAll());
     }
 
-    public QuestionDTO findById(Integer id){
+    public QuestionDTO findById(UUID id){
         return fabricaQuestionService.createQuestionDTO(questionRepository.findById(id).get());
     }
 }

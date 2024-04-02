@@ -1,13 +1,11 @@
 package com.sqa.thermometer.service;
 
 import com.sqa.thermometer.dto.SurveyDTO;
-import com.sqa.thermometer.model.Survey;
 import com.sqa.thermometer.repository.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class SurveyService {
@@ -22,7 +20,7 @@ public class SurveyService {
         return fabricaSurveyService.createSurveysDTO(surveyRepository.findAll());
     }
 
-    public SurveyDTO findById(Integer id){
+    public SurveyDTO findById(UUID id){
         return fabricaSurveyService.createSurveyDTO(surveyRepository.findById(id).get());
     }
 

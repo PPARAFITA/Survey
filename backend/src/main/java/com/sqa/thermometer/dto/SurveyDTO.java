@@ -1,26 +1,20 @@
 package com.sqa.thermometer.dto;
 
-import com.sqa.thermometer.model.Question;
 import com.sqa.thermometer.model.Survey;
-import com.sqa.thermometer.model.Team;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 public class SurveyDTO {
-    private Integer surveyId;
-    //private TeamDTO teamDTO;
-    private Integer teamId;
+    private UUID surveyId;
+    private UUID teamId;
    // private List<QuestionDTO> questionDTOList;
 
 
-    public SurveyDTO(Survey survey){
+    public SurveyDTO(Survey survey) {
         this.surveyId = survey.getSurveyId();
-       // this.teamId = survey.getTeam().getTeamId();
         this.teamId = survey.getTeam().getTeamId();
       /*  this.questionDTOList = new ArrayList<>();
         survey.getQuestionList().forEach(

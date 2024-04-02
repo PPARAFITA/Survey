@@ -1,7 +1,6 @@
 package com.sqa.thermometer.controller;
 
 import com.sqa.thermometer.dto.SurveyDTO;
-import com.sqa.thermometer.model.Survey;
 import com.sqa.thermometer.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/thermometer/survey")
@@ -26,7 +26,7 @@ public class SurveyController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SurveyDTO> findById(Integer id) {
+    public ResponseEntity<SurveyDTO> findById(UUID id) {
         try {
             return new ResponseEntity<>(surveyService.findById(id), HttpStatus.OK);
         } catch (Exception e) {

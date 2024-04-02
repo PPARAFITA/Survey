@@ -26,7 +26,7 @@
 }
 
 .RedButton {
-  color: red !important;
+  color: red ;
 }
 
 .red{
@@ -34,12 +34,12 @@
 }
 
 .GreenButton {
-  color: green !important;
+  color: green  ;
 }
 .green{
   color: green;
 }
 .OrangeButton {
-  color: orange !important;
+  color: orange  ;
 }
 

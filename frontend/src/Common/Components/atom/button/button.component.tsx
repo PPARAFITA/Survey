@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import React, { FormEvent } from 'react';
+import React from 'react';
 import cx from 'classnames';
-import './button.styles.css';
+import './button.styles.css';  
 
 interface Props {
     color: string;
@@ -27,6 +27,7 @@ export const CustomButton: React.FC<Props> = ({ color, description, path, action
         [styleBlanco]: color === 'white',
       });
 
+ 
     return (
 
         <Link to={path} style={{ textDecoration: 'none' }}>

@@ -1,14 +1,11 @@
 package com.sqa.thermometer.controller;
 
 import com.sqa.thermometer.dto.TeamDTO;
-import com.sqa.thermometer.model.Team;
 import com.sqa.thermometer.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Provider;
 import java.util.List;
 
 @RequestMapping("/api/v1/thermometer/team")
@@ -17,10 +14,10 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
 
- /*   @PostMapping("/save")
+   @PostMapping("/save")
     public ResponseEntity<TeamDTO> save(@RequestBody TeamDTO teamDTO){
         return new ResponseEntity(teamService.save(teamDTO), HttpStatus.CREATED);
-    }*/
+    }
 
     @GetMapping
     public ResponseEntity<List<TeamDTO>> findAll(){

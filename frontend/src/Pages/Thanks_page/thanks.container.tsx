@@ -4,6 +4,8 @@ import '../../App.css';
 import { CustomButton } from '../../common';
 import './thanks.styles.css';
 import '../../App.css';
+import Divider from '@mui/material/Divider';
+
 
 
 
@@ -31,7 +33,7 @@ export const Thanks = () => {
                 <img src={thankimage} className='thanks-image' alt="logo" />
 
             </div>
-            <div className="divider"></div>
+            <Divider className='divider'></Divider> 
             <div className='form'>
                 <p className="header5">
                     {LITERALS.p3}
