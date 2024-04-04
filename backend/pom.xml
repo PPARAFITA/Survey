@@ -21,6 +21,7 @@
         <mockserver.version>5.15.0</mockserver.version>
         <openapi.generator>7.4.0</openapi.generator>
         <springdoc.version>2.2.0</springdoc.version>
+        <testcontainers.version>1.19.7</testcontainers.version>
     </properties>
     <dependencies>
         <dependency>
@@ -120,8 +121,18 @@
             <artifactId>liquibase-core</artifactId>
             <version>${liquibase.version}</version>
         </dependency>
-        <!-- Lombock -->
-    </dependencies>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mysql</artifactId>
+            <version>${testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>    </dependencies>
     <build>
         <finalName>thermometer-survey</finalName>
         <plugins>
