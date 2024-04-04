@@ -1,0 +1,23 @@
+spring:
+  liquibase:
+    enabled: true
+    contexts: local
+    change-log: classpath:init_liquibase.xml
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/thermometer
+    username: test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    defer-datasource-initialization: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+        connection:
+          characterEncoding: utf8
+          useUnicode: true
+          charSet: UTF-8

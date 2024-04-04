@@ -15,7 +15,7 @@ public class SurveyDTO {
 
     public SurveyDTO(Survey survey) {
         this.surveyId = survey.getSurveyId();
-        this.teamId = survey.getTeam().getTeamId();
+        this.teamId = survey.getTeamEntity().getTeamId();
       /*  this.questionDTOList = new ArrayList<>();
         survey.getQuestionList().forEach(
                 question -> {
