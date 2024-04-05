@@ -4,8 +4,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import './list.styles.css';
-// import axios from 'axios';
-// import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import { getTeams } from '../../../services/team';
 
@@ -14,7 +12,8 @@ interface Team {
   teamName: string;
 }
  
-export default function BasicSelect() {
+export default function BasicSelect ({ onTeamSelect }: { onTeamSelect: (teamId: string) => void }) {
+  //Inicializar 
   const [team, setTeam] = React.useState('');
   const [teamsData, setTeamsData] = React.useState<Team[]>([]);
  
@@ -34,12 +33,12 @@ export default function BasicSelect() {
   const handleChange = (event: SelectChangeEvent) => {
     const selectedTeamId = event.target.value as string;
     const selectedTeam = teamsData.find(team => team.teamId === selectedTeamId);
-    console.log("Selected team:", selectedTeamId);
-    console.log("Selected team:", selectedTeam);
+     
     console.log(selectedTeam?.teamName);
     
     if (selectedTeam) {
       setTeam(selectedTeam.teamId);
+      onTeamSelect(selectedTeam.teamId); // actualiza el equipo para habilitar el botón Submit
     }
   };
 
@@ -58,7 +57,7 @@ export default function BasicSelect() {
           }}>My team is </InputLabel>
         <Select
           labelId="team_questions"
-          id="demo-simple-select"
+          id="select_team"
           placeholder='Select your team'
           value={team}
           label="Team"
@@ -72,26 +71,4 @@ export default function BasicSelect() {
       </div>
     </Box >
   );
-
-
 }
-
-/*{currencies.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-
-
-           <Select
-        labelId="team_questions"
-        id="demo-simple-select"
-        placeholder='Select your team'
-        value={team}
-        label='My team is'
-        onChange={handleChange}
-      >
-        <MenuItem value={10}>SQA</MenuItem>
-        <MenuItem value={20}>TIWH</MenuItem>
-        <MenuItem value={30}>Midas</MenuItem>
-      </Select>
-        ))}*/

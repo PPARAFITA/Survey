@@ -23,7 +23,8 @@ spring:
   liquibase:
     enabled: true
     contexts: local
-    change-log: classpath:/db/changelog/db.changelog-master.yml
+    change-log: classpath:/db/changelog/db.changelog-master.yml 
+    drop-first: true 
   security:
     user:
       name: user

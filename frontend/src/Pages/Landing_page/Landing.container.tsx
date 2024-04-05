@@ -41,11 +41,11 @@ export const App = () => {
                 {LITERALS.p4}
 
                 <div className='Button'>
-                    <CustomButton color={'white'} description={"Analyze the results"} path={"/Thanks"} />
+                    <CustomButton color={'white'} description={"Analyze the results"} path={"/Results"} />
                 </div>
 
                 <p className='link-more'>
-                    {LITERALS.p6}<a href="https://engineering.atspotify.com/2014/09/squad-health-check-model/">
+                    {LITERALS.p6}<a href="https://engineering.atspotify.com/2014/09/squad-health-check-model/" target="_blank" rel="noreferrer noopener"  >
                         <span className='More-information'>more information</span></a>
 
                 </p> </p>

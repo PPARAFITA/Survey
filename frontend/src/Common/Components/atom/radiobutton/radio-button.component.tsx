@@ -2,8 +2,7 @@ import * as React from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import "./radio-button.styles.css";
-import { SelectChangeEvent } from '@mui/material';
+import "./radio-button.styles.css"; 
 
 
 // interface Question {
@@ -16,18 +15,19 @@ import { SelectChangeEvent } from '@mui/material';
 
 //Propiedades de question
 interface OptionDTO {
-  optionId: number;
-  surveyId: number;
-  questionId: number;
+  optionId: string;
+  surveyId: string;
+  questionId: string;
   valorOption: string;
   color: string;
 }
 
 interface Props {
-  questionId: number;
+  questionId: string;
   question: string;
   options: OptionDTO[];
-  onOptionChange: (questionId: number, optionId: number, surveyId:number ) => void;
+  onOptionChange?: (questionId: string, optionId: string, surveyId:string ) => void;
+  surveyId: string;
 }
 
 
@@ -35,7 +35,8 @@ export const RadioButtonsGroup: React.FC<Props> = ({
   questionId,
   question,
   options,
-  onOptionChange
+  surveyId,
+  onOptionChange, 
 }): React.JSX.Element => {
 
   // let [question1, setQuestion] = React.useState('');
@@ -55,26 +56,47 @@ export const RadioButtonsGroup: React.FC<Props> = ({
   //             console.error('Error fetching data:', error);
   //         });
   // }, []);
-
-  const handleChange = (event: SelectChangeEvent) => {
+ 
+  // const handleChange = (event: SelectChangeEvent) => {
+      const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event)
+        const optionId = event.target.value;
+        console.log("Option value:", optionId); // Verifica el valor recibido
+        console.log("Question value:", questionId); // Verifica el valor recibido
+    
+    
+        // Asegúrate de que el valor sea válido antes de llamar a handleOptionChange
+        // if (onOptionChange) {
+        //   console.log(questionId, optionId)
+        //   onOptionChange(questionId, optionId, surveyId); // Supongo que no tienes un surveyId en este punto
+        // }
+    };
 
     // const optionId = parseInt(event.target.value); // Convierte el valor de cadena a número
     // onOptionChange(questionId, optionId);
     // console.log("Selected question ID:", questionId);
     // console.log("Selected question ID:", optionId);
 
-    const optionValue = event.target.value;
-    console.log("Option value:", optionValue); // Verifica el valor recibido
+    
+    // console.log("Option value:", optionValue); // Verifica el valor recibido
 
-    const optionId = parseInt(optionValue);
-    if (!isNaN(optionId)) {
-        onOptionChange(questionId, optionId, options[questionId].surveyId);
-        console.log("Selected question ID:", questionId);
-        console.log("Selected option ID:", optionId);
-        console.log("Survey ID:",options[questionId].surveyId)
-    } else {
-        console.error("Invalid option value:", optionValue);
-    }
+    // const optionId = parseInt(optionValue);
+
+    // ESTO DESCOMENTAR
+    // if (!isNaN(optionId)) {
+    //     onOptionChange(questionId, optionId, options[questionId].surveyId);
+    //     console.log("Selected question ID:", questionId);
+    //     console.log("Selected option ID:", optionId);
+    //     console.log("Survey ID:",options[questionId].surveyId)
+    // } else {
+    //     console.error("Invalid option value:", optionValue);
+    // }
+
+
+
+
+
+
 
     // const selectedAnswer = event.target.value;
     // const selectedQuestion = questionsData.find(question => question.question === question1);
@@ -85,7 +107,7 @@ export const RadioButtonsGroup: React.FC<Props> = ({
     // console.log("Selected question ID:", selectedQuestion.questionId);
     // console.log("Selected answer ID:", selectedAnswer);
     // }
-  };
+  
   return (
 
     <div className="RadioButton">
@@ -94,8 +116,11 @@ export const RadioButtonsGroup: React.FC<Props> = ({
         <RadioGroup
           aria-labelledby="radio-buttons-group-label"
           name="radio-buttons-group"
-          onChange={handleChange}
-        >
+          // onChange={handleChange}
+          
+          onChange={(event) => onOptionChange && onOptionChange(questionId, event.target.value, surveyId)}
+          >
+        
           {options.map(option => (
             <FormControlLabel
               key={option.optionId}

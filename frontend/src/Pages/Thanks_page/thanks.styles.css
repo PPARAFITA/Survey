@@ -27,7 +27,7 @@
     min-height: 'calc(100vh - 13vh)';
     align-self: stretch;
     flex: 1;
-    overflow: auto; 
+    /* overflow: auto;  */
 }
 /* 
 #body.main {

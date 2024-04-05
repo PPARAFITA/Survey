@@ -9,6 +9,7 @@ interface Props {
     description: string;
     path: string;
     actionButton?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    isDisabled?: boolean
 }
 
 const styleAzul = 'blueButtonStyle';
@@ -18,20 +19,21 @@ const buttonStyle = 'baseButtonStyle';
  
 
 
-export const CustomButton: React.FC<Props> = ({ color, description, path, actionButton }) => {
-
-
-
+export const CustomButton: React.FC<Props> = ({ color, description, path, actionButton, isDisabled }) => {
+ 
+    window.scrollTo({ top: 0, behavior: 'instant' });
     const buttonClassName = cx(buttonStyle, {
         [styleAzul]: color === 'blue',
         [styleBlanco]: color === 'white',
       });
+      console.log(isDisabled)
+      console.log(path) 
 
- 
     return (
-
-        <Link to={path} style={{ textDecoration: 'none' }}>
-            <Button id='custombutton' onClick={actionButton} className={buttonClassName}  variant="contained">
+       
+        <Link to={isDisabled ? '#' : path} style={{ textDecoration: 'none' }}>
+            {/* <Button id='custombutton' onClick={actionButton} className={buttonClassName}  variant="contained"  disabled = {true}> */}
+            <Button id='custombutton' onClick= {isDisabled ? e => e.preventDefault() : actionButton} className={buttonClassName}  variant="contained"  disabled={isDisabled}>
                 {description}
             </Button>
         </Link>

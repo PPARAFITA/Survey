@@ -7,8 +7,6 @@ import './form.styles.css';
 import TextField from '@mui/material/TextField';
 import { getQuestions } from '../../services/question';
 import Divider from '@mui/material/Divider';
- 
-
 import { getSurveyData } from '../../services/mocks/mockquestion'; //MOCKDATA
 // import { getSurvey }  from '../../services/survey'; BACKEND
 // import { getSurvey } from '../../services/survey';
@@ -21,48 +19,50 @@ const LITERALS = {
     p4: 'Doesn’t mean Perfect. It just means the squad is happy with this, and see no major need for improvement right now.',
     p5: 'Means there are some important problems that need addressing, but it’s not a disaster.',
     p6: ' Means this really sucks and needs to be improved. ',
-    p7: 'Extra ball! Would you like to add something else?',
-    p8: 'Close',
-    p9: 'Please complete the survey before submitting it'
+    p7: 'Extra ball! Would you like to add something else?'
 }
 
 
 // Define un tipo para los datos de la encuesta
-// interface SurveyItem {
-//     questionId: number;
-//     question: string;
-//     optionDTOList: any[];   
-// }
+interface SurveyItem {
+    questionId: string;
+    question: string;
+    optionDTOList: any[];
+    surveyId: string;
+}
 
-// interface Question {
-//     questionId: string;
-//     question: string;
-//     type: string;
-//     answer1: string;
-//     answer2: string;
-//     answer3: string;
-// }
-
+interface Question {
+    questionId: string;
+    question: string;
+    type: string;
+    answer1: string;
+    answer2: string;
+    answer3: string;
+}
+ interface Answer {
+    questionId: string;
+    optionId:   string;
+    surveyId:   string;
+    teamId:     string;
+}
 
 interface FormData {
-    answers: { questionId: number; optionId: number; surveyId: number }[];
-    comments: string
+    answers: { [questionId: string]: Answer };
+    comments: string;
 }
 
 export const FormMood = () => {
 
-    const [showPopup, setShowPopup] = useState(false);
+    const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
+    const [selectedTeam, setSelectedTeam] = useState<string>('');
 
 
     const [formData, setFormData] = useState<FormData>({
-        // answers: [] as { questionId: number; optionId: number }[] ;
-        answers: [],
+        answers: {},
         comments: ''
     });
-    console.log(formData);
 
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData(prevState => ({
             ...prevState,
@@ -70,13 +70,25 @@ export const FormMood = () => {
         }));
     };
 
-    const handleOptionChange = (questionId: number, optionId: number, surveyId: number) => {
+    const handleOptionChange = (questionId: string, optionId: string, surveyId: string) => {
+
+        const updatedAnswers: { [questionId: string]: Answer } = { ...formData.answers };
+        const teamId = selectedTeam;
+
+        updatedAnswers[questionId] = { questionId, optionId, surveyId, teamId };
+
         setFormData({
             ...formData,
-            answers: [
-                ...formData.answers,
-                { questionId, optionId, surveyId }
-            ]
+            answers: updatedAnswers
+        });
+  
+        getQuestions().then(response => {
+            const questionsData = response.data;
+            // Verificar si todas las preguntas han sido respondidas
+            const allQuestionsAnswered = Object.keys(formData.answers).length + 1 === questionsData.length && selectedTeam !== '';
+            setAllQuestionsAnswered(allQuestionsAnswered);
+        }).catch(error => {
+            console.error('Error fetching questions:', error);
         });
     };
 
@@ -84,22 +96,76 @@ export const FormMood = () => {
 
     // Function Submit Form 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
-        
 
-    //  Funciona con getSurvey Backend 
-    const survey = getSurveyData();
 
-   // const question_length = survey.length();
+        // event.preventDefault();  
 
-        // Verificar si hay datos en el formulario
-        if (formData.answers.length === 0 || survey.length !== formData.answers.length ) {
-            setShowPopup(true);
-            event.preventDefault();
-            return; 
+        // Obtener las preguntas
+        // getQuestions().then(response => {
+        //     const questionsData = response.data; 
+        //     // Verificar si no se han respondido todas las preguntas
+        //     if (formData.answers.length === 0 || questionsData.length !== formData.answers.length) {
+        //         setIsEmpty(true);  
+        //     } else {
+        //         // Todas las preguntas están respondidas, continuar con el envío del formulario
+        //         console.log('Form submitted');
+        //         setIsEmpty(false);  
+        //         // Envío a Backend
+        //     }
+        // }).catch(error => {
+        //     console.error('Error fetching questions:', error); 
+        // });
+
+
+        if (allQuestionsAnswered) {
+            console.log('Form submitted');           
+            // Envío a Backend
+            const formDataToSend = {
+                answers: formData.answers,
+                comments: formData.comments
+            };
+    
+            // Post
+            fetch('http://localhost:8080/api/v1/thermometer/answer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                },
+                body: JSON.stringify(formDataToSend),  
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al enviar los datos al backend');
+                } 
+                console.log('Datos enviados correctamente al backend'); 
+            })
+            .catch(error => {
+                console.error('Error al enviar los datos al backend:', error);
+           
+            });
+
+        } else {
+            console.log('Not all questions answered');
         }
-        else {
-            console.log('Form submitted');
-        }
+
+
+
+        // //  Funciona con Mockdata
+        // const survey = getSurveyData(); 
+
+
+        // // const question_length = survey.length();
+
+        // // Verificar si hay datos en el formulario
+        // if (formData.answers.length === 0 || getQuestions.length !== formData.answers.length) {
+        //     setShowPopup(true);
+        //     event.preventDefault();
+        //     return;
+        // }
+        // else {
+        //     console.log('Form submitted');
+
+        // }
 
 
         // Obtener los datos del formulario 
@@ -108,43 +174,41 @@ export const FormMood = () => {
     };
 
 
-    //  Funciona con getSurvey Backend 
-    const survey = getSurveyData();
-
-
+    //  Funciona con getSurvey Mock
+    // const survey = getSurveyData();
     // const [question, setQuestion] = React.useState('');
     // const [questionData, setQuestionsData] = React.useState<Question[]>([]);
 
 
-    React.useEffect(() => {
-        getQuestions()
-            .then(response => {
-                console.log(response.data);
-                // setQuestionsData(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    }, []);
+    // React.useEffect(() => {
+    //     getQuestions()
+    //         .then(response => {
+    //             console.log(response.data);
+    //             // setQuestionsData(response.data);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching data:', error);
+    //         });
+    // }, []);
 
     // Funciona con getSurvey Backend 
     // const questions = getQuestions();
-    // const surveyb = getSurvey();
-    // console.log("test");
-    // console.log(surveyb);
-    // const [surveyData, setSurveyData] = useState<SurveyItem[]>([]); 
-    // React.useEffect(() => {
-    //     const fetchSurveyData = async () => {
-    //         try {
-    //             const response = await getQuestions();
-    //             setSurveyData(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching survey data:', error);
-    //         }
-    //     };
 
-    //     fetchSurveyData();
-    // }, []);
+    // const surveyb = getSurvey();
+
+    const [surveyData, setSurveyData] = useState<SurveyItem[]>([]);
+
+    React.useEffect(() => {
+        const fetchSurveyData = async () => {
+            try {
+                const response = await getQuestions();
+                setSurveyData(response.data);
+            } catch (error) {
+                console.error('Error fetching survey data:', error);
+            }
+        };
+        fetchSurveyData();
+    }, []);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -156,8 +220,7 @@ export const FormMood = () => {
                             {LITERALS.p1} <br />
                             {LITERALS.p2}
                         </p>
-
-                        <SelectList></SelectList>
+                        <SelectList onTeamSelect={(teamId) => setSelectedTeam(teamId)}></SelectList>
                     </div>
                 </div>
                 <div className="item-container">
@@ -173,29 +236,31 @@ export const FormMood = () => {
 
 
                 {/* Funciona con getSurvey Backend */}
-                {/* <div className="item-container">
-                {surveyData.map((surveyItem) => {
-                const questionOptions = surveyItem.optionDTOList.filter(option => option.questionId === surveyItem.questionId);
-
-                return (
+                <div className="item-container">
+                    {surveyData.map((surveyItem) => {
+                        const questionOptions = surveyItem.optionDTOList.filter(option => option.questionId === surveyItem.questionId);
+                  
+                        return (
                             <div key={surveyItem.questionId}>
                                 <RadioButtonsGroup
                                     questionId={surveyItem.questionId}
                                     question={surveyItem.question}
-                                    options={questionOptions} 
-                                    onOptionChange={(selectedOption: any) => handleOptionChange(surveyItem.questionId,surveyItem.optionDTOList[surveyItem.questionId].optionId)} />
-                                <div className="divider"></div>
+                                    surveyId={questionOptions[0].surveyId}
+                                    options={questionOptions}
+                                    onOptionChange={handleOptionChange}
+                                />
+                                <Divider className='divider'></Divider>
                             </div>
                         );
                     })}
 
-                </div> */}
+                </div>
 
 
 
                 {/* Funciona con getSurvey mockdata */}
 
-                <div className="item-container">
+                {/* <div className="item-container">
                     {survey.map((surveyItem) => {
                         const questionOptions = surveyItem.optionDTOList.filter(option => option.questionId === surveyItem.questionId);
 
@@ -212,24 +277,7 @@ export const FormMood = () => {
                     })}
 
                 </div>
-              
-
-                {/* 
-                {/* {questionData.map((questionData) => (
-                        <div key={questionData.questionId}>
-                            <RadioButtonsGroup questionId={questionData.questionId} question={questionData.question} answer1={questionData.answer1} answer2={questionData.answer2} answer3={questionData.answer3} />
-                            <div className="divider"></div>
-                        </div>
-                    ))} */}
-                {/* {mockData.map((dataItem) => (
-                        <div key={dataItem.id}>
- 
-                            <RadioButtonsGroup questionId = {dataItem.question} question = {dataItem.question} answer1={dataItem.answer1} answer2={dataItem.answer2} answer3={dataItem.answer3} />
-                            <div className="divider"></div>
-                        </div>
-                    ))} */}
-
-
+               */}
                 <p className='Title'>{LITERALS.p7} </p>
                 <div className='container'>
                     <TextField id="input-comment"
@@ -242,20 +290,9 @@ export const FormMood = () => {
                         label='I would like to tell you about...' />
                 </div>
                 <div>
-                    <CustomButton color={'blue'} description={"Submit"} path={"/Thanks"} actionButton={(event) => handleSubmit(event as any)} />
+                    <CustomButton color={'blue'} description={"Submit"} path={"/Thanks"} actionButton={(event) => handleSubmit(event as any)} isDisabled={!allQuestionsAnswered} />
                 </div>
             </div>
-
-
-            {showPopup && (
-                <div className="popup">
-                    <h2>ERROR!</h2>
-                    <p id='h2'>{LITERALS.p9}</p>
-
-                    <CustomButton color={'white'} description={LITERALS.p8} path={"/FormMood"}  actionButton ={() => setShowPopup(false)}/> 
-                   
-                </div>
-            )}
         </form >
     )
 };
