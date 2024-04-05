@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 @Data
 @NoArgsConstructor
 public class TeamDTO {
+    @JdbcTypeCode(SqlTypes.CHAR)
     private UUID teamId;
     private String teamName;
    // private List<SurveyDTO> surveyDTOList;

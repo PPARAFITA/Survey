@@ -74,6 +74,20 @@ paths:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ArrayOptionquestion'
+  /answer:
+      post:
+        tags:
+          - answer
+        summary: Post the survey's answers
+        description: Post all the answers that the team member submitted
+        operationId: postAnswer
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ArrayAnswer'
 components:
   schemas:
     ArrayTeams:
@@ -164,17 +178,23 @@ components:
           type: string
           format: UUID
           example: b2f7a764-14b5-45dd-9222-0a4a746f4f7d
+    ArrayAnswer:
+      type: array
+      items:
+            $ref: '#/components/schemas/Answer'
     Answer:
       required:
         - answerId
         - surveyId
         - questionId
+        - optionId
+        - valorAnswer
       type: object
       properties:
         answerId:
           type: string
           format: UUID
-          example: 47455c16-41ee-4622-8a75-697aacfa2466
+          example: 47455c16-41ee-4622-8a75-697aacfa2465
         surveyId:
           type: string
           format: UUID
@@ -182,4 +202,11 @@ components:
         questionId:
           type: string
           format: UUID
-          example: 47455c16-41ee-4622-8a75-697aacfa2466
+          example: 47455c16-41ee-4622-8a75-697aacfa2467
+        optionId:
+          type: string
+          format: UUID
+          example: 47455c16-41ee-4622-8a75-697aacfa2468 
+        valorAnswer:
+          type: string
+          example: Me siento contento y feliz 

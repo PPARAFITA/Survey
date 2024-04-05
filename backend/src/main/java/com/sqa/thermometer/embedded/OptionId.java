@@ -17,7 +17,7 @@ import org.hibernate.type.SqlTypes;
 @Embeddable
 public class OptionId implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
-       @JdbcTypeCode(SqlTypes.CHAR)
+    @JdbcTypeCode(SqlTypes.CHAR)
     @UuidGenerator
     @Column(name = "option_id")
     private UUID optionId;

@@ -15,7 +15,7 @@
             <column name="team_name" value="TI-SYNCRO" />
         </insert>
         <insert tableName="survey">
-            <column name="survey_id" value="s252189e-82af-48f3-ss40-188606a1a821" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
             <column name="team_id" value="c252189e-82af-48f3-aa40-188606a1a741" />
         </insert>        
     </changeSet>
@@ -29,4 +29,107 @@
             <column name="team_name" value="MIDAS" />
         </insert>
     </changeSet>
+    <changeSet id="GQD-liquibase:initial-data-3" author="GQD-liquibase">
+        <insert tableName="question">
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a122" />
+            <column name="question_type" value="traffic_light" />
+            <column name="question" value="Delivering Value" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+        </insert>
+        <insert tableName="question">
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a125" />
+            <column name="question_type" value="traffic_light" />
+            <column name="question" value="Easy to release" />
+             <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+        </insert>
+        <insert tableName="question">
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
+            <column name="question_type" value="traffic_light" />
+            <column name="question" value="Day by day work" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+        </insert> 
+        <insert tableName="question">
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a127" />
+            <column name="question_type" value="traffic_light" />
+            <column name="question" value="Learning and Growth" />
+             <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+        </insert>  
+        <insert tableName="question">
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a123" />
+            <column name="question_type" value="traffic_light" />
+            <column name="question" value="prueba" />
+             <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+        </insert>                
+        <insert tableName="option_question">
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a098" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a123" />
+            <column name="valor_option" value="We deliver great stuff! We're proud of it and our stakeholders are really happy." />
+            <column name="color" value="green" />   
+        </insert>
+        <insert tableName="option_question">
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a099" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a123" />
+            <column name="valor_option" value="neutral" />
+            <column name="color" value="orange" />   
+        </insert> 
+        <insert tableName="option_question">
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a100" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a123" />
+            <column name="valor_option" value="we deliver crap. we feel ashamed to deliver it. our stakeholders hate us." />
+            <column name="color" value="red" />   
+        </insert>   
+        <insert tableName="option_question">
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a101" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a125" />
+            <column name="valor_option" value="Releasing is simple, safe, painless and mostly automated." />
+            <column name="color" value="green" />   
+        </insert>
+        <insert tableName="option_question">
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a102" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a125" />
+            <column name="valor_option" value="neutral" />
+            <column name="color" value="orange" />   
+        </insert> 
+        <insert tableName="option_question">
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a103" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a125" />
+            <column name="valor_option" value="Releasing is risky, painful, lots of manual work and takes forever." />
+            <column name="color" value="red" />   
+        </insert>   
+        <insert tableName="option_question">
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a104" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
+            <column name="valor_option" value="We love going to work and have great fun working together!" />
+            <column name="color" value="green" />   
+        </insert>
+        <insert tableName="option_question">
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a105" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
+            <column name="valor_option" value="neutral" />
+            <column name="color" value="orange" />   
+        </insert> 
+        <insert tableName="option_question">
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a106" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
+            <column name="valor_option" value="Boooooooooooooring!" />
+            <column name="color" value="red" />   
+        </insert> 
+        <!-- <insert tableName="x">
+            <column name="answer_id" value="c252189e-82af-48f3-aa40-188606a1a107" />
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a106" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
+            <column name="valor_answer" value="" /> 
+            <column name="creation_date" value="2024/04/03" />
+        </insert>                             -->
+    </changeSet>    
 </databaseChangeLog>

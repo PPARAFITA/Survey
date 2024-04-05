@@ -11,17 +11,18 @@ import java.util.UUID;
 @Embeddable
 @Data
 public class AnswerId implements Serializable {
-       @JdbcTypeCode(SqlTypes.CHAR)
+
+    @JdbcTypeCode(SqlTypes.CHAR)
     @UuidGenerator
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "answer_id")
-    private UUID answerId;
+    //@GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
+    private UUID Id;
 
     @JdbcTypeCode(SqlTypes.CHAR)
     @UuidGenerator
     @Column(name = "survey_id")
     private UUID surveyId;
-
+ 
     @JdbcTypeCode(SqlTypes.CHAR)
     @UuidGenerator
     @Column(name = "question_id")
