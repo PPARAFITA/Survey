@@ -1,5 +1,9 @@
 package com.sqa.thermometer.model;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
 import com.sqa.thermometer.dto.AnswerDTO;
 import com.sqa.thermometer.embedded.AnswerId;
 import jakarta.persistence.*;
@@ -18,25 +22,43 @@ public class Answer {
 
     @ManyToOne
     @MapsId( "surveyId")
-    @JoinColumn(name = "survey_id")
+    @JoinColumn(name = "survey_id", insertable = false, updatable = false)
     private Survey survey;
 
     @ManyToOne
     @MapsId( "questionId")
-    @JoinColumn(name = "question_id")
+    @JoinColumn(name = "question_id", insertable = false, updatable = false)
     private Question question;
 
-    @NotNull(message = "the field valorAnswer cannot be null")
-    @NotBlank(message = "the field valorAnswer cannot be blank")
+    @ManyToOne
+    @JoinColumn(name = "option_id") 
+    private OptionQuestion option;
+
+    //@NotNull(message = "the field valorAnswer cannot be null")
+    //@NotBlank(message = "the field valorAnswer cannot be blank")
     private String valorAnswer;
+
+    @CreationTimestamp
+    private LocalDateTime creationDate;
+
+    
 
     public Answer(AnswerDTO answerDTO){
 
-       // this.answerId.setAnswerId(answerDTO.getAnswerId());
-        this.answerId  = new AnswerId();
-        this.answerId.setAnswerId(answerDTO.getAnswerId());
+        this.answerId  = new AnswerId();        
+        this.answerId.setId(answerDTO.getAnswerId());
         this.answerId.setSurveyId(answerDTO.getSurveyId());
         this.answerId.setQuestionId(answerDTO.getQuestionId());
+        
+        this.question = new Question();
+        this.question.setQuestionId(answerDTO.getQuestionId());
+        
+        this.survey = new Survey();
+        this.survey.setSurveyId(answerDTO.getSurveyId());
+        
+        this.option = new OptionQuestion();
+        this.option.setOptionId(answerDTO.getOptionId());
+      
         this.valorAnswer = answerDTO.getValorAnswer();
 
     }

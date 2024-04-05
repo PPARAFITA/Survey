@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 @Data
 @NoArgsConstructor
 public class QuestionDTO {
+    @JdbcTypeCode(SqlTypes.CHAR)
     private UUID questionId;
     private String question;
     private String questionType;

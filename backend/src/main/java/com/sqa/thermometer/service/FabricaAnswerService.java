@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class FabricaAnswerService {
@@ -31,9 +32,10 @@ public class FabricaAnswerService {
 
     public List<Answer> createAnswers(List<AnswerDTO> answerDTOList){
         List<Answer> answerList = new ArrayList<>();
-
+        UUID uuid = UUID.randomUUID();
         answerDTOList.stream().forEach(
                 answerDTO -> {
+                    answerDTO.setAnswerId( uuid );
                     answerList.add(new Answer(answerDTO));
                 }
         );

@@ -20,16 +20,18 @@ public class Question {
     @JdbcTypeCode(SqlTypes.CHAR)
     @UuidGenerator
     private UUID questionId;
+  
     private String questionType;
+    
     private String question;
+
+    @ManyToOne
+    @JoinColumn(name = "survey_id" , insertable = false, updatable = false)
+    private Survey survey;
+   
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OptionQuestion> optionQuestion;
 
-   /* @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable( name = "question_survey", joinColumns = @JoinColumn(name = "questionId", referencedColumnName = "questionId"),
-    inverseJoinColumns = @JoinColumn(name = "surveyId",referencedColumnName = "surveyId")
-    )
-    private List<Survey> surveyList;*/
 
     public Question(QuestionDTO questionDTO){
         this.questionId = questionDTO.getQuestionId();

@@ -19,11 +19,8 @@ public class Team {
     @JdbcTypeCode(SqlTypes.CHAR)
     @UuidGenerator
     private UUID teamId;
+
     private String teamName;
-
-    //@OneToMany( mappedBy = "team", cascade = CascadeType.ALL)
-    //private List<Survey> surveyList;
-
 
     public Team(TeamDTO teamDTO) {
         this.teamId = teamDTO.getTeamId();
