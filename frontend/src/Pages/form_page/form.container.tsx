@@ -40,10 +40,10 @@ interface Question {
     answer3: string;
 }
  interface Answer {
-    questionId: string;
-    optionId:   string;
+    answerId: string;
     surveyId:   string;
-    teamId:     string;
+    questionId: string;
+    optionId:   string; 
 }
 
 interface FormData {
@@ -70,12 +70,12 @@ export const FormMood = () => {
         }));
     };
 
-    const handleOptionChange = (questionId: string, optionId: string, surveyId: string) => {
+    const handleOptionChange = ( answerId : string, questionId: string, optionId: string, surveyId: string) => {
 
         const updatedAnswers: { [questionId: string]: Answer } = { ...formData.answers };
         const teamId = selectedTeam;
 
-        updatedAnswers[questionId] = { questionId, optionId, surveyId, teamId };
+        updatedAnswers[questionId] = { answerId, questionId, optionId, surveyId };
 
         setFormData({
             ...formData,
@@ -233,13 +233,15 @@ export const FormMood = () => {
                     </div>
                 </div>
 
-
+console.log(questionOptions[0].surveyId);
 
                 {/* Funciona con getSurvey Backend */}
                 <div className="item-container">
                     {surveyData.map((surveyItem) => {
                         const questionOptions = surveyItem.optionDTOList.filter(option => option.questionId === surveyItem.questionId);
-                  
+                        if (questionOptions.length > 0) {
+                            console.log("TESTTESTESTES")
+                            console.log(questionOptions[0].surveyId);
                         return (
                             <div key={surveyItem.questionId}>
                                 <RadioButtonsGroup
@@ -251,7 +253,7 @@ export const FormMood = () => {
                                 />
                                 <Divider className='divider'></Divider>
                             </div>
-                        );
+                        );}
                     })}
 
                 </div>

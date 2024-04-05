@@ -26,7 +26,7 @@ interface Props {
   questionId: string;
   question: string;
   options: OptionDTO[];
-  onOptionChange?: (questionId: string, optionId: string, surveyId:string ) => void;
+  onOptionChange?: (answerID: string, questionId: string, optionId: string, surveyId:string ) => void;
   surveyId: string;
 }
 
@@ -118,7 +118,7 @@ export const RadioButtonsGroup: React.FC<Props> = ({
           name="radio-buttons-group"
           // onChange={handleChange}
           
-          onChange={(event) => onOptionChange && onOptionChange(questionId, event.target.value, surveyId)}
+          onChange={(event) => onOptionChange && onOptionChange('', questionId, event.target.value, surveyId)}
           >
         
           {options.map(option => (
