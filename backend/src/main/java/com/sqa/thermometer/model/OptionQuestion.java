@@ -44,10 +44,12 @@ public class OptionQuestion {
 
 
     public OptionQuestion(OptionDTO optionDTO){
-        this.optionId = optionDTO.getOptionId();
-        this.valorOption = optionDTO.getValorOption();
-        this.color = optionDTO.getColor();
+        if(optionDTO != null){
 
+            this.optionId = optionDTO.getOptionId();
+            this.valorOption = optionDTO.getValorOption();
+            this.color = optionDTO.getColor();
+         }
     }
 
     public static enum TrafficLight{

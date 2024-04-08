@@ -20,8 +20,8 @@ public class AnswerDTO {
     @JdbcTypeCode(SqlTypes.CHAR)
     private UUID questionId;
     
-    @JdbcTypeCode(SqlTypes.CHAR)
-    private UUID teamId;    
+    // @JdbcTypeCode(SqlTypes.CHAR)
+    // private UUID teamId;    
 
     @JdbcTypeCode(SqlTypes.CHAR)
     private UUID optionId;
@@ -32,7 +32,10 @@ public class AnswerDTO {
         this.answerId = answer.getAnswerId().getId();
         this.questionId = answer.getQuestion().getQuestionId();
         this.surveyId = answer.getSurvey().getSurveyId();
-        this.setOptionId(answer.getOption().getOptionId());
-       
+        this.valorAnswer = answer.getValorAnswer();
+
+        if(answer.getOption() != null){
+            this.setOptionId(answer.getOption().getOptionId());
+        }
     }
 }
