@@ -59,7 +59,13 @@
             <column name="question_type" value="traffic_light" />
             <column name="question" value="prueba" />
              <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
-        </insert>                
+        </insert>      
+        <insert tableName="question">
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a124" />
+            <column name="question_type" value="text" />
+            <column name="question" value="Ingrese cualquier comentario" />
+             <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+        </insert>                     
         <insert tableName="option_question">
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a098" />
             <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />

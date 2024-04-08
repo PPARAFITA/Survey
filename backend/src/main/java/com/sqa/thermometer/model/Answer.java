@@ -56,9 +56,10 @@ public class Answer {
         this.survey = new Survey();
         this.survey.setSurveyId(answerDTO.getSurveyId());
         
-        this.option = new OptionQuestion();
-        this.option.setOptionId(answerDTO.getOptionId());
-      
+        if( answerDTO.getOptionId() != null){
+            this.option = new OptionQuestion();
+            this.option.setOptionId(answerDTO.getOptionId());
+        }
         this.valorAnswer = answerDTO.getValorAnswer();
 
     }
