@@ -20,9 +20,15 @@ public class AnswerDTO {
     @JdbcTypeCode(SqlTypes.CHAR)
     private UUID questionId;
     
+<<<<<<< HEAD
     @JdbcTypeCode(SqlTypes.CHAR)
     private UUID teamId;    
  
+=======
+    // @JdbcTypeCode(SqlTypes.CHAR)
+    // private UUID teamId;    
+
+>>>>>>> f27d39f (Fix error in AnswerDTO)
     @JdbcTypeCode(SqlTypes.CHAR)
     private UUID optionId;
    
@@ -32,11 +38,19 @@ public class AnswerDTO {
         this.answerId = answer.getAnswerId().getId();
         this.questionId = answer.getQuestion().getQuestionId();
         this.surveyId = answer.getSurvey().getSurveyId();
+<<<<<<< HEAD
         if(answer.getOption() != null){
             this.setOptionId(answer.getOption().getOptionId());
         }
  
         this.valorAnswer = answer.getValorAnswer();
        
+=======
+        this.valorAnswer = answer.getValorAnswer();
+
+        if(answer.getOption() != null){
+            this.setOptionId(answer.getOption().getOptionId());
+        }
+>>>>>>> f27d39f (Fix error in AnswerDTO)
     }
 }
