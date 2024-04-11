@@ -16,7 +16,9 @@ public class SurveyService {
 
     public SurveyDTO save(SurveyDTO surveyDTO){
         return new SurveyDTO(fabricaSurveyService.createSurvey(surveyDTO));
-    } public List<SurveyDTO> findAll(){
+    } 
+    
+    public List<SurveyDTO> findAll(){
         return fabricaSurveyService.createSurveysDTO(surveyRepository.findAll());
     }
 

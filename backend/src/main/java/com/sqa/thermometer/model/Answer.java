@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Answer {
-
+    
     @EmbeddedId
     private AnswerId answerId;
 
