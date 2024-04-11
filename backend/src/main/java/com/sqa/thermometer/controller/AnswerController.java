@@ -25,7 +25,7 @@ public class AnswerController {
         return new ResponseEntity<>(answerService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public ResponseEntity<List<AnswerDTO>> save(@Valid @RequestBody List<AnswerDTO> answerDTOList, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(answerDTOList,HttpStatus.BAD_REQUEST);

@@ -10,7 +10,7 @@ const mockData:QuestionAnswer[] = [
 
     {
         id: 1,
-        question: "Delivering Value!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+        question: "Delivering Value",
         answer1: "We deliver great stuff! We're proud of it and our stakeholders are really happy.",
         answer2: "Neutral.",
         answer3: "We deliver crap. We feel ashamed to deliver it. Our stakeholders hate us."

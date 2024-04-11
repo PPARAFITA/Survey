@@ -1,21 +1,32 @@
 .Button {
-  display: flex;
-  padding: 8px 22px;
+  display: flex; 
+  /* border-radius: 10px; */
   border-radius: 5px;
   cursor: pointer;
-
-  /* elevation/2 */
   box-shadow: 0px;
 }
 
-
-.blueButtonStyle {
-  background-color: #2196F3 !important;
-  ;
+#custombutton.blueButtonStyle {
+  background-color: #2196F3;
   color: white;
 }
 
-.whiteButtonStyle {
+#custombutton.whiteButtonStyle {
   background-color: white;
-  color: #2196F3 !important;
+  border: 1px solid #2196F3;
+  color: #2196F3;
+}
+
+
+#custombutton.blueButtonStyle:disabled {
+  background-color: #cccccc;  
+  border: 1px solid #999999;  
+  color: #999999;  
+  cursor: not-allowed;  
+}
+#custombutton.whiteButtonStyle:disabled {
+  background-color: #cccccc;  
+  border: 1px solid #999999;  
+  color: #999999;  
+  cursor: not-allowed;  
 }

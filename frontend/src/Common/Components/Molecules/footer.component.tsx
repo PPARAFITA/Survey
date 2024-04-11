@@ -9,11 +9,11 @@ export const Footer = () => {
     return (
 
         <Grid item ml={1}>
-            <div className='App-footer'>
+            <div id="footer" className='App-footer'>
                 <Grid item xs={12} textAlign="start">
                     <p className="texto-footer"> {LITERALS.footer}</p>
                 </Grid>
-                <Grid item xs={12} textAlign="end">
+                <Grid item xs={12} textAlign="end"> 
                     <img src={logoDH} className="App-logoDH" alt="logo" />
                 </Grid>
             </div>

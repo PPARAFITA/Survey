@@ -8,16 +8,31 @@ import { Grid } from '@mui/material';
 
 function App() {
   return (
+    //   <Grid container spacing={1}>
+    //   <div className="App">
+    //     <Header />
+    //     <div className='main'>
+    //       <RoutesProvider />
+    //     </div>
+    //     <Footer/>
+        
+    //   </div>
+    
+    //  </Grid>
+
     <Grid container spacing={1}>
       <div className="App">
-        <Header />
-        
-        <div className='main'>
-          <RoutesProvider />
-        </div>
-
-       <Footer />
-
+        <Grid item xs={12}>
+          <Header />
+        </Grid>
+        <Grid item xs={12}>
+          <div className='main'>
+            <RoutesProvider />
+          </div>
+        </Grid>
+        <Grid item xs={12}>
+          <Footer/>
+        </Grid>
       </div>
     </Grid>
   );
