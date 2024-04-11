@@ -122,8 +122,47 @@
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
             <column name="valor_option" value="Boooooooooooooring..." />
             <column name="color" value="red" />   
+<<<<<<< HEAD
         </insert>
  
+=======
+        </insert> 
+        <insert tableName="answer">
+            <column name="id" value="0b83fe1b-3a15-47e5-8f4e-bcf4d6b1772e" />
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a105" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
+            <column name="creation_date" value="2024/04/03" />   
+        </insert>         
+        <insert tableName="answer">
+            <column name="id" value="0b83fe1b-3a15-47e5-8f4e-bcf4d6b1772h" />
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a106" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
+            <column name="creation_date" value="2024/04/03" />   
+        </insert>         
+        <insert tableName="answer">
+            <column name="id" value="0b83fe1b-3a15-47e5-8f4e-bcf4d6b1772f" />
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a106" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
+            <column name="creation_date" value="2024/04/03" />   
+        </insert>  
+        <insert tableName="answer">
+            <column name="id" value="0b83fe1b-3a15-47e5-8f4e-bcf4d6b1772f" />
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a098" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a123" />
+            <column name="creation_date" value="2024/04/03" />   
+        </insert>          
+        <insert tableName="answer">
+            <column name="id" value="0b83fe1b-3a15-47e5-8f4e-bcf4d6b1772g" />
+            <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a106" />
+            <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
+            <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
+            <column name="creation_date" value="2024/03/03" />   
+        </insert>               
+>>>>>>> 21554d4 (Working on result data)
         <!-- <insert tableName="x">
             <column name="answer_id" value="c252189e-82af-48f3-aa40-188606a1a107" />
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a106" />
