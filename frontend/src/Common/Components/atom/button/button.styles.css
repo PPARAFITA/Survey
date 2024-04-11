@@ -19,8 +19,14 @@
 
 
 #custombutton.blueButtonStyle:disabled {
-  background-color: #cccccc; /* Cambia el color de fondo */
-  border: 1px solid #999999; /* Cambia el borde */
-  color: #999999; /* Cambia el color del texto */
+  background-color: #cccccc;  
+  border: 1px solid #999999;  
+  color: #999999;  
+  cursor: not-allowed;  
+}
+#custombutton.whiteButtonStyle:disabled {
+  background-color: #cccccc;  
+  border: 1px solid #999999;  
+  color: #999999;  
   cursor: not-allowed;  
 }

@@ -30,7 +30,7 @@ export const App = () => {
                 </div>
                 <div className='Button'>
                     <Stack direction="row" spacing={1}>
-                        <CustomButton color={'blue'} description={"Start the Survey"} path={"/FormMood"} />
+                        <CustomButton color={'blue'} description={"Start the Survey"} path={"/FormMood"}  />
                     </Stack>
                 </div>
             </p>
@@ -41,7 +41,7 @@ export const App = () => {
                 {LITERALS.p4}
 
                 <div className='Button'>
-                    <CustomButton color={'white'} description={"Analyze the results"} path={"/Results"} />
+                    <CustomButton color={'white'} description={"Analyze the results"} path={"/Results"} isDisabled= {true} />
                 </div>
 
                 <p className='link-more'>

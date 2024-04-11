@@ -7,8 +7,6 @@ import '../../App.css';
 import Divider from '@mui/material/Divider';
 
 
-
-
 const LITERALS = {
     p1: "Thank you for answering the Team mood thermometer!",
     p2: 'We really appreciate your feedback',
@@ -21,7 +19,6 @@ const LITERALS = {
 export const Thanks = () => {
 
     return (
-
         <body id='body' className="main">
             <div className="App-thanks">
                 <div className="item-container">
@@ -38,13 +35,12 @@ export const Thanks = () => {
                 <p className="header5">
                     {LITERALS.p3}
                 </p>
-
                 <p>
                     {LITERALS.p4}
                 </p>
             </div>
             <div className='Button'>
-                <CustomButton color={'blue'} description={"Analyze the results"} path={"/Thanks"}  />
+                <CustomButton color={'blue'} description={"Analyze the results"} path={"/Results"}  isDisabled= {true}/>
             </div>
 
             <p className='link-more'>
@@ -54,6 +50,5 @@ export const Thanks = () => {
         </body>
 
     )
-}
-    ;
+};
 
