@@ -50,4 +50,23 @@ public class AnswerService {
         return resultDTO;
     }
 
+    public List<ResultMonthDTO> findByTeamAndMonth(String teamId, String month){
+       
+        List<Object[]> results = answerRepository.findByTeamAndMonth(teamId,04);
+        List<ResultMonthDTO> resultDTO = new ArrayList<>();
+
+        for( Object[] result: results) {
+            String color = (String) result[0];
+            Long count = (Long) result[1];
+            Integer month2 = (Integer) result[2];
+
+            ResultKPIDTO dtoRecord = new ResultKPIDTO( color, count.intValue(), month2);
+
+            resultDTO.add(dtoRecord);
+
+        }
+
+        return resultDTO;
+    }
+
 }
