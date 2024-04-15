@@ -2,7 +2,7 @@ import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } fro
 import './list.styles.css';
 import { useEffect } from 'react';
 import { getQuestions } from '../../../services/question';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+//import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import React, { useState } from 'react';
 
 interface Props {
@@ -106,31 +106,31 @@ export const CustomSelect: React.FC<Props> = ({ month, kpi, onSelectionChange })
                         ))}
 
                     </Select>
-                    {month && showChart && (
-                        <BarChart width={500} height={300} data={questionsData.map(item => ({ question: item.question }))}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey={month ? "name" : "question"} />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="value1" fill="#8884d8" barSize={20} />
-                            <Bar dataKey="value2" fill="#82ca9d" barSize={20} />
-                            <Bar dataKey="value3" fill="#ffc658" barSize={20} />
-                        </BarChart>
+                    {/* {month && showChart && (
+                        // <BarChart width={500} height={300} data={questionsData.map(item => ({ question: item.question }))}>
+                        //     <CartesianGrid strokeDasharray="3 3" />
+                        //     <XAxis dataKey={month ? "name" : "question"} />
+                        //     <YAxis />
+                        //     <Tooltip />
+                        //     <Legend />
+                        //     <Bar dataKey="value1" fill="#8884d8" barSize={20} />
+                        //     <Bar dataKey="value2" fill="#82ca9d" barSize={20} />
+                        //     <Bar dataKey="value3" fill="#ffc658" barSize={20} />
+                        // </BarChart>
                     )}
 
                     {kpi && showChart && (
 
-                        <BarChart width={500} height={300} data={months} >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey={kpi ? "question" : "months"} />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="value1" fill="#8884d8" />
-                            <Bar dataKey="value2" fill="#82ca9d" />
-                            <Bar dataKey="value3" fill="#ffc658" />
-                        </BarChart>)}
+                        // <BarChart width={500} height={300} data={months} >
+                        //     <CartesianGrid strokeDasharray="3 3" />
+                        //     <XAxis dataKey={kpi ? "question" : "months"} />
+                        //     <YAxis />
+                        //     <Tooltip />
+                        //     <Legend />
+                        //     <Bar dataKey="value1" fill="#8884d8" />
+                        //     <Bar dataKey="value2" fill="#82ca9d" />
+                        //     <Bar dataKey="value3" fill="#ffc658" />
+                        // </BarChart>)}
                     {/* <BarChart width={500} height={300} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
