@@ -1,7 +1,7 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
 import '../../App.css';
-import { CustomButton } from '../../common';
+import {CustomButton} from '../../common/components/atom/button/button.component';
 import Divider from '@mui/material/Divider';
 import '../../common/components/atom/button/button.styles.css';
 import './landing.styles.css';

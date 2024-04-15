@@ -1,7 +1,7 @@
 import React from 'react';
 import thankimage from '../../assets/thanks.svg'
 import '../../App.css';
-import { CustomButton } from '../../common';
+import {CustomButton} from '../../common/components/atom/button/button.component';
 import './thanks.styles.css';
 import '../../App.css';
 import Divider from '@mui/material/Divider';
