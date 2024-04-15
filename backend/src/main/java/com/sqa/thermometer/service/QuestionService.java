@@ -26,4 +26,9 @@ public class QuestionService {
     public QuestionDTO findById(UUID id){
         return fabricaQuestionService.createQuestionDTO(questionRepository.findById(id).get());
     }
+
+
+    public List<QuestionDTO>  findQuestionsByTeam(String teamId){
+        return fabricaQuestionService.createQuestionsDTO(questionRepository.findQuestionsByTeam(teamId));
+    }
 }

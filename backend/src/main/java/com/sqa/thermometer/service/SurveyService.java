@@ -2,6 +2,8 @@ package com.sqa.thermometer.service;
 
 import com.sqa.thermometer.dto.SurveyDTO;
 import com.sqa.thermometer.repository.SurveyRepository;
+import com.sqa.thermometer.repository.TeamRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -11,14 +13,16 @@ import java.util.UUID;
 public class SurveyService {
     @Autowired
     private SurveyRepository surveyRepository;
+    
     @Autowired
     private FabricaSurveyService fabricaSurveyService;
+    
 
     public SurveyDTO save(SurveyDTO surveyDTO){
-        return new SurveyDTO(fabricaSurveyService.createSurvey(surveyDTO));
+        return new SurveyDTO(surveyRepository.save(fabricaSurveyService.createSurvey(surveyDTO)));
     } 
     
-    public List<SurveyDTO> findAll(){
+    public List<SurveyDTO> findAll(){      
         return fabricaSurveyService.createSurveysDTO(surveyRepository.findAll());
     }
 

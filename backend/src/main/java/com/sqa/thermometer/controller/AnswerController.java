@@ -39,8 +39,8 @@ public class AnswerController {
         return new ResponseEntity<>(answerService.findAll(), HttpStatus.OK);
     }    
 
-    @GetMapping("/result/{teamId}/kpi/{groupSelected}")
-    public ResponseEntity<List<AnswerDTO>> findAll(){
-        return new ResponseEntity<>(answerService.findAll(), HttpStatus.OK);
-    } 
+    // @GetMapping("/result/{teamId}/kpi/{groupSelected}")
+    // public ResponseEntity<List<AnswerDTO>> findAll(){
+    //     return new ResponseEntity<>(answerService.findAll(), HttpStatus.OK);
+    // } 
 }
