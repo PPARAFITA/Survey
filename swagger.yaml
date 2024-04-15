@@ -29,12 +29,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArrayTeams' 
-  /question:
+  /question/{teamId}:
     get:
       tags:
         - Questions
       summary: Get all the questions
       description: Get all the question
+      parameters: 
+          - in: path
+            name: teamId
+            required: true
+            schema: 
+              type: string 
+              format: uuid
       operationId: getQuestions
       responses:
         '200':
