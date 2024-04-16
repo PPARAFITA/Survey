@@ -6,7 +6,7 @@
     box-sizing: border-box;
     padding: 40px 62px;  
     position: sticky;
-    top: 0; /* Mantén la cabecera fija en la parte superior de la ventana */
+    top: 0;  
     z-index: 1;
 
 }
@@ -31,19 +31,3 @@
     justify-content: flex-start;
     max-width: 100%;
 }
-
-
-/* @media (max-width: 1500px) {
-
-    .App-header,
-    .App-thermometer {
-
-        height: 80px;
-    }
-
-    .App-header,
-    .Team_image {
-        height: 40px;
-    }
-
-} */

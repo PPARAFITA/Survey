@@ -8,12 +8,12 @@
 }
 
 .custom-radio-group {
-    display: flex; /* Mostrar los radio buttons en una fila */
-    flex-direction: row; /* Alinearlos horizontalmente */
+    display: flex;  
+    flex-direction: row;  
 }
 .form .MuiFormGroup-root {
-    display: flex; /* Mostrar los radio buttons en una fila */
-    flex-direction: row; /* Alinearlos horizontalmente */
+    display: flex;  
+    flex-direction: row;  
 }
 
  

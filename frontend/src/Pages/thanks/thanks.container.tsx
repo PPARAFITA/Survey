@@ -12,7 +12,8 @@ const LITERALS = {
     p3: 'Interested in the results?',
     p4: 'Take a moment to analyze the results of the team mood thermometer. ' +
         'The data is grouped by team and it is possible to view it by month to have a global view of the situation or by KPI to gain a deeper understanding of the evolution of a specific variable over time.',
-    p5: 'If you want to know more go to '
+    p5: 'If you want to know more go to ',
+    p6: 'more information'
 }
 
 export const Thanks = () => {
@@ -44,7 +45,7 @@ export const Thanks = () => {
 
             <p className='link-more'>
                 {LITERALS.p5}<a href="https://engineering.atspotify.com/2014/09/squad-health-check-model/">
-                    <span className='More-information'>more information</span></a>
+                    <span className='More-information'>{LITERALS.p6}</span></a>
             </p>
         </body>
 
