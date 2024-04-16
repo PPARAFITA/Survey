@@ -15,6 +15,8 @@ interface Props {
 const styleAzul = 'blueButtonStyle';
 const styleBlanco = 'whiteButtonStyle';
 const buttonStyle = 'baseButtonStyle';
+
+ 
  
 export const CustomButton: React.FC<Props> = ({ color, description, path, actionButton, isDisabled }) => {
  
@@ -28,7 +30,7 @@ export const CustomButton: React.FC<Props> = ({ color, description, path, action
 
       useEffect(() => {
         const handleScrollToTop = () => {
-          window.scrollTo({ top: 0, behavior: 'instant' }); 
+          window.scrollTo({ top: 0, behavior: 'instant' }); // Para comenzar desde scroll 0, solo cuándo sea una nueva página
         };
      
         const button = buttonRef.current;

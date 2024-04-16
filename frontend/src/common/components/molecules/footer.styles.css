@@ -13,7 +13,8 @@
 }
 
 @media (max-width: 800px) {
-    .App-footer { 
+    .App-footer {
+        /* grid-template-columns: 1fr; */
         padding: 10px;
     }
 }
@@ -27,6 +28,7 @@
     letter-spacing: 0.4px; 
 }
 
-.App-logoDH { 
+.App-logoDH {
+     /* width: 240px; */
     height: 32px; 
 }

@@ -1,5 +1,6 @@
 .Button {
   display: flex; 
+  /* border-radius: 10px; */
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0px;
