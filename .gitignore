@@ -3,3 +3,11 @@
 .DS_Store?
 .history/
 .vscode/
+frontend/src/Common/Components/atom/button/button.component.tsx
+frontend/src/Common/Components/atom/button/button.component.tsx
+frontend/src/Common/Components/atom/button/button.styles.css
+frontend/src/Common/Components/atom/radiobutton/radio-button.component.tsx
+frontend/src/Common/Components/Molecules/footer.styles.css
+frontend/src/Common/Components/Molecules/header.styles.css
+frontend/src/Pages/form_page/form.container.tsx
+frontend/src/Pages/form_page/form.styles.css
