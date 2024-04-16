@@ -1,8 +1,8 @@
 import React from 'react'; 
 import { Route, Routes } from 'react-router-dom';   
-import { App } from '../pages/landing_page/landing_page_container' 
+import { App } from '../pages/landing/landing_page_container' 
 import {Results} from '../pages/results_page/results.container'
-import { Thanks } from '../pages/thanks_page/thanks.container';
+import { Thanks } from '../pages/thanks/thanks.container';
 import { FormMood } from '../pages/form_page/form.container'; 
 
 function RoutesProvider() {
