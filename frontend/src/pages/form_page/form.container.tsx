@@ -2,10 +2,11 @@ import React, { useState, type FormEvent } from 'react';
 import '../../App.css';
 import SelectList from '../../common/components/molecules/list.component';
 import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
-import { CustomButton, RadioButtonsGroup } from '../../common';
-import './form.styles.css';
+import { CustomButton, RadioButtonsGroup } from '../../common/components';
+
 import TextField from '@mui/material/TextField';
 import { getQuestions } from '../../services/question';
+import './form.container.styles.css'
 import Divider from '@mui/material/Divider';
 // import { getSurveyData } from '../../services/mocks/mockquestion'; //MOCKDATA
 // import { getSurvey }  from '../../services/survey'; BACKEND

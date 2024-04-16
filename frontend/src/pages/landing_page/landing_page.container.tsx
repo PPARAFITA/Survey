@@ -1,10 +1,10 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
 import '../../App.css';
-import { CustomButton } from '../../common';
+import { CustomButton } from '../../common/components';
 import Divider from '@mui/material/Divider';
 import '../../common/components/atom/button/button.styles.css';
-import './landing.styles.css';
+import './landing_page.container.styles.css';
 
 
 const LITERALS = {
