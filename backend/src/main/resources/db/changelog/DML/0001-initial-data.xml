@@ -78,7 +78,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a100" />
             <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a122" />
-            <column name="valor_option" value="We deliver crap. we feel ashamed to deliver it. our stakeholders hate us." />
+            <column name="valor_option" value="We deliver crap. we feel ashamed to deliver it. Our stakeholders hate us." />
             <column name="color" value="red" />   
         </insert>   
         <insert tableName="option_question">
@@ -120,7 +120,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a106" />
             <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
-            <column name="valor_option" value="Boooooooooooooring..." />
+            <column name="valor_option" value="Boooooooooooooring!!" />
             <column name="color" value="red" />   
         </insert>
  

@@ -1,7 +1,7 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
 import '../../App.css';
-import { CustomButton } from '../../common';
+import {CustomButton} from '../../common';
 import Divider from '@mui/material/Divider';
 import '../../common/components/atom/button/button.styles.css';
 import './landing.styles.css';
@@ -41,7 +41,7 @@ export const App = () => {
                 {LITERALS.p4}
 
                 <div className='Button'>
-                    <CustomButton color={'white'} description={"Analyze the results"} path={"/Results"} isDisabled={true} />
+                    <CustomButton color={'white'} description={"Analyze the results"} path={"/Results"}  />
                 </div>
 
                 <p className='link-more'>

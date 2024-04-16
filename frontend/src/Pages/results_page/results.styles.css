@@ -1,3 +1,19 @@
 .item-container {
     margin-bottom: 40px;
 }
+
+.results_radiobutton{
+    display: flex;
+    flex-direction: row;
+}
+
+.custom-radio-group {
+    display: flex; /* Mostrar los radio buttons en una fila */
+    flex-direction: row; /* Alinearlos horizontalmente */
+}
+.form .MuiFormGroup-root {
+    display: flex; /* Mostrar los radio buttons en una fila */
+    flex-direction: row; /* Alinearlos horizontalmente */
+}
+
+ 
