@@ -4,8 +4,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import "./radio-button.styles.css";
 
-//Propiedades de question
-interface OptionDTO {
+ interface OptionDTO {
   optionId: string;
   surveyId: string;
   questionId: string;
@@ -21,7 +20,6 @@ interface Props {
   surveyId: string;
 }
 
-
 export const RadioButtonsGroup: React.FC<Props> = ({
   questionId,
   question,
@@ -29,24 +27,6 @@ export const RadioButtonsGroup: React.FC<Props> = ({
   surveyId,
   onOptionChange,
 }): React.JSX.Element => {
-
-  // let [question1, setQuestion] = React.useState('');
-  // const [questionsData, setQuestionsData] = React.useState<Question[]>([]);
-
-  // React.useEffect(() => {
-  //     axios.get('/api/v1/thermometer/question', {
-  //         headers: {
-  //             'Authorization': `Basic ${credentials}`
-  //         }
-  //     })
-  //         .then(response => {
-  //             console.log(response.data);
-  //             setQuestionsData(response.data);
-  //         })
-  //         .catch(error => {
-  //             console.error('Error fetching data:', error);
-  //         });
-  // }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 

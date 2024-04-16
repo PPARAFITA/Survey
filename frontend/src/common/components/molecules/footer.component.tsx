@@ -3,7 +3,7 @@ import logoDH from '../../../assets/DH_LOGO-BLACK.svg';
 import Grid from '@mui/material/Grid';
 import './footer.styles.css';
 
-const LITERALS ={footer: 'Volkswagen Digital:HUB Barcelona - Internal' }
+const LITERALS ={footer: 'Volkswagen Digital:HUB Valencia - Internal' }
 
 export const Footer = () => {
     return (

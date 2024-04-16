@@ -30,7 +30,7 @@ export const CustomButton: React.FC<Props> = ({ color, description, path, action
 
       useEffect(() => {
         const handleScrollToTop = () => {
-          window.scrollTo({ top: 0, behavior: 'instant' }); // Para comenzar desde scroll 0, solo cuándo sea una nueva página
+          window.scrollTo({ top: 0, behavior: 'instant' });  
         };
      
         const button = buttonRef.current;

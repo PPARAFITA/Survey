@@ -6,7 +6,7 @@
     box-sizing: border-box;
     padding: 40px 62px;  
     position: sticky;
-    top: 0; /* Mantén la cabecera fija en la parte superior de la ventana */
+    top: 0;  
     z-index: 1;
 
 }
