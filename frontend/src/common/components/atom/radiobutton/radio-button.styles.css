@@ -6,6 +6,11 @@
   flex-direction: row;
 }
 
+
+.inlineRadioGroup {
+  display: flex;
+  flex-direction: row;
+}
 .question {
   display:flex;
   flex-direction: column;

@@ -51,26 +51,18 @@ export const RadioButtonsGroup: React.FC<Props> = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
     const optionId = event.target.value;
-    console.log("Option value:", optionId);
-    console.log("Question value:", questionId);
 
 
-    // Comprobar que están informado antes de llamar  a handleOptionChange
     if (onOptionChange) {
       onOptionChange('', questionId, optionId, surveyId, '', event);
     }
   };
-
-
-  // const optionId = parseInt(event.target.value); // Convierte el valor de cadena a número
-  // onOptionChange(questionId, optionId);
-  // console.log("Selected question ID:", questionId);
-  // console.log("Selected question ID:", optionId);
+ 
 
 
   return (
 
-    <div className="RadioButton">
+    <div className={'RadioButton'}>
       <div className="question">
         {question}
         <RadioGroup
