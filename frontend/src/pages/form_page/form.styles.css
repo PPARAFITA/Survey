@@ -5,8 +5,7 @@
     align-items: flex-start;
     min-height: calc(100vh - 13vh);
     align-self: stretch;
-    flex: 1;
-    /* overflow: auto; */
+    flex: 1; 
     font-family: 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .container{
@@ -42,23 +41,7 @@
     margin: 0;
 }
 
-/* .text {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-} */
-
-/* .App {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin: 5px auto;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: white;
-} */
-
-.sombreado {
+ .sombreado {
     background-color: #F8F8F8;
 }
 

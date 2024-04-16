@@ -5,7 +5,6 @@ import { Footer, Header } from './common';
 import { Grid } from '@mui/material';
 
 
-
 function App() {
   return (
      <Grid container spacing={1}>

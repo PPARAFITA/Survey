@@ -1,9 +1,8 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider'; 
 import '../../App.css';
 import {CustomButton} from '../../common';
-import Divider from '@mui/material/Divider';
-import '../../common/components/atom/button/button.styles.css';
 import './landing.styles.css';
 
 
@@ -14,7 +13,8 @@ const LITERALS = {
     p4: ' Take a moment to analyze the results of the team mood thermometer. ' +
         'The data is grouped by team and it is possible to view it by month to have a global view of the situation or by KPI to gain a deeper understanding of the evolution of a specific variable over time.',
     p5: 'Interested in the results?',
-    p6: 'If you want to know more go to '
+    p6: 'If you want to know more go to ',
+    p7: 'more information'
 }
 
 
@@ -46,7 +46,7 @@ export const App = () => {
 
                 <p className='link-more'>
                     {LITERALS.p6}<a href="https://engineering.atspotify.com/2014/09/squad-health-check-model/" target="_blank" rel="noreferrer noopener"  >
-                        <span className='More-information'>more information</span></a>
+                        <span className='More-information'> {LITERALS.p7}</span></a>
 
                 </p> </p>
         </div>

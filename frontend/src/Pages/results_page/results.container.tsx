@@ -1,12 +1,10 @@
 import './results.styles.css';
-import {SelectList} from '../../common';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
-import { CustomSelect } from '../../common';
-import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import { CustomSelect ,  SelectList} from '../../common';
+import React, { useState  } from 'react';
 
 const LITERALS = {
     header: 'Analyze the results',
@@ -17,6 +15,7 @@ const LITERALS = {
 export const Results = () => {
 
     const [selectedTeam, setSelectedTeam] = useState<string>('');
+    // eslint-disable-next-line
     const [selectedOption, setSelectedOption] = useState<string>('month');
     const [showMonthSelector, setShowMonthSelector] = useState<boolean>(true);
     const [showKpiSelector, setShowKpiSelector] = useState<boolean>(false);
