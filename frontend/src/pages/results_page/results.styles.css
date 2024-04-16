@@ -1,0 +1,19 @@
+.item-container {
+    margin-bottom: 40px;
+}
+
+.results_radiobutton{
+    display: flex;
+    flex-direction: row;
+}
+
+.custom-radio-group {
+    display: flex;  
+    flex-direction: row;  
+}
+.form .MuiFormGroup-root {
+    display: flex;  
+    flex-direction: row;  
+}
+
+ 
