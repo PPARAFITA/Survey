@@ -1,21 +1,16 @@
 import './results.styles.css';
-import SelectList from '../../common/components/molecules/list.component';
+import {SelectList} from '../../common';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
-import { CustomSelect } from '../../common/components/molecules/select.component';
+import { CustomSelect } from '../../common';
 import React, { useState } from 'react';
+import { Box } from '@mui/material';
 
 const LITERALS = {
     header: 'Analyze the results',
     p1: 'Visualize the info by',
-    p2: 'Select your team and Hey Ho, Let’s Go 🤟',
-    p3: 'Feelings traffic lights',
-    p4: 'Doesn’t mean Perfect. It just means the squad is happy with this, and see no major need for improvement right now.',
-    p5: 'Means there are some important problems that need addressing, but it’s not a disaster.',
-    p6: ' Means this really sucks and needs to be improved. ',
-    p7: 'Extra ball! Would you like to add something else?'
 }
 
 
@@ -25,6 +20,7 @@ export const Results = () => {
     const [selectedOption, setSelectedOption] = useState<string>('month');
     const [showMonthSelector, setShowMonthSelector] = useState<boolean>(true);
     const [showKpiSelector, setShowKpiSelector] = useState<boolean>(false);
+ 
 
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
@@ -36,15 +32,24 @@ export const Results = () => {
             setShowMonthSelector(false);
             setShowKpiSelector(true);
         }
+       
     };
 
     return (
-
-        <div className='item-container'>
-            <h2 className='header5'> {LITERALS.header}</h2>
-            <SelectList onTeamSelect={(teamId) => setSelectedTeam(teamId)}></SelectList>
+        <div className="App">
+            <div className='item-container'>
+                <h2 className='header5'> {LITERALS.header}</h2>
+            </div>
+            <div className='item-container'>
+                <SelectList onTeamSelect={(teamId) => setSelectedTeam(teamId)}></SelectList>
+            </div>
             <FormLabel id="info_select">{LITERALS.p1}</FormLabel>
             <RadioGroup
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                }}
+                className='results_radiobutton'
                 aria-labelledby="radio_group_results"
                 defaultValue="month"
                 name="radio-buttons-group"
@@ -52,8 +57,8 @@ export const Results = () => {
                 <FormControlLabel value="month" control={<Radio />} label="Month" />
                 <FormControlLabel value="kpi" control={<Radio />} label="KPI" />
             </RadioGroup>
-            {showMonthSelector && <CustomSelect month={true} kpi={false} onSelectionChange={(value: string) => setSelectedOption(value)} />}
-            {showKpiSelector && <CustomSelect month={false} kpi={true} onSelectionChange={(value: string) => setSelectedOption(value)} />}
+            {selectedTeam && showMonthSelector && <CustomSelect month={true} kpi={false} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)} />}
+            {selectedTeam && showKpiSelector && <CustomSelect month={false} kpi={true} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)} />}
 
         </div>
     )

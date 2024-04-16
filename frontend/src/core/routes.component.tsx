@@ -1,9 +1,9 @@
-import { Route, Routes } from 'react-router-dom';    
+import React from 'react'; 
+import { Route, Routes } from 'react-router-dom';   
 import { App } from '../pages/landing_page/landing.container' 
 import {Results} from '../pages/results_page/results.container'
-import React from 'react'; 
 import { Thanks } from '../pages/thanks_page/thanks.container';
-import { FormMood } from '../pages/form_page/form.container';
+import { FormMood } from '../pages/form_page/form.container'; 
 
 function RoutesProvider() {
   

@@ -1,7 +1,6 @@
 import React from 'react';
 import thankimage from '../../assets/thanks.svg'
-import '../../App.css';
-import {CustomButton} from '../../common/components/atom/button/button.component';
+import {CustomButton} from '../../common';
 import './thanks.styles.css';
 import '../../App.css';
 import Divider from '@mui/material/Divider';
@@ -40,7 +39,7 @@ export const Thanks = () => {
                 </p>
             </div>
             <div className='Button'>
-                <CustomButton color={'blue'} description={"Analyze the results"} path={"/Results"}  isDisabled= {true}/>
+                <CustomButton color={'blue'} description={"Analyze the results"} path={"/Results"}  />
             </div>
 
             <p className='link-more'>
