@@ -16,16 +16,16 @@ public class ResultMonthDTO {
     private String questionId;
     private String question;
     private String questionType;
-    private List<ResultTrafficLight> responseList = null;
+    private ResultTrafficLight response = null;
 
 
-    public ResultMonthDTO(String questionId, String question,String questionType, List<ResultTrafficLight> resultList){
+    public ResultMonthDTO(String questionId, String question,String questionType, ResultTrafficLight resultList){
         this.question = question;
         this.questionId = questionId;
         this.questionType = questionType;
         
         //this.response = new ResultTrafficLight();
-        this.responseList = resultList;
+        this.response = resultList;
 
     }
 }

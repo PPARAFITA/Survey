@@ -9,14 +9,16 @@ import lombok.Data;
 public class ResultTrafficLight implements Serializable {
 
 
-    private String color;
-    private Long count;
+    private Long orange;
+    private Long red;
+    private Long green;
     // private int green;
     // private int organge;
     // private int red;
     
-    public ResultTrafficLight(String color, Long count){
-        this.color = color;
-        this.count = count;
+    public ResultTrafficLight(Long redCount, Long greenCount, Long orangeCount){
+        this.red = redCount;
+        this.green = greenCount;
+        this.orange = orangeCount;
     }  
 }

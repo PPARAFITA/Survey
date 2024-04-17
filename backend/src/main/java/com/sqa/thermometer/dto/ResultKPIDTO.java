@@ -16,13 +16,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResultKPIDTO {
     
-    private String color;
-    private Integer count;
-    private Integer month;
+    private String questionId;
+    private String questionType;
+    private String month;
+    private ResultTrafficLight response = null;
 
-     public ResultKPIDTO(String color, Integer count, Integer month) {
-        this.color = color;
-        this.count = count;
-        this.month = month;
+     public ResultKPIDTO(String questionId, String month, ResultTrafficLight response ) {
+         this.questionId = questionId;
+         //this.questionType = questionType;
+         this.month = month;
+         this.response = response;
      }
 }

@@ -38,12 +38,12 @@
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="team_id" value="c252189e-82af-48f3-aa40-188606a1a742" />
         </insert>   
-        <insert tableName="question">
+        <!-- <insert tableName="question">
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a110" />
             <column name="question_type" value="traffic_light" />
             <column name="question" value="prueba 1" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
-        </insert>     
+        </insert>      -->
         <insert tableName="question">
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a111" />
             <column name="question_type" value="traffic_light" />
@@ -56,12 +56,12 @@
             <column name="question" value="prueba 3" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
         </insert> 
-        <insert tableName="question">
+        <!-- <insert tableName="question">
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a122" />
             <column name="question_type" value="traffic_light" />
             <column name="question" value="Delivering Value" />
             <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
-        </insert>
+        </insert> -->
         <insert tableName="question">
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a125" />
             <column name="question_type" value="traffic_light" />
@@ -74,12 +74,12 @@
             <column name="question" value="Day by day work" />
             <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
         </insert> 
-        <insert tableName="question">
+        <!-- <insert tableName="question">
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a127" />
             <column name="question_type" value="traffic_light" />
             <column name="question" value="Learning and Growth" />
              <column name="survey_id" value="c252189e-82af-48f3-aa40-188606a1a822" />
-        </insert>  
+        </insert>   -->
         <insert tableName="question">
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a123" />
             <column name="question_type" value="traffic_light" />

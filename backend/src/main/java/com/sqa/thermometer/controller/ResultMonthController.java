@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sqa.thermometer.dto.ResultKPIDTO;
@@ -28,8 +29,8 @@ public class ResultMonthController {
         return new ResponseEntity<>(answerService.findByIdAndMonth( questionId, month),HttpStatus.OK);
     }
 
-    @GetMapping("/{teamId}/{month}")  
-    public ResponseEntity<List<ResultMonthDTO>> getResultByMonths(@PathVariable String month, @PathVariable String teamId){
+    @GetMapping
+    public ResponseEntity<List<ResultMonthDTO>> getResultByMonths(@RequestParam("month") String month, @RequestParam("teamId") String teamId){
         return new ResponseEntity<>(answerService.findByTeamAndMonth( teamId, month),HttpStatus.OK);
     }    
 }
