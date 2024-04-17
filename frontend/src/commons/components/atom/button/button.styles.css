@@ -1,0 +1,32 @@
+.Button {
+  display: flex; 
+  /* border-radius: 10px; */
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px;
+}
+
+#custombutton.blueButtonStyle {
+  background-color: #2196F3;
+  color: white;
+}
+
+#custombutton.whiteButtonStyle {
+  background-color: white;
+  border: 1px solid #2196F3;
+  color: #2196F3;
+}
+
+
+#custombutton.blueButtonStyle:disabled {
+  background-color: #cccccc;  
+  border: 1px solid #999999;  
+  color: #999999;  
+  cursor: not-allowed;  
+}
+#custombutton.whiteButtonStyle:disabled {
+  background-color: #cccccc;  
+  border: 1px solid #999999;  
+  color: #999999;  
+  cursor: not-allowed;  
+}

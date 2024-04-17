@@ -1,0 +1,16 @@
+.select {
+    display: flex;
+    min-width: 24px;
+    min-height: 24px;
+    padding: 16px 0px; 
+    align-self: stretch;
+    color: #363636DE;
+}
+
+.select .MuiFormControl-root,
+.select .MuiFormControl-marginNormal,
+.select .MuiSelect-root,
+.select .MuiSelect-marginNormal,
+.select .MuiMenuItem-root {
+    margin: 0;
+}
