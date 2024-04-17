@@ -33,4 +33,14 @@ public class AnswerController {
           return new ResponseEntity<>(answerService.save(answerDTOList), HttpStatus.CREATED);
         }
     }
+    @GetMapping("/result/{teamId}/month")
+   // @GetMapping("/result/{teamId}/month/{groupSelected}")
+    public ResponseEntity<List<AnswerDTO>> findAll(@RequestParam String param){
+        return new ResponseEntity<>(answerService.findAll(), HttpStatus.OK);
+    }    
+
+    // @GetMapping("/result/{teamId}/kpi/{groupSelected}")
+    // public ResponseEntity<List<AnswerDTO>> findAll(){
+    //     return new ResponseEntity<>(answerService.findAll(), HttpStatus.OK);
+    // } 
 }
