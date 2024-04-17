@@ -3,7 +3,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
-import { CustomSelect ,  SelectList} from '../../common';
+import { CustomSelect ,  SelectList} from '../../commons';
 import React, { useState  } from 'react';
 
 const LITERALS = {

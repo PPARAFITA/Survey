@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import RoutesProvider from './core/routes.component';
-import { Footer, Header } from './common';
+import { Footer, Header } from './commons';
 import { Grid } from '@mui/material';
 
 

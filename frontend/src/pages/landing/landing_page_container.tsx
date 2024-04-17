@@ -2,7 +2,7 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider'; 
 import '../../App.css';
-import {CustomButton} from '../../common';
+import {CustomButton} from '../../commons';
 import './landing.styles.css';
 
 

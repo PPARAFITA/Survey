@@ -1,6 +1,6 @@
 import React from 'react';
 import thankimage from '../../assets/thanks.svg'
-import {CustomButton} from '../../common';
+import {CustomButton} from '../../commons';
 import './thanks.styles.css';
 import '../../App.css';
 import Divider from '@mui/material/Divider';

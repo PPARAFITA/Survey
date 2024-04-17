@@ -1,13 +1,13 @@
 import React, { useState, type FormEvent } from 'react';
 import '../../App.css';
-import {SelectList} from '../../common';
+import {SelectList} from '../../commons';
 import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
 import './form.styles.css';
 import TextField from '@mui/material/TextField';
 import { getQuestions } from '../../services/question';
 import Divider from '@mui/material/Divider';
-import {CustomButton} from '../../common'
-import {RadioButtonsGroup}  from '../../common';
+import {CustomButton} from '../../commons'
+import {RadioButtonsGroup}  from '../../commons';
 // import { getSurveyData } from '../../services/mocks/mockquestion'; //MOCKDATA
 // import { getSurvey }  from '../../services/survey'; BACKEND
 // import { getSurvey } from '../../services/survey';
