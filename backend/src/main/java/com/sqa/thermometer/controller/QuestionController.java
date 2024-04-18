@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/thermometer/question")
@@ -35,6 +36,11 @@ public class QuestionController {
     @GetMapping
     public ResponseEntity<List<QuestionDTO>> findAll(){
         return new ResponseEntity<>(questionService.findAll(),HttpStatus.OK);
+    }
+
+    @GetMapping("/{teamId}")
+    public ResponseEntity<List<QuestionDTO>> findAll(@PathVariable String teamId ){
+        return new ResponseEntity<>(questionService.findQuestionsByTeam(teamId),HttpStatus.OK);
     }
 
   /*  @GetMapping("/{id}")

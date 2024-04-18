@@ -1,3 +1,4 @@
+
 openapi: 3.0.3
 info:
   title: Team happiness - Buddy program
@@ -88,6 +89,44 @@ paths:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ArrayAnswer'
+  /result:
+      get:
+        tags:
+          - result
+        summary: Get the survey's results
+        description: Get all the result that the team member submitted
+        operationId: getResult
+        parameters: 
+          - in: query
+            name: teamId
+            schema: 
+              type: string 
+              format: uuid
+          - in: query
+            name: groupedBy
+            schema: 
+              type: string 
+              enum: [ month , kpi] 
+          - in: query
+            name: groupSelected
+            schema: 
+              type: string 
+              format: string
+            examples:
+                    month: 
+                      value: January 
+                    kpi:
+                      value: "c252189e-82af-48f3-aa40-188606a1a126"
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  oneOf:
+                    - $ref: '#/components/schemas/ArrayResultMonth'
+                    - $ref: '#/components/schemas/ArrayResultKpi'
+  
 components:
   schemas:
     ArrayTeams:
@@ -113,6 +152,7 @@ components:
             $ref: '#/components/schemas/Question'
     Question:
       required:
+        - required
         - questionId
         - questionType
         - question
@@ -129,14 +169,16 @@ components:
           example: 47455c16-41ee-4622-8a75-697aacfa2466
         questionType:
           type: string
-          enum: [traffic_light]
+          enum: [traffic_light , comment]
         question:
           type: string
           example: How are you feeling today?   
         optionDTOList:
           type: array
           items:
-            $ref: '#/components/schemas/ArrayOptionquestion'       
+            $ref: '#/components/schemas/ArrayOptionquestion'  
+        required:
+          type: boolean
     ArrayOptionquestion:
       required:
         - optionId
@@ -188,7 +230,7 @@ components:
         - surveyId
         - questionId
         - optionId
-        - text_answer
+        - valorAnswer
       type: object
       properties:
         answerId:
@@ -207,6 +249,70 @@ components:
           type: string
           format: UUID
           example: 47455c16-41ee-4622-8a75-697aacfa2468 
-        text_answer:
+        valorAnswer:
           type: string
           example: Me siento contento y feliz 
+    ArrayResultMonth:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResultMonth' 
+    ArrayResultKpi:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResultKpi' 
+    ResultMonth:
+        required:
+          - questionId
+          - question
+          - questionType
+          - response
+        type: object
+        properties:
+          questionId:
+            type: string
+            format: UUID
+            example: 47455c16-41ee-4622-8a75-697aacfa2465
+          questionType:
+            type: string
+            enum: [traffic_light , comment]
+          question: 
+            type: string
+          response:
+            oneOf: 
+              - $ref: '#/components/schemas/ResultTrafficlight'
+              - $ref: '#/components/schemas/ResultComment'
+    ResultTrafficlight:
+        required:
+          - green
+          - orange
+          - red
+        type: object
+        properties:
+          green: 
+            type: integer
+          red:
+            type: integer
+          orange:
+             type: integer
+    ResultComment:
+        required:
+          - valorAnswer
+        properties:
+          valorAnswer: 
+            type: string 
+    ResultKpi:
+        required:
+          - month 
+          - response
+        type: object
+        properties:
+          month:
+            type: string 
+            example: January
+          questionType:
+            type: string
+            enum: [traffic_light , comment]
+          response:
+            oneOf: 
+                - $ref: '#/components/schemas/ResultTrafficlight'
+                - $ref: '#/components/schemas/ResultComment'

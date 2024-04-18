@@ -22,6 +22,10 @@ public class Team {
 
     private String teamName;
 
+    /*Relacion entre la entidad Survey y Team */
+    // @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
+    // private List<Survey>  surveyList;
+
     public Team(TeamDTO teamDTO) {
         this.teamId = teamDTO.getTeamId();
         this.teamName = teamDTO.getTeamName();

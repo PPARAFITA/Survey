@@ -1,0 +1,10 @@
+.bold {
+    font-weight: bold  !important;
+}
+
+#bold .bold {
+    font-weight: bold  !important;
+}
+.boldLocal{
+    font-weight: bold  !important;
+}

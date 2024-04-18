@@ -20,7 +20,6 @@ const LITERALS = {
     p6: ' Means this really sucks and needs to be improved. ',
     p7: 'Extra ball! Would you like to add something else?'
 }
-
 interface SurveyItem {
     questionId: string;
     question: string;
@@ -34,13 +33,13 @@ interface Answer {
     optionId?: string;
     valorAnswer?: string;
 }
-
+ 
 interface FormData {
     answers: { [questionId: string]: Answer };
 }
-
+ 
 export const FormMood = () => {
-
+ 
     const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
     const [selectedTeam, setSelectedTeam] = useState<string>('');
 
@@ -50,7 +49,7 @@ export const FormMood = () => {
 
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-
+ 
         const { value } = event.target;
         const questionId = surveyData[surveyData.length - 1].questionId;
         console.log(value);
@@ -68,9 +67,9 @@ export const FormMood = () => {
             }
         }));
     };
-
+ 
     const [surveyData, setSurveyData] = useState<SurveyItem[]>([]);
-
+ 
     React.useEffect(() => {
         const fetchSurveyData = async () => {
             try {
@@ -82,12 +81,11 @@ export const FormMood = () => {
         };
         fetchSurveyData();
     }, []);
-
+ 
     const handleOptionChange = (answerId: string, questionId: string, optionId: string, surveyId: string, valorAnswer: string, event: React.ChangeEvent<HTMLInputElement>) => {
-
         event.preventDefault();
         let answer_length = 0;
-
+ 
         const updatedAnswers: { [questionId: string]: Answer } = { ...formData.answers };
         if (updatedAnswers) {
             updatedAnswers[questionId] = { answerId, questionId, optionId, surveyId, valorAnswer };
@@ -95,12 +93,12 @@ export const FormMood = () => {
 
             answer_length = allQuestionsAnswered ? Object.keys(formData.answers).length : Object.keys(formData.answers).length + 1;
         }
-
+ 
         setFormData({
             ...formData,
             answers: updatedAnswers
         });
-
+ 
         getQuestions().then(response => {
             const allQuestionsAnswered = answer_length === surveyData.length - 1 && selectedTeam !== '';
             setAllQuestionsAnswered(allQuestionsAnswered);
@@ -114,7 +112,7 @@ export const FormMood = () => {
         const username = 'user';
         const password = '7f57edd8-3589-48e9-beb0-f882da413aeb';
         const credentials = btoa(`${username}:${password}`);
-
+ 
         const postData = Object.values(formData.answers).map(answer => ({
             answerId: '',
             surveyId: answer.surveyId,
@@ -122,18 +120,17 @@ export const FormMood = () => {
             optionId: answer.optionId,
             valorAnswer: answer.valorAnswer,
         }));
-
-
+ 
+ 
         let formDataToSend;
-
-
+ 
+ 
         if (allQuestionsAnswered) {
             console.log('Form submitted');
             formDataToSend = postData;
         } else {
             console.log('Not all questions answered');
         }
-
         fetch('/api/v1/thermometer/answer', {
             method: 'POST',
             headers: {
@@ -141,9 +138,9 @@ export const FormMood = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formDataToSend),
-
+ 
         })
-
+ 
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error al enviar los datos al backend');
@@ -153,9 +150,8 @@ export const FormMood = () => {
             .catch(error => {
                 console.error('Error al enviar los datos al backend:', error);
             });
-
+ 
     }
-
     return (
         <form onSubmit={handleSubmit}>
             <div className='item-container'>
@@ -178,7 +174,6 @@ export const FormMood = () => {
                         <RadioButtonUnchecked name='answer' className='OrangeButton' id='uncheckedbutton' />   <span> {LITERALS.p6} </span><br />
                     </div>
                 </div>
-
                 <div className="item-container">
                     {surveyData.map((surveyItem) => {
                         const questionOptions = surveyItem.optionDTOList.filter(option => option.questionId === surveyItem.questionId);
@@ -197,9 +192,8 @@ export const FormMood = () => {
                             );
                         }
                     })}
-
+ 
                 </div>
-
                 <p className='Title'>{LITERALS.p7} </p>
                 <div className='container'>
                     <TextField id="input-comment"
