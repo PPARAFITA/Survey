@@ -5,7 +5,8 @@ import { getQuestions } from '../../../services/question';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import React, { useState } from 'react';
 import { getResults } from '../../../services/mocks/mockresults';
-// import { getResultsb } from '../../../services/results';
+import { Results } from '../../../page/results_page/results.container';
+import { getResultsb } from '../../../services/results';
 
 interface Props {
     month?: boolean;
@@ -32,9 +33,22 @@ interface Result {
     response: traffic_light
 }
 
+interface Results {
+    teamId: string;
+    month?: boolean;
+    selectedValue: string;
+    kpi?: boolean;
+    resultquestionId?: string;
+}
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const { data_results, data_results_months } = getResults();
+
+const LITERALS =
+{
+    p1: 'answers this month',
+    p2: 'answers this period'
+}
 
 
 export const CustomSelect: React.FC<Props> = ({ month, kpi, teamId, onSelectionChange }) => {
@@ -56,27 +70,57 @@ export const CustomSelect: React.FC<Props> = ({ month, kpi, teamId, onSelectionC
     }
         , []);
 
-        if ( questionsData.length > 0 && !deletedLastQuestion){
-            setQuestionsData(prevQuestionsData => prevQuestionsData.slice(0, -1));
-            setDeletedLastQuestion(true);
-        }
+    if (questionsData.length > 0 && !deletedLastQuestion) {
+        setQuestionsData(prevQuestionsData => prevQuestionsData.slice(0, -1));
+        setDeletedLastQuestion(true);
+    }
     const label_select = month ? "Month" : "KPI";
+    const answers_total = month ? LITERALS.p1 : LITERALS.p2;
     const groupby = label_select.toLowerCase();
     const text_placeholder = month ? "Select the month you are interested in" : "Select the KPI you are interested in";
-    
 
- 
+    const [results, setResults] = useState<any>(null);
+
+
+    const findQuestionId = (value: string) => {
+        const question = questionsData.find(question => question.question === value);
+        return question ? question.questionId : null;
+    };
+
+
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                let resultquestionId = null;
+                if (kpi) {
+                    resultquestionId = findQuestionId(selectedValue);
+                }
+                const results = await getResultsb({ teamId, month, selectedValue, kpi, resultquestionId });
+                setResults(results);
+            } catch (error) {
+                console.error('Error fetching results:', error);
+            }
+        };
+
+        fetchData();
+    }, [selectedValue]);
+
+
+
+
     const handleChange = (event: SelectChangeEvent<string>) => {
-      
+
         const selectedValue = event.target.value;
-        setSelectedValue(selectedValue);  
+        setSelectedValue(selectedValue);
         onSelectionChange(selectedValue);
         console.log(selectedValue);
         console.log(groupby);
         console.log("TEAM", teamId)
 
 
-        
+
 
         // const Results = getResultsb( teamId,groupby,selectedValue);
         // setSelectedValue(event.target.value); 
@@ -104,8 +148,10 @@ export const CustomSelect: React.FC<Props> = ({ month, kpi, teamId, onSelectionC
                         onChange={handleChange}
                         label={label_select}
                         placeholder={text_placeholder}
-                        sx={{ minWidth: 200,
-                            marginBottom: 1  }}>
+                        sx={{
+                            minWidth: 200,
+                            marginBottom: 1
+                        }}>
                         <MenuItem value="" disabled>
                             <em>{text_placeholder}</em>
                         </MenuItem>
@@ -119,15 +165,23 @@ export const CustomSelect: React.FC<Props> = ({ month, kpi, teamId, onSelectionC
                     </Select>
                 </FormControl>
             </div>
+            <div className='bold' id='bold'>
+                {month ? (
+                    <span className='boldLocal'>{data_results.length}</span>
+                ) : (
+                    <span className='boldLocal'>{data_results_months.length}</span>
+                )}
+                <span> {answers_total}</span>
+            </div>
             {month && showChart && (
                 <BarChart width={1800} height={300} data={data_results}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" /> {/*  question */} 
+                    <XAxis dataKey="name" /> {/*  question */}
                     <YAxis />
                     <Tooltip />
                     <Bar dataKey="Green" fill="#64A844" barSize={20} /> {/*  response.green */}
-                    <Bar dataKey="Orange" fill="#FF9B00" barSize={20}/>
-                    <Bar dataKey="Red" fill="#DA0C1F" barSize={20}/>
+                    <Bar dataKey="Orange" fill="#FF9B00" barSize={20} />
+                    <Bar dataKey="Red" fill="#DA0C1F" barSize={20} />
                 </BarChart>
             )}
 
@@ -135,15 +189,15 @@ export const CustomSelect: React.FC<Props> = ({ month, kpi, teamId, onSelectionC
 
                 <BarChart width={1800} height={400} data={data_results_months} >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" /> {/*  month */} 
+                    <XAxis dataKey="name" /> {/*  month */}
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="Green" fill="#64A844" barSize={15}/> {/*  response.green */}
-                    <Bar dataKey="Orange" fill="#FF9B00" barSize={15}/>
-                    <Bar dataKey="Red" fill="#DA0C1F" barSize={15} />
+                    <Bar dataKey="Green" fill="#64A844" barSize={20} /> {/*  response.green */}
+                    <Bar dataKey="Orange" fill="#FF9B00" barSize={20} />
+                    <Bar dataKey="Red" fill="#DA0C1F" barSize={20} />
                 </BarChart>)}
         </Box >
     );
 }
- 
+
 
