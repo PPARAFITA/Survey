@@ -17,7 +17,7 @@ const LITERALS = {
     p3: 'Feelings traffic lights',
     p4: 'Doesn’t mean Perfect. It just means the squad is happy with this, and see no major need for improvement right now.',
     p5: 'Means there are some important problems that need addressing, but it’s not a disaster.',
-    p6: ' Means this really sucks and needs to be improved. ',
+    p6: 'Means this really sucks and needs to be improved. ',
     p7: 'Extra ball! Would you like to add something else?'
 }
 interface SurveyItem {
@@ -52,7 +52,6 @@ export const FormMood = () => {
  
         const { value } = event.target;
         const questionId = surveyData[surveyData.length - 1].questionId;
-        console.log(value);
         setFormData(prevState => ({
             ...prevState,
             answers: {
@@ -81,30 +80,26 @@ export const FormMood = () => {
         };
         fetchSurveyData();
     }, []);
- 
+
+
     const handleOptionChange = (answerId: string, questionId: string, optionId: string, surveyId: string, valorAnswer: string, event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        let answer_length = 0;
- 
+        event.preventDefault(); 
         const updatedAnswers: { [questionId: string]: Answer } = { ...formData.answers };
-        if (updatedAnswers) {
-            updatedAnswers[questionId] = { answerId, questionId, optionId, surveyId, valorAnswer };
-
-
-            answer_length = allQuestionsAnswered ? Object.keys(formData.answers).length : Object.keys(formData.answers).length + 1;
+        updatedAnswers[questionId] = { answerId, questionId, optionId, surveyId, valorAnswer };
+        let allQuestionsAnswered = true;
+        for (const surveyItem of surveyData) {
+            if (!updatedAnswers[surveyItem.questionId]) {
+                allQuestionsAnswered = false;
+                break;
+            }
         }
- 
+        allQuestionsAnswered = allQuestionsAnswered && selectedTeam !== '';
         setFormData({
             ...formData,
             answers: updatedAnswers
         });
- 
-        getQuestions().then(response => {
-            const allQuestionsAnswered = answer_length === surveyData.length - 1 && selectedTeam !== '';
-            setAllQuestionsAnswered(allQuestionsAnswered);
-        }).catch(error => {
-            console.error('Error fetching questions:', error);
-        });
+
+        setAllQuestionsAnswered(allQuestionsAnswered);
     };
 
 
@@ -169,9 +164,9 @@ export const FormMood = () => {
                     <div className='sombreado'>
                         <p className='header1' > {LITERALS.p3}   </p>
                         <br />
-                        <RadioButtonUnchecked name='answer' className='RedButton' id='uncheckedbutton' />   <span> {LITERALS.p4} </span><br />
-                        <RadioButtonUnchecked name='answer' className='GreenButton' id='uncheckedbutton' />   <span> {LITERALS.p5} </span><br />
-                        <RadioButtonUnchecked name='answer' className='OrangeButton' id='uncheckedbutton' />   <span> {LITERALS.p6} </span><br />
+                        <RadioButtonUnchecked name='answer' className='GreenButton' id='uncheckedbutton' />    <span> {LITERALS.p4} </span><br />
+                        <RadioButtonUnchecked name='answer' className='OrangeButton' id='uncheckedbutton' />   <span> {LITERALS.p5} </span><br />
+                        <RadioButtonUnchecked name='answer' className='RedButton' id='uncheckedbutton' />      <span> {LITERALS.p6} </span><br />
                     </div>
                 </div>
                 <div className="item-container">

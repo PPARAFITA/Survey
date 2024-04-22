@@ -3,6 +3,8 @@ package com.sqa.thermometer.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import jakarta.persistence.criteria.CriteriaBuilder.In;
+
 public class MonthConverterService {
   
     private static final Map<String, Integer> monthMap = new HashMap<>();
@@ -22,6 +24,11 @@ public class MonthConverterService {
         monthMap.put("december", 12);
     }
 
+    private static final String[] monthsNames = {
+        "january", "february", "march", "april", "may", "june",
+        "july", "agaugustosto", "september", "october", "november", "december"
+    };
+
     public static Integer convertirMesANumero(String mes) {
         // Convertir el mes a minúsculas para evitar errores de mayúsculas y minúsculas
         String mesEnMinusculas = mes.toLowerCase();
@@ -30,5 +37,13 @@ public class MonthConverterService {
         Integer numeroDeMes = monthMap.get(mesEnMinusculas);
         
         return numeroDeMes;
+    }
+
+    public static String convertMonthToChars(String numMonth) {
+        Integer numMonthInt = Integer.parseInt(numMonth);
+        if (numMonthInt < 1 || numMonthInt > 12) {
+            throw new IllegalArgumentException("Invalid month: " + numMonth);
+        }
+        return monthsNames[numMonthInt - 1];
     }
 }

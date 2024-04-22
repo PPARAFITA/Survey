@@ -43,20 +43,21 @@ public class AnswerService {
         if (!results.isEmpty()) {
             String previousMonth = null;
             ResultTrafficLight resultCount = new ResultTrafficLight(0L, 0L, 0L);
-
+            String question_Id = null;
+          
             for (Object[] result : results) {
                 String color = (String) result[1];
-                Long count = (Long) result[2];
-                String question_Id = (String) result[0];
+                Long count = (Long) result[2];    
                 String month = String.valueOf(result[3]);
                 //String questionType = (String) result[4];
 
                 if (!month.equals(previousMonth)) {
                     if (previousMonth != null) {
-                        resultKPIList.add(new ResultKPIDTO(question_Id, previousMonth, resultCount));
+                        resultKPIList.add(new ResultKPIDTO(question_Id, MonthConverterService.convertMonthToChars(previousMonth), resultCount));
                         resultCount = new ResultTrafficLight(0L, 0L, 0L);
                     }
                     previousMonth = month;
+                    question_Id = (String) result[0];                                 
                 }
 
                 if ("red".equals(color)) {
@@ -68,7 +69,7 @@ public class AnswerService {
                 }
 
                 if (results.indexOf(result) == results.size() - 1) {
-                    resultKPIList.add(new ResultKPIDTO(question_Id, month, resultCount));
+                    resultKPIList.add(new ResultKPIDTO(question_Id, MonthConverterService.convertMonthToChars(month), resultCount));
                 }
             }
         }
@@ -84,21 +85,26 @@ public class AnswerService {
         if (!results.isEmpty()) {
             String previousQuestionId = null;
             ResultTrafficLight resultCount = new ResultTrafficLight(0L, 0L, 0L);
+            String question = null;
+            String questionType = null; 
 
-            for (Object[] result : results) {
-                String color = (String) result[0];
-                Long count = (Long) result[1];
+
+            for (Object[] result : results) {             
                 String questionId = (String) result[2];
-                String question = (String) result[3];
-                String questionType = (String) result[4];
-
+    
                 if (!questionId.equals(previousQuestionId)) {
                     if (previousQuestionId != null) {
                         resultDTO.add(new ResultMonthDTO(previousQuestionId, question, questionType, resultCount));
                         resultCount = new ResultTrafficLight(0L, 0L, 0L);
                     }
                     previousQuestionId = questionId;
+                    question = (String) result[3];
+                    questionType = (String) result[4];  
                 }
+
+                String color = (String) result[0];
+                Long count = (Long) result[1];
+ 
 
                 if ("red".equals(color)) {
                     resultCount.setRed(count);

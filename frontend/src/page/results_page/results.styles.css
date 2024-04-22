@@ -2,18 +2,27 @@
     margin-bottom: 40px;
 }
 
-.results_radiobutton{
+.results_radiobutton {
     display: flex;
     flex-direction: row;
 }
 
 .custom-radio-group {
-    display: flex;  
-    flex-direction: row;  
-}
-.form .MuiFormGroup-root {
-    display: flex;  
-    flex-direction: row;  
+    display: flex;
+    flex-direction: row;
 }
 
- 
+.form .MuiFormGroup-root {
+    display: flex;
+    flex-direction: row;
+}
+
+.css-u4tvz2-MuiFormLabel-root.info_select {
+    color: black;
+}
+
+.css-skjjoq-MuiFormControl-root  { 
+    all: unset;
+    margin: 0px;
+  }
+  

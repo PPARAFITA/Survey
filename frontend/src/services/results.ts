@@ -23,7 +23,7 @@ export const getResultsb = (results: Results) => {
         })
     }
     else if (kpi) {
-        return axios.get(`/api/v1/thermometer/resultKpi?questionId=${results.resultquestionId}&teamId=${teamId}`, {
+        return axios.get(`/api/v1/thermometer/resultKPI?questionId=${results.resultquestionId}&teamId=${teamId}`, {
             headers: {
                 'Authorization': `Basic ${credentials}`
             }

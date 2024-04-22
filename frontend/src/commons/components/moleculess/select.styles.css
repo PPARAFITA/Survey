@@ -8,3 +8,36 @@
 .boldLocal{
     font-weight: bold  !important;
 }
+
+.select_team {
+    display: flex;
+    /* min-width: 24px; */
+    /* min-height: 24px; */
+     padding: 16px 0px;  
+    align-self: stretch;
+    color: #363636DE;
+}
+
+
+.select .MuiFormControl-root,
+.select .MuiFormControl-marginNormal,
+.select .MuiSelect-root,
+.select .MuiSelect-marginNormal,
+.select .MuiMenuItem-root 
+.css-skjjoq-MuiFormControl-root{
+    margin: 0;
+}
+
+.item-container {
+    margin-bottom: 40px;
+}
+
+.item_container_top{
+    margin-top: 40px;
+}
+
+div.css-skjjoq-MuiFormControl-root  { 
+    all: unset;
+    margin: 0px;
+  }
+  
