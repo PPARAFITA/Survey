@@ -17,9 +17,6 @@ public class QuestionDTO {
     private UUID questionId;
     private String question;
     private String questionType;
-    // private Integer optionId;
-    // private String valorOption;
-    // private String color;
     private List<OptionDTO> optionDTOList;
 
     public QuestionDTO(Question question){
@@ -29,7 +26,6 @@ public class QuestionDTO {
         this.optionDTOList = new ArrayList<>();
 
         question.getOptionQuestion().stream().forEach( optionQuestion -> {
-           // this.optionDTOList.add(new OptionDTO(optionQuestion));
            this.optionDTOList.add(new OptionDTO(optionQuestion));
         });
     
@@ -42,7 +38,6 @@ public class QuestionDTO {
 
             this.optionDTOList = new ArrayList<>();
             this.optionDTOList = question.getOptionDTOList();
-            //this.optionDTOList = question.getOptionDTOList();
 
     }
 

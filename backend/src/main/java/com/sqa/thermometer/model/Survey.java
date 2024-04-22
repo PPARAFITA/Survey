@@ -1,18 +1,12 @@
 package com.sqa.thermometer.model;
 
 import com.sqa.thermometer.dto.SurveyDTO;
-import com.sqa.thermometer.repository.TeamRepository;
-
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 import java.util.UUID;
 

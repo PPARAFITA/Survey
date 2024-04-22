@@ -1,7 +1,5 @@
 package com.sqa.thermometer.model;
 
-import com.sqa.thermometer.embedded.OptionId;
-
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;

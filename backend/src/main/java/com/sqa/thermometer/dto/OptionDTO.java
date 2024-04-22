@@ -1,10 +1,8 @@
 package com.sqa.thermometer.dto;
 
 import java.util.UUID;
-
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
-
 import com.sqa.thermometer.model.OptionQuestion;
 import lombok.Data;
 import lombok.NoArgsConstructor;
