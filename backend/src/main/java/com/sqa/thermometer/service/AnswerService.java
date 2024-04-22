@@ -43,20 +43,21 @@ public class AnswerService {
         if (!results.isEmpty()) {
             String previousMonth = null;
             ResultTrafficLight resultCount = new ResultTrafficLight(0L, 0L, 0L);
-
+            String question_Id = null;
+          
             for (Object[] result : results) {
                 String color = (String) result[1];
-                Long count = (Long) result[2];
-                String question_Id = (String) result[0];
+                Long count = (Long) result[2];    
                 String month = String.valueOf(result[3]);
                 //String questionType = (String) result[4];
 
                 if (!month.equals(previousMonth)) {
                     if (previousMonth != null) {
-                        resultKPIList.add(new ResultKPIDTO(question_Id, previousMonth, resultCount));
+                        resultKPIList.add(new ResultKPIDTO(question_Id, MonthConverterService.convertMonthToChars(previousMonth), resultCount));
                         resultCount = new ResultTrafficLight(0L, 0L, 0L);
                     }
                     previousMonth = month;
+                    question_Id = (String) result[0];                                 
                 }
 
                 if ("red".equals(color)) {
@@ -68,7 +69,7 @@ public class AnswerService {
                 }
 
                 if (results.indexOf(result) == results.size() - 1) {
-                    resultKPIList.add(new ResultKPIDTO(question_Id, month, resultCount));
+                    resultKPIList.add(new ResultKPIDTO(question_Id, MonthConverterService.convertMonthToChars(month), resultCount));
                 }
             }
         }

@@ -200,7 +200,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a095" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a111" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert>      
         <insert tableName="option_question">
@@ -221,7 +221,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a092" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a112" />
-            <column name="valor_option" value="Neutral" />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster" />
             <column name="color" value="orange" />   
         </insert>       
         <insert tableName="option_question">
@@ -242,7 +242,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a099" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a113" />
-            <column name="valor_option" value="neutral" />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster" />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -263,7 +263,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a102" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a114" />
-            <column name="valor_option" value="neutral" />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster" />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -284,7 +284,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a105" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a115" />
-            <column name="valor_option" value="neutral" />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster" />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -305,7 +305,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a108" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a116" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -326,7 +326,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a111" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a117" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -348,7 +348,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a114" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a118" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -370,7 +370,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a117" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a119" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -392,7 +392,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a120" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a120" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -415,7 +415,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a123" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a121" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -438,7 +438,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a001" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889822" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a125" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -460,7 +460,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a005" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889822" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a126" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
@@ -482,7 +482,7 @@
             <column name="option_id" value="c252189e-82af-48f3-aa40-188606a1a008" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889822" />
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a127" />
-            <column name="valor_option" value="Neutral." />
+            <column name="valor_option" value="Problems need to be address, but it's not a disaster." />
             <column name="color" value="orange" />   
         </insert> 
         <insert tableName="option_question">
