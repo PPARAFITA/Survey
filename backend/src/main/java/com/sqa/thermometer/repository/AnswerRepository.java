@@ -18,7 +18,7 @@ public interface AnswerRepository extends JpaRepository<Answer, AnswerId> {
 
      @Query(value = "select a.question_id, color, count(*) as count, Month(creation_date) as fecha, c.question_type from thermometer.answer as a left join thermometer.option_question as b on a.option_id = b.option_id and a.survey_id = b.survey_id" + 
                     " inner join thermometer.question as c on c.question_id = b.question_id where a.question_id = :questionId AND " + "a.survey_id = (select survey_id from thermometer.survey where team_id = :teamId ) " + 
-                    " group by a.question_id, color, fecha, c.question_type  order by a.question_id ", nativeQuery = true)
+                    " group by a.question_id, color, fecha, c.question_type  order by a.question_id, fecha ", nativeQuery = true)
      List<Object[]> findByTeamAndQuestion(@Param("teamId") String teamId, @Param("questionId") String questionId );
 
      
