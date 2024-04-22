@@ -3,14 +3,13 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
-import { CustomSelect ,  SelectList} from '../../commons';
-import React, { useEffect, useState  } from 'react';
+import { CustomSelect, SelectList } from '../../commons';
+import React, { useEffect, useState } from 'react';
 
 const LITERALS = {
     header: 'Analyze the results',
     p1: 'Visualize the info by',
 }
-
 
 export const Results = () => {
 
@@ -21,7 +20,7 @@ export const Results = () => {
     const [showKpiSelector, setShowKpiSelector] = useState<boolean>(false);
     const [teamChanged, setTeamChanged] = useState<boolean>(false);
 
-    console.log('Team Changed',teamChanged)
+    console.log('Team Changed', teamChanged)
 
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
@@ -54,9 +53,9 @@ export const Results = () => {
                 <h2 className='header5'> {LITERALS.header}</h2>
             </div>
             <div className='item-container'>
-                 <SelectList onTeamSelect={handleTeamSelect}></SelectList>
+                <SelectList onTeamSelect={handleTeamSelect}></SelectList>
             </div>
-            
+
             <FormLabel className="info_select">{LITERALS.p1}</FormLabel>
             <RadioGroup
                 sx={{
@@ -71,10 +70,10 @@ export const Results = () => {
                 <FormControlLabel value="month" control={<Radio />} label="Month" />
                 <FormControlLabel value="kpi" control={<Radio />} label="KPI" />
             </RadioGroup>
-            
-            {selectedTeam && showMonthSelector && <CustomSelect month={true} kpi={false} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)} teamChanged={teamChanged} />}
-            {selectedTeam && showKpiSelector && <CustomSelect month={false} kpi={true} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)}  teamChanged={teamChanged} />}
 
+            {selectedTeam && showMonthSelector && <CustomSelect month={true} kpi={false} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)} teamChanged={teamChanged} />}
+            {selectedTeam && showKpiSelector && <CustomSelect month={false} kpi={true} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)} teamChanged={teamChanged} />}
+           
         </div>
     )
 };

@@ -8,7 +8,7 @@ import { getResults } from '../../../services/mocks/mockresults';
 import { Results } from '../../../page/results_page/results.container';
 import { getResultsb } from '../../../services/results';
 import { AxiosResponse } from 'axios';
-
+import noDataFound from '../../../assets/embarrassed.svg';
 
 interface Props {
     month?: boolean;
@@ -56,7 +56,7 @@ const LITERALS =
 export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, onSelectionChange, teamChanged }) => {
     console.log('Componente X renderizado')
     const [questionsData, setQuestionsData] = React.useState<Question[]>([]);
-    
+
     const [selectedValue, setSelectedValue] = useState<string>("");
     const [showChart, setShowChart] = useState<boolean>(false);
     const [deletedLastQuestion, setDeletedLastQuestion] = useState<boolean>(false);
@@ -119,38 +119,38 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
         }
     }, [teamChanged]);
 
-     useEffect(() => {
+    useEffect(() => {
         if (!selectedValue) return;
-    const fetchData = async () => {
-        try {
-            let resultquestionId = null;
-            if (kpi) {
-                const question = questionsData.find(question => question.question === selectedValue);
-                resultquestionId = question ? question.questionId : null;
-            }
-            const response: AxiosResponse<any> | null = await getResultsb({ teamId, month, selectedValue, kpi, resultquestionId });
-            if (response !== null) {
-                if (response.data.length > 0) {
-                    setResults(response.data);
-                    if (month) {
-                        setDataResultsMonth(response.data);
+        const fetchData = async () => {
+            try {
+                let resultquestionId = null;
+                if (kpi) {
+                    const question = questionsData.find(question => question.question === selectedValue);
+                    resultquestionId = question ? question.questionId : null;
+                }
+                const response: AxiosResponse<any> | null = await getResultsb({ teamId, month, selectedValue, kpi, resultquestionId });
+                if (response !== null) {
+                    if (response.data.length > 0) {
+                        setResults(response.data);
+                        if (month) {
+                            setDataResultsMonth(response.data);
+                        }
+                        else {
+                            setDataResultsKpi(response.data);
+                        }
                     }
                     else {
-                        setDataResultsKpi(response.data);
+                        setShowChart(false);
                     }
                 }
-                else {
-                    setShowChart(false);
-                }
+
+
+            } catch (error) {
+                console.error('Error fetching results:', error);
             }
-
-
-        } catch (error) {
-            console.error('Error fetching results:', error);
-        }
-    };
-    fetchData();
-        if (teamChanged  ) {
+        };
+        fetchData();
+        if (teamChanged) {
             fetchData();
         }
         return () => {
@@ -162,13 +162,13 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
 
 
     const handleChange = (event: SelectChangeEvent<string>) => {
-       
+
         const selectedValue = event.target.value;
         setSelectedValue(selectedValue);
         onSelectionChange(selectedValue);
         setShowChart(true);
 
-         // const newValue = event.target.value;
+        // const newValue = event.target.value;
         // if (newValue !== selectedValue) {
         //     setSelectedValue(newValue);
         //     onSelectionChange(newValue);
@@ -188,14 +188,45 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
 
     console.log('sort', sortedDataResultsKPI)
 
-   
+
     const dataResultsKPIWithText = sortedDataResultsKPI.map(item => {
-        const monthNumber = parseInt(item.month, 10);  
-        const monthText = months[monthNumber - 1]; 
+        const monthNumber = parseInt(item.month, 10);
+        const monthText = months[monthNumber - 1];
         return { ...item, month: monthText };
     });
 
-    console.log(dataResultsKPIWithText)
+
+    const monthOrder: { [month: string]: number } = {
+        "january": 1,
+        "february": 2,
+        "march": 3,
+        "april": 4,
+        "may": 5,
+        "june": 6,
+        "july": 7,
+        "august": 8,
+        "september": 9,
+        "october": 10,
+        "november": 11,
+        "december": 12
+    };
+
+    const capitalizeFirstLetter = (str: string) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+    const sortedData = dataResultsKpi.sort((a, b) => {
+        const monthA = monthOrder[a.month.toLowerCase()];
+        const monthB = monthOrder[b.month.toLowerCase()];
+
+        return monthA - monthB;
+    });
+
+    sortedData.forEach(item => {
+        item.month = capitalizeFirstLetter(item.month);
+    });
+    console.log(sortedData)
+
+
     return (
 
         <Box sx={{ minWidth: 450 }}>
@@ -249,11 +280,11 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
 
             {kpi && showChart && (
                 <><div className='item_container_top'>
-                    <span className='boldLocal'>{dataResultsKPIWithText.length}</span>
+                    <span className='boldLocal'>{sortedData.length}</span>
                     <span> {answers_total}</span>
                 </div>
 
-                    <BarChart width={1800} height={400} data={dataResultsKPIWithText} >    
+                    <BarChart width={1800} height={400} data={sortedData} >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="month"
                             tick={{ fontSize: 10 }} />
@@ -264,7 +295,16 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                         <Bar dataKey="response.orange" fill="#FF9B00" barSize={20} />
                         <Bar dataKey="response.red" fill="#DA0C1F" barSize={20} />
                     </BarChart></>)
+
             }
+            {(selectedValue !== "" && !showChart) && (
+                <>
+                    <div className='data_nofound'>
+                        <img src={noDataFound} height={400} alt="No Data Found" />
+                        <p> No DATA FOUND</p>
+                    </div>
+                </>
+            )}
         </Box >
 
     )

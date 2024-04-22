@@ -40,4 +40,11 @@ div.css-skjjoq-MuiFormControl-root  {
     all: unset;
     margin: 0px;
   }
+
+  .data_nofound{
+    display:flex;
+    gap:400px;
+    height: 400px;
+    justify-content: center;
+  }
   

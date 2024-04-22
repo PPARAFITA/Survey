@@ -47,8 +47,6 @@ interface BasicSelect {
     }
   };
 
-
-
   return (
     <Box sx={{ minWidth: 450 }}>
       <div className='select'>
