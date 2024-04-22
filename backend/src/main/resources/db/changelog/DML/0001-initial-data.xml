@@ -149,7 +149,8 @@
             <column name="question" value="Support from your PO" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
         </insert>   
-      <!--  <insert tableName="question">
+
+        <!-- <insert tableName="question">
             <column name="question_id" value="c252189e-82af-48f3-aa40-188606a1a131" />
             <column name="question_type" value="text" />
             <column name="question" value="Extra ball! Would you like to add something else?" />
@@ -1023,7 +1024,8 @@
         </insert> 
 
 
-       <!-- <insert tableName="answer">
+<!-- 
+        <insert tableName="answer">
 	        <column name="id" value="0b83fe1b-3a15-47e5-8f4e-bcf4d6b1772e" /> 
             <column name="option_id" value="" />
             <column name="survey_id" value="c4c7787c-48ce-4ba4-ad64-e8fd78889379" />
