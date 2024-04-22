@@ -72,14 +72,14 @@ export const FormMood = () => {
     React.useEffect(() => {
         const fetchSurveyData = async () => {
             try {
-                const response = await getQuestions();
+                const response = await getQuestions(selectedTeam);
                 setSurveyData(response.data);
             } catch (error) {
                 console.error('Error fetching survey data:', error);
             }
         };
         fetchSurveyData();
-    }, []);
+    }, [selectedTeam]);
 
 
     const handleOptionChange = (answerId: string, questionId: string, optionId: string, surveyId: string, valorAnswer: string, event: React.ChangeEvent<HTMLInputElement>) => {

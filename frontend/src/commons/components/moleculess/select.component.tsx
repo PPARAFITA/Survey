@@ -8,7 +8,7 @@ import { getResults } from '../../../services/mocks/mockresults';
 import { Results } from '../../../page/results_page/results.container';
 import { getResultsb } from '../../../services/results';
 import { AxiosResponse } from 'axios';
-import noDataFound from '../../../assets/embarrassed.svg';
+// import noDataFound from '../../../assets/embarrassed.svg';
 
 interface Props {
     month?: boolean;
@@ -23,26 +23,7 @@ interface Question {
     question: string;
 }
 
-// interface traffic_light {
-//     green: string;
-//     orange: string;
-//     red: string;
-// }
-
-// interface Result {
-//     questionId: string;
-//     questionType: string;
-//     question: string;
-//     response: traffic_light
-// }
-
-// interface Results {
-//     teamId: string;
-//     month?: boolean;
-//     selectedValue: string;
-//     kpi?: boolean;
-//     resultquestionId?: string;
-// }
+ 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 
@@ -86,7 +67,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
 
 
     useEffect(() => {
-        getQuestions()
+        getQuestions(teamId)
             .then(response => {
                 setQuestionsData(response.data);
             })
@@ -114,7 +95,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
 
     useEffect(() => {
         if (teamChanged) {
-            // setSelectedValue("");
+            setSelectedValue("");
             setShowChart(false);
         }
     }, [teamChanged]);
@@ -132,6 +113,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                 if (response !== null) {
                     if (response.data.length > 0) {
                         setResults(response.data);
+                        console.log(response.data)
                         if (month) {
                             setDataResultsMonth(response.data);
                         }
@@ -178,24 +160,6 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
     };
 
 
-    const sortedDataResultsKPI = useMemo(() => {
-        return dataResultsKpi.sort((a, b) => {
-            const monthIndexA = parseInt(a.month) - 1;
-            const monthIndexB = parseInt(b.month) - 1;
-            return monthIndexA - monthIndexB;
-        });
-    }, [dataResultsKpi]);
-
-    console.log('sort', sortedDataResultsKPI)
-
-
-    const dataResultsKPIWithText = sortedDataResultsKPI.map(item => {
-        const monthNumber = parseInt(item.month, 10);
-        const monthText = months[monthNumber - 1];
-        return { ...item, month: monthText };
-    });
-
-
     const monthOrder: { [month: string]: number } = {
         "january": 1,
         "february": 2,
@@ -224,7 +188,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
     sortedData.forEach(item => {
         item.month = capitalizeFirstLetter(item.month);
     });
-    console.log(sortedData)
+
 
 
     return (
@@ -263,7 +227,9 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
             </div>
             {month && showChart && (
                 <><div className='item_container_top'>
-                    <span className='boldLocal'>{dataResultsMonth.length}</span>
+                    {dataResultsMonth && dataResultsMonth.length > 0 && (
+                        <span className='boldLocal'>{dataResultsMonth[0].qtyAnswers}</span>
+                    )}
                     <span> {answers_total}</span>
                 </div>
                     <BarChart width={1800} height={300} data={dataResultsMonth}>
@@ -297,7 +263,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                     </BarChart></>)
 
             }
-            {/* {(selectedValue !== "" && !showChart) && (
+            {/* {(selectedValue !== "" && !showChart &&  ( sortedData.length === 0 ||  dataResultsMonth.length === 0 )) && (
                 <>
                     <div className='data_nofound'>
                         <img src={noDataFound} height={400} alt="No Data Found" />
