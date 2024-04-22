@@ -297,14 +297,14 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                     </BarChart></>)
 
             }
-            {(selectedValue !== "" && !showChart) && (
+            {/* {(selectedValue !== "" && !showChart) && (
                 <>
                     <div className='data_nofound'>
                         <img src={noDataFound} height={400} alt="No Data Found" />
                         <p> No DATA FOUND</p>
                     </div>
                 </>
-            )}
+            )} */}
         </Box >
 
     )
