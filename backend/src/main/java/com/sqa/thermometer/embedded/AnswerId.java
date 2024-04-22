@@ -14,7 +14,6 @@ public class AnswerId implements Serializable {
 
     @JdbcTypeCode(SqlTypes.CHAR)
     @UuidGenerator
-    //@GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID Id;
 

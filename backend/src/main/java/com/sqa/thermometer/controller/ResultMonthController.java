@@ -24,11 +24,6 @@ public class ResultMonthController {
     @Autowired
     private AnswerService answerService;
 
-    @GetMapping("/{month}")
-    public ResponseEntity<List<ResultKPIDTO>> getResultByMonth(@PathVariable String month, @PathVariable String questionId){
-        return new ResponseEntity<>(answerService.findByIdAndMonth( questionId, month),HttpStatus.OK);
-    }
-
     @GetMapping
     public ResponseEntity<List<ResultMonthDTO>> getResultByMonths(@RequestParam("month") String month, @RequestParam("teamId") String teamId){
         return new ResponseEntity<>(answerService.findByTeamAndMonth( teamId, month),HttpStatus.OK);

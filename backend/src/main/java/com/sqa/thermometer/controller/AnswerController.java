@@ -39,8 +39,8 @@ public class AnswerController {
         return new ResponseEntity<>(answerService.findAll(), HttpStatus.OK);
     }    
 
-    // @GetMapping("/result/{teamId}/kpi/{groupSelected}")
-    // public ResponseEntity<List<AnswerDTO>> findAll(){
-    //     return new ResponseEntity<>(answerService.findAll(), HttpStatus.OK);
-    // } 
+    @GetMapping("/totalAnswerByYear")
+    public ResponseEntity<Integer> getTotalAnswerByYear(@RequestParam("questionId") String questionId, @RequestParam("teamId") String teamId){
+        return new ResponseEntity<>(answerService.getTotalAnswerByYear(teamId, questionId), HttpStatus.OK);
+    }   
 }

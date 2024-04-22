@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,10 +20,6 @@ public class Team {
     private UUID teamId;
 
     private String teamName;
-
-    /*Relacion entre la entidad Survey y Team */
-    // @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
-    // private List<Survey>  surveyList;
 
     public Team(TeamDTO teamDTO) {
         this.teamId = teamDTO.getTeamId();

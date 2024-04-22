@@ -7,14 +7,8 @@ import com.sqa.thermometer.embedded.ResultTrafficLight;
 import com.sqa.thermometer.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @Service
 public class AnswerService {
@@ -44,21 +38,25 @@ public class AnswerService {
             String previousMonth = null;
             ResultTrafficLight resultCount = new ResultTrafficLight(0L, 0L, 0L);
             String question_Id = null;
+            int totalAnswers = 0;
           
             for (Object[] result : results) {
                 String color = (String) result[1];
                 Long count = (Long) result[2];    
                 String month = String.valueOf(result[3]);
-                //String questionType = (String) result[4];
+                String questiontype = (String) result[4];
 
                 if (!month.equals(previousMonth)) {
                     if (previousMonth != null) {
-                        resultKPIList.add(new ResultKPIDTO(question_Id, MonthConverterService.convertMonthToChars(previousMonth), resultCount));
+                        resultKPIList.add(new ResultKPIDTO(question_Id, questiontype, MonthConverterService.convertMonthToChars(previousMonth), totalAnswers, resultCount));
                         resultCount = new ResultTrafficLight(0L, 0L, 0L);
                     }
                     previousMonth = month;
-                    question_Id = (String) result[0];                                 
+                    question_Id = (String) result[0];   
+                    totalAnswers = 0;                           
                 }
+
+                totalAnswers += count;
 
                 if ("red".equals(color)) {
                     resultCount.setRed(count);
@@ -69,7 +67,8 @@ public class AnswerService {
                 }
 
                 if (results.indexOf(result) == results.size() - 1) {
-                    resultKPIList.add(new ResultKPIDTO(question_Id, MonthConverterService.convertMonthToChars(month), resultCount));
+                    resultKPIList.add(new ResultKPIDTO(question_Id, questiontype, MonthConverterService.convertMonthToChars(month),totalAnswers, resultCount));
+                    
                 }
             }
         }
@@ -81,30 +80,32 @@ public class AnswerService {
     public List<ResultMonthDTO> findByTeamAndMonth(String teamId, String month) {
         List<Object[]> results = answerRepository.findByTeamAndMonth(teamId, MonthConverterService.convertirMesANumero(month));
         List<ResultMonthDTO> resultDTO = new ArrayList<>();
-
+        
         if (!results.isEmpty()) {
             String previousQuestionId = null;
             ResultTrafficLight resultCount = new ResultTrafficLight(0L, 0L, 0L);
             String question = null;
             String questionType = null; 
-
+            int totalAnswers = 0;
 
             for (Object[] result : results) {             
                 String questionId = (String) result[2];
     
                 if (!questionId.equals(previousQuestionId)) {
                     if (previousQuestionId != null) {
-                        resultDTO.add(new ResultMonthDTO(previousQuestionId, question, questionType, resultCount));
+                        resultDTO.add(new ResultMonthDTO(previousQuestionId, question, questionType, totalAnswers, resultCount));
                         resultCount = new ResultTrafficLight(0L, 0L, 0L);
                     }
                     previousQuestionId = questionId;
                     question = (String) result[3];
                     questionType = (String) result[4];  
+                    totalAnswers = 0;
                 }
 
                 String color = (String) result[0];
                 Long count = (Long) result[1];
- 
+                
+                totalAnswers += count;
 
                 if ("red".equals(color)) {
                     resultCount.setRed(count);
@@ -115,7 +116,8 @@ public class AnswerService {
                 }
 
                 if (results.indexOf(result) == results.size() - 1) {
-                    resultDTO.add(new ResultMonthDTO(questionId, question, questionType, resultCount));
+                    resultDTO.add(new ResultMonthDTO(questionId, question, questionType, totalAnswers, resultCount));
+                    totalAnswers = 0; 
                 }
             }
         }
@@ -124,105 +126,8 @@ public class AnswerService {
     }
 
 
-  
-    // public List<ResultMonthDTO> findByTeamAndMonth(String teamId, String month){
-    //     List<Object[]> results = answerRepository.findByTeamAndMonth(teamId,04);
-    //     List<ResultMonthDTO> resultDTO = new ArrayList<>();
-
-    //     List<ResultTrafficLight> trafficLightList = new ArrayList<>();
-    //     String color ;
-    //     Long count ;
-    //     String question_id;
-    //     String question;
-    //     String questionType;
-    //     int totalLines = results.size();
-    //     int cantLines = 0;
-
-    //    // Map<String, List<Object[]>> groupByQuestion = results.stream().collect(Collectors.groupingBy(Object[] :: result.));
-
-    //     //Object[] firstResult = results[0];
-    //     Object[] previousRecord = results.get(0);
-
-
-    //     for( Object[] result: results) {
-
-    //         cantLines ++;
-
-    //         String actualQuestion = (String) result[2];
-    //         String previousQuestionId = (String) previousRecord[2];
-
-    //         if( ! actualQuestion.equals(previousQuestionId)  ){
-    //             List<ResultTrafficLight> trafficResultList = new ArrayList<>(trafficLightList);
-
-    //             question_id = (String) previousRecord[2];
-    //             question = (String) previousRecord[3];
-    //             questionType = (String) previousRecord[4];
-
-    //             ResultMonthDTO dtoRecord = new ResultMonthDTO( question_id, question, questionType, trafficResultList);
-    //             resultDTO.add(dtoRecord);
-    //             trafficLightList.clear();
-    //             previousRecord = result;
-    //         }
-
-    //         color = (String) result[0];
-    //         count = (Long) result[1];
-
-    //         ResultTrafficLight trafficLight = new ResultTrafficLight(color, count);
-    //         trafficLightList.add(trafficLight);
-
-    //         if(  totalLines == cantLines ){
-    //             List<ResultTrafficLight> trafficResultList = new ArrayList<>(trafficLightList);
-
-    //             question_id = (String) result[2];
-    //             question = (String) result[3];
-    //             questionType = (String) result[4];
-
-    //             ResultMonthDTO dtoRecord = new ResultMonthDTO( question_id, question, questionType, trafficResultList);
-    //             resultDTO.add(dtoRecord);
-    //             trafficLightList.clear();
-    //             previousRecord = result;
-    //         }
-    //     }
-
-    //     return resultDTO;
-    // }
-
-    public List<ResultKPIDTO> findByIdAndMonth(String questionId, String month){
-
-        // List<Object[]> results = answerRepository.findByIdAndMonth(questionId,04);
-        List<ResultKPIDTO> resultDTO = new ArrayList<>();
-
-        // for( Object[] result: results) {
-        //     String color = (String) result[0];
-        //     Long count = (Long) result[1];
-        //     Integer month2 = (Integer) result[2];
-
-        //     ResultKPIDTO dtoRecord = new ResultKPIDTO( color, count.intValue(), month2);
-
-        //     resultDTO.add(dtoRecord);
-
-        // }
-
-        return resultDTO;
+    public Integer getTotalAnswerByYear(String teamId, String questionId){
+        return answerRepository.totalAnswersByYear(teamId, questionId);
     }
-
-    // public List<ResultMonthDTO> findByTeamAndMonth(String teamId, String month){
-
-    //     List<Object[]> results = answerRepository.findByTeamAndMonth(teamId,04);
-    //     List<ResultMonthDTO> resultDTO = new ArrayList<>();
-
-    //     for( Object[] result: results) {
-    //         String color = (String) result[0];
-    //         Long count = (Long) result[1];
-    //         Integer month2 = (Integer) result[2];
-
-    //         ResultKPIDTO dtoRecord = new ResultKPIDTO( color, count.intValue(), month2);
-
-    //         resultDTO.add(dtoRecord);
-
-    //     }
-
-    //     return resultDTO;
-    // }
 
 }
