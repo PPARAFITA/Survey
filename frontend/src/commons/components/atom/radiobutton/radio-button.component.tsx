@@ -30,46 +30,22 @@ export const RadioButtonsGroup: React.FC<Props> = ({
   onOptionChange,
 }): React.JSX.Element => {
 
-  // let [question1, setQuestion] = React.useState('');
-  // const [questionsData, setQuestionsData] = React.useState<Question[]>([]);
-
-  // React.useEffect(() => {
-  //     axios.get('/api/v1/thermometer/question', {
-  //         headers: {
-  //             'Authorization': `Basic ${credentials}`
-  //         }
-  //     })
-  //         .then(response => {
-  //             console.log(response.data);
-  //             setQuestionsData(response.data);
-  //         })
-  //         .catch(error => {
-  //             console.error('Error fetching data:', error);
-  //         });
-  // }, []);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
     const optionId = event.target.value;
-
-
     if (onOptionChange) {
       onOptionChange('', questionId, optionId, surveyId, '', event);
     }
   };
  
-
-
   return (
-
     <div className={'RadioButton'}>
       <div className="question">
         {question}
         <RadioGroup
           aria-labelledby="radio-buttons-group-label"
           name="radio-buttons-group"
-          onChange={(event) => onOptionChange && onOptionChange('', questionId, event.target.value, surveyId, '', event)}
-        >
+          onChange={(event) => onOptionChange && onOptionChange('', questionId, event.target.value, surveyId, '', event)}>
 
           {options.map(option => (
             <FormControlLabel

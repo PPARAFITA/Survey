@@ -12,18 +12,19 @@ interface Team {
   teamName: string;
 }
 
-interface BasicSelect {
+interface BasicSelectprops {
   onTeamSelect: (teamId: string) => void;
 }
 
 
- export default function BasicSelect  ({ onTeamSelect }: BasicSelect){
+ export default function BasicSelect  ({ onTeamSelect }: BasicSelectprops){
   console.log('Componente LIST renderizado')
 
   const [team, setTeam] = React.useState('');
   const [teamsData, setTeamsData] = React.useState<Team[]>([]);
 
   React.useEffect(() => {
+    console.log("RESULTADOS");
     getTeams()
       .then(response => { 
         setTeamsData(response.data);
@@ -45,6 +46,7 @@ interface BasicSelect {
       setTeam(selectedTeam.teamId);
       onTeamSelect(selectedTeam.teamId);  
     }
+   
   };
 
   return (

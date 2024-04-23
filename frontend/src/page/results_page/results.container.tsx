@@ -6,6 +6,10 @@ import Radio from '@mui/material/Radio';
 import { CustomSelect, SelectList } from '../../commons';
 import React, { useEffect, useState } from 'react';
 
+
+
+const MemoizedSelectList = React.memo(SelectList);
+
 const LITERALS = {
     header: 'Analyze the results',
     p1: 'Visualize the info by',
@@ -46,14 +50,15 @@ export const Results = () => {
         }
     }, [teamChanged]);
 
-
+ 
     return (
+       
         <div className="App">
             <div className='item-container'>
                 <h2 className='header5'> {LITERALS.header}</h2>
             </div>
             <div className='item-container'>
-                <SelectList onTeamSelect={handleTeamSelect}></SelectList>
+                <MemoizedSelectList  onTeamSelect={handleTeamSelect}></MemoizedSelectList>
             </div>
 
             <FormLabel className="info_select">{LITERALS.p1}</FormLabel>
@@ -70,7 +75,6 @@ export const Results = () => {
                 <FormControlLabel value="month" control={<Radio />} label="Month" />
                 <FormControlLabel value="kpi" control={<Radio />} label="KPI" />
             </RadioGroup>
-
             {selectedTeam && showMonthSelector && <CustomSelect month={true} kpi={false} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)} teamChanged={teamChanged} />}
             {selectedTeam && showKpiSelector && <CustomSelect month={false} kpi={true} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)} teamChanged={teamChanged} />}
            
