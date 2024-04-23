@@ -2,13 +2,16 @@ import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } fro
 import './select.styles.css';
 import { useEffect, useState, useMemo } from 'react';
 import { getQuestions } from '../../../services/question';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import React from 'react';
 import { getResults } from '../../../services/mocks/mockresults';
 import { Results } from '../../../page/results_page/results.container';
 import { getResultsb } from '../../../services/results';
+import { getanswerTotal } from '../../../services/answerTotal';
+
 import { AxiosResponse } from 'axios';
-// import noDataFound from '../../../assets/embarrassed.svg';
+import noDataFound from '../../../assets/embarrassed.svg';
+import { ReactComponent as EmptyStateSVG } from '../../../assets/empty_state.svg';
 
 interface Props {
     month?: boolean;
@@ -23,19 +26,20 @@ interface Question {
     question: string;
 }
 
- 
+
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 
 const LITERALS =
 {
     p1: 'answers this month',
-    p2: 'answers this period'
+    p2: 'answers this period',
+    p3: 'No surveys completed on this period/kpi'
 }
 
 
 export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, onSelectionChange, teamChanged }) => {
-    console.log('Componente X renderizado')
+
     const [questionsData, setQuestionsData] = React.useState<Question[]>([]);
 
     const [selectedValue, setSelectedValue] = useState<string>("");
@@ -43,6 +47,14 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
     const [deletedLastQuestion, setDeletedLastQuestion] = useState<boolean>(false);
     const [dataResultsMonth, setDataResultsMonth] = useState<any[]>([]);
     const [dataResultsKpi, setDataResultsKpi] = useState<any[]>([]);
+    const [answerTotal, setAnswerTotal] = useState<any[]>([]);
+
+    const label_select = month ? "Month" : "KPI";
+    const answers_total = month ? LITERALS.p1 : LITERALS.p2;
+    const text_placeholder = month ? "Select the month you are interested in" : "Select the KPI you are interested in";
+
+
+    const [results, setResults] = useState<any>(null);
 
     // const currentMonth = useMemo(() => {
     //     const currentDate = new Date();
@@ -66,7 +78,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
 
 
 
-    useEffect(() => {
+    useEffect(() => { 
         getQuestions(teamId)
             .then(response => {
                 setQuestionsData(response.data);
@@ -75,30 +87,28 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                 console.error('Error fetching questions:', error);
             });
     }
-        , [teamChanged]);
+        , []);
+
+ 
+    // useEffect(() => {
+    //     if (questionsData.length > 0 && !deletedLastQuestion) {
+    //         setQuestionsData(prevQuestionsData => prevQuestionsData.slice(0, -1));
+    //         setDeletedLastQuestion(true);
+    //     }
+    // }, [questionsData, deletedLastQuestion]);
 
 
-    if (questionsData.length > 0 && !deletedLastQuestion) {
-        setQuestionsData(prevQuestionsData => prevQuestionsData.slice(0, -1));
-        setDeletedLastQuestion(true);
-    }
+
+
+    // useEffect(() => {
+    //     if (teamChanged) {
+    //         setSelectedValue("");
+    //         setShowChart(false);
+    //     }
+    // }, [teamChanged]);
 
 
 
-    const label_select = month ? "Month" : "KPI";
-    const answers_total = month ? LITERALS.p1 : LITERALS.p2;
-    const text_placeholder = month ? "Select the month you are interested in" : "Select the KPI you are interested in";
-
-
-    const [results, setResults] = useState<any>(null);
-
-
-    useEffect(() => {
-        if (teamChanged) {
-            setSelectedValue("");
-            setShowChart(false);
-        }
-    }, [teamChanged]);
 
     useEffect(() => {
         if (!selectedValue) return;
@@ -118,6 +128,8 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                             setDataResultsMonth(response.data);
                         }
                         else {
+                            const responsekpi : AxiosResponse<any> | null = await getanswerTotal({ teamId, resultquestionId }); 
+                            setAnswerTotal(responsekpi.data);
                             setDataResultsKpi(response.data);
                         }
                     }
@@ -132,13 +144,21 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
             }
         };
         fetchData();
+
+        if (teamChanged) {
+            setSelectedValue("");
+            setShowChart(false);
+            fetchData();
+        }
         if (teamChanged) {
             fetchData();
         }
         return () => {
-            setResults(null)
+            setResults(null);
+            setDataResultsMonth([]);
+            setDataResultsKpi([]);
         };
-    }, [selectedValue, kpi, month, teamId, questionsData]);
+    }, [selectedValue, kpi, month, teamId, questionsData, teamChanged]);
 
 
 
@@ -160,35 +180,38 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
     };
 
 
-    const monthOrder: { [month: string]: number } = {
-        "january": 1,
-        "february": 2,
-        "march": 3,
-        "april": 4,
-        "may": 5,
-        "june": 6,
-        "july": 7,
-        "august": 8,
-        "september": 9,
-        "october": 10,
-        "november": 11,
-        "december": 12
-    };
+    // const monthOrder: { [month: string]: number } = {
+    //     "january": 1,
+    //     "february": 2,
+    //     "march": 3,
+    //     "april": 4,
+    //     "may": 5,
+    //     "june": 6,
+    //     "july": 7,
+    //     "august": 8,
+    //     "september": 9,
+    //     "october": 10,
+    //     "november": 11,
+    //     "december": 12
+    // };
 
+
+    // const sortedData = dataResultsKpi.sort((a, b) => {
+    //     const monthA = monthOrder[a.month.toLowerCase()];
+    //     const monthB = monthOrder[b.month.toLowerCase()];
+
+    //     return monthA - monthB;
+    // });
     const capitalizeFirstLetter = (str: string) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
-    const sortedData = dataResultsKpi.sort((a, b) => {
-        const monthA = monthOrder[a.month.toLowerCase()];
-        const monthB = monthOrder[b.month.toLowerCase()];
-
-        return monthA - monthB;
+    dataResultsKpi.forEach(item => {
+        item.month = capitalizeFirstLetter(item.month); 
     });
 
-    sortedData.forEach(item => {
-        item.month = capitalizeFirstLetter(item.month);
+    dataResultsMonth.forEach(item => {
+        item.question = item.question.replace(/\s*from\s+your\s*/i, ' ');
     });
-
 
 
     return (
@@ -236,7 +259,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="question"
                             tick={{ fontSize: 10 }} />
-                        <YAxis tick={{ fontSize: 10 }} />
+                        <YAxis tick={{ fontSize: 10 }} tickFormatter={(value) => `${Math.round(value)}`} />
                         {/* <Tooltip /> */}
                         <Bar dataKey="response.green" fill="#64A844" barSize={20} />
                         <Bar dataKey="response.orange" fill="#FF9B00" barSize={20} />
@@ -246,15 +269,15 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
 
             {kpi && showChart && (
                 <><div className='item_container_top'>
-                    <span className='boldLocal'>{sortedData.length}</span>
+                    <span className='boldLocal'>{answerTotal}</span>
                     <span> {answers_total}</span>
                 </div>
 
-                    <BarChart width={1800} height={400} data={sortedData} >
+                    <BarChart width={1800} height={400} data={dataResultsKpi} >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="month"
                             tick={{ fontSize: 10 }} />
-                        <YAxis tick={{ fontSize: 10 }} />
+                        <YAxis tick={{ fontSize: 10 }} tickCount={3} tickFormatter={(value) => `${Math.round(value)}`}  />
                         <YAxis />
                         {/* <Tooltip /> */}
                         <Bar dataKey="response.green" fill="#64A844" barSize={20} />
@@ -263,14 +286,15 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                     </BarChart></>)
 
             }
-            {/* {(selectedValue !== "" && !showChart &&  ( sortedData.length === 0 ||  dataResultsMonth.length === 0 )) && (
+            {(selectedValue !== "" && !showChart && (dataResultsKpi.length === 0 || dataResultsMonth.length === 0)) && (
                 <>
                     <div className='data_nofound'>
-                        <img src={noDataFound} height={400} alt="No Data Found" />
-                        <p> No DATA FOUND</p>
+                        <p className='title'>
+                            {LITERALS.p3} </p>
+                        <EmptyStateSVG />
                     </div>
                 </>
-            )} */}
+            )}
         </Box >
 
     )

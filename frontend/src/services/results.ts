@@ -27,11 +27,10 @@ export const getResultsb = (results: Results) => {
             headers: {
                 'Authorization': `Basic ${credentials}`
             }
-        });
+        });        
     } else {
-        // En caso de que no se proporcione ni 'month' ni 'questionId'
         console.error('Se necesita proporcionar month o questionId en los resultados.');
-        return null; // O podrías lanzar una excepción si prefieres.
+        return null;
     }
 };
 
