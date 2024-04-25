@@ -195,6 +195,10 @@ export const FormMood = () => {
                         placeholder='Write your comments, thoughts, suggestions, requests, petitions...'
                         variant='outlined'
                         className='input'
+                        InputProps={{
+                            readOnly: true,  
+                            style: { backgroundColor: '#f2f2f2', color: '#555', cursor: 'not-allowed' },
+                          }}
                         onChange={handleInputChange}
                         label='I would like to tell you about...' />
                 </div>
