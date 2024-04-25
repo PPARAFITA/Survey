@@ -24,8 +24,6 @@ export const Results = () => {
     const [showKpiSelector, setShowKpiSelector] = useState<boolean>(false);
     const [teamChanged, setTeamChanged] = useState<boolean>(false);
 
-    console.log('Team Changed', teamChanged)
-
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
         setSelectedOption(value);
