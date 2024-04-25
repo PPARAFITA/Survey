@@ -1,16 +1,13 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import './select.styles.css';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { getQuestions } from '../../../services/question';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
-import React from 'react';
-import { getResults } from '../../../services/mocks/mockresults';
-import { Results } from '../../../page/results_page/results.container';
+import React from 'react'; 
 import { getResultsb } from '../../../services/results';
 import { getanswerTotal } from '../../../services/answerTotal';
 
-import { AxiosResponse } from 'axios';
-import noDataFound from '../../../assets/embarrassed.svg';
+import { AxiosResponse } from 'axios'; 
 import { ReactComponent as EmptyStateSVG } from '../../../assets/empty_state.svg';
 
 interface Props {
@@ -44,7 +41,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
 
     const [selectedValue, setSelectedValue] = useState<string>("");
     const [showChart, setShowChart] = useState<boolean>(false);
-    const [deletedLastQuestion, setDeletedLastQuestion] = useState<boolean>(false);
+    // const [deletedLastQuestion, setDeletedLastQuestion] = useState<boolean>(false);
     const [dataResultsMonth, setDataResultsMonth] = useState<any[]>([]);
     const [dataResultsKpi, setDataResultsKpi] = useState<any[]>([]);
     const [answerTotal, setAnswerTotal] = useState<any[]>([]);
@@ -87,7 +84,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                 console.error('Error fetching questions:', error);
             });
     }
-        , []);
+        , [teamId,teamChanged]);
 
  
     // useEffect(() => {
@@ -145,9 +142,14 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
         };
         fetchData();
 
-        if (teamChanged) {
+        if (teamChanged) { 
             setSelectedValue("");
             setShowChart(false);
+            if (kpi) {
+                let resultquestionId = null;
+                const question = questionsData.find(question => question.question === selectedValue);
+                resultquestionId = question ? question.questionId : null;
+            }
             fetchData();
         }
         if (teamChanged) {
@@ -260,7 +262,6 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                         <XAxis dataKey="question"
                             tick={{ fontSize: 10 }} />
                         <YAxis tick={{ fontSize: 10 }} tickFormatter={(value) => `${Math.round(value)}`} />
-                        {/* <Tooltip /> */}
                         <Bar dataKey="response.green" fill="#64A844" barSize={20} />
                         <Bar dataKey="response.orange" fill="#FF9B00" barSize={20} />
                         <Bar dataKey="response.red" fill="#DA0C1F" barSize={20} />
