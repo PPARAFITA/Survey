@@ -24,11 +24,51 @@
 .select .MuiFormControl-marginNormal,
 .select .MuiSelect-root,
 .select .MuiSelect-marginNormal,
-.select .MuiMenuItem-root .css-skjjoq-MuiFormControl-root {
+.select .MuiMenuItem-root .css-skjjoq-MuiFormControl-root {     
+        margin: 0px;
+}
+div.css-1rmva4k-MuiFormControl-root {
+    margin: 0px;
+    padding: 0;
+    border: none;
+    background: transparent; 
+}
+
+/* .custom-tooltip {
+    /* background-color: white;
+    border: '1px solid black';
+    display: flex; */
+    /* min-width: var(--3, 24px);
+    min-height: var(--3, 24px); */
+    /* padding: var(--2, 40px) var(--none, 0px);
+    align-items: center;
+    align-self: stretch; */
+
+.select {
+    display: flex;
+    min-width: 24px;
+    min-height: 24px;
+    /* padding: 16px 0px;  */
+    align-self: stretch;
+    color: #363636DE;
+}
+
+
+.select .MuiFormControl-root,
+.select .MuiFormControl-marginNormal,
+.select .MuiSelect-root,
+.select .MuiSelect-marginNormal,
+.select .MuiMenuItem-root {
     margin: 0;
 }
 
-.item-container {
+/* 
+  .custom-tooltip {
+    background-color: white;
+    padding: 5px;
+    border: 1px solid black;
+    margin: 0 !important; /* Sobrescribe cualquier margen preexistente */
+*/ .item-container {
     margin-bottom: 40px;
 }
 
@@ -43,12 +83,8 @@ div.css-skjjoq-MuiFormControl-root {
 
 .data_nofound {
     display: flex;
-
     height: 400px;
     justify-content: center;
-}
-
-.data_nofound {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,11 +93,12 @@ div.css-skjjoq-MuiFormControl-root {
     text-align: center;
 }
 
+ 
 svg {
     width: 300px;
     height: 200px;
 }
 
-.title{
-    color: #2196F3; 
+.title {
+    color: #2196F3;
 }

@@ -23,6 +23,7 @@ const LITERALS = {
 interface SurveyItem {
     questionId: string;
     question: string;
+    questionType:string;
     optionDTOList: any[];
     surveyId: string;
 }
@@ -84,11 +85,14 @@ export const FormMood = () => {
 
     const handleOptionChange = (answerId: string, questionId: string, optionId: string, surveyId: string, valorAnswer: string, event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault(); 
-        const updatedAnswers: { [questionId: string]: Answer } = { ...formData.answers };
+ 
+        const updatedAnswers: { [questionId: string]: Answer }  = { ...formData.answers };
         updatedAnswers[questionId] = { answerId, questionId, optionId, surveyId, valorAnswer };
         let allQuestionsAnswered = true;
+
         for (const surveyItem of surveyData) {
-            if (!updatedAnswers[surveyItem.questionId]) {
+            const questionType = surveyItem.questionType;
+            if (questionType !== 'text' && !updatedAnswers[surveyItem.questionId]) {
                 allQuestionsAnswered = false;
                 break;
             }
@@ -147,7 +151,9 @@ export const FormMood = () => {
  
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={ event => {
+            event.preventDefault();
+            handleSubmit(event)}}>
             <div className='item-container'>
                 <div className="item-container">
                     <div className='form'>
@@ -195,10 +201,6 @@ export const FormMood = () => {
                         placeholder='Write your comments, thoughts, suggestions, requests, petitions...'
                         variant='outlined'
                         className='input'
-                        InputProps={{
-                            readOnly: true,  
-                            style: { backgroundColor: '#f2f2f2', color: '#555', cursor: 'not-allowed' },
-                          }}
                         onChange={handleInputChange}
                         label='I would like to tell you about...' />
                 </div>

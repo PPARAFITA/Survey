@@ -2,14 +2,19 @@ import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } fro
 import './select.styles.css';
 import { useEffect, useState } from 'react';
 import { getQuestions } from '../../../services/question';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
-import React from 'react'; 
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import React from 'react';
 import { getResultsb } from '../../../services/results';
 import { getanswerTotal } from '../../../services/answerTotal';
+import { AxiosResponse } from 'axios';
+import { ReactComponent as EmptyStateSVG } from '../../../assets/Empty_State2.svg';
+import { TooltipProps } from 'recharts';
 
-import { AxiosResponse } from 'axios'; 
-import { ReactComponent as EmptyStateSVG } from '../../../assets/empty_state.svg';
-
+interface CustomTooltipProps extends TooltipProps<any, any> {
+    active?: boolean;
+    payload?: any[];
+    label?: string;
+}
 interface Props {
     month?: boolean;
     kpi?: boolean;
@@ -31,7 +36,8 @@ const LITERALS =
 {
     p1: 'answers this month',
     p2: 'answers this period',
-    p3: 'No surveys completed on this period/kpi'
+    p3: 'No surveys completed on this period/kpi',
+    p4: 'Select filters'
 }
 
 
@@ -75,7 +81,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
 
 
 
-    useEffect(() => { 
+    useEffect(() => {
         getQuestions(teamId)
             .then(response => {
                 setQuestionsData(response.data);
@@ -84,9 +90,9 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                 console.error('Error fetching questions:', error);
             });
     }
-        , [teamId,teamChanged]);
+        , [teamId, teamChanged]);
 
- 
+
     // useEffect(() => {
     //     if (questionsData.length > 0 && !deletedLastQuestion) {
     //         setQuestionsData(prevQuestionsData => prevQuestionsData.slice(0, -1));
@@ -105,8 +111,6 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
     // }, [teamChanged]);
 
 
-
-
     useEffect(() => {
         if (!selectedValue) return;
         const fetchData = async () => {
@@ -120,12 +124,11 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                 if (response !== null) {
                     if (response.data.length > 0) {
                         setResults(response.data);
-                        console.log(response.data)
                         if (month) {
                             setDataResultsMonth(response.data);
                         }
                         else {
-                            const responsekpi : AxiosResponse<any> | null = await getanswerTotal({ teamId, resultquestionId }); 
+                            const responsekpi: AxiosResponse<any> | null = await getanswerTotal({ teamId, resultquestionId });
                             setAnswerTotal(responsekpi.data);
                             setDataResultsKpi(response.data);
                         }
@@ -142,7 +145,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
         };
         fetchData();
 
-        if (teamChanged) { 
+        if (teamChanged) {
             setSelectedValue("");
             setShowChart(false);
             if (kpi) {
@@ -208,7 +211,7 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
     dataResultsKpi.forEach(item => {
-        item.month = capitalizeFirstLetter(item.month); 
+        item.month = capitalizeFirstLetter(item.month);
     });
 
     dataResultsMonth.forEach(item => {
@@ -216,40 +219,63 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
     });
 
 
+
+    const CustomTooltip: React.FC
+        = (props: CustomTooltipProps) => {
+            const { active, payload } = props;
+
+            if (active && payload && payload.length) {
+                return (
+                    <div  >
+                        {payload.map((entry, index) => (
+                            <div key={`tooltip-${index}`} style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+                                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: entry.dataKey.replace('response.', '') }}>
+                                </div>
+                                <p style={{ marginLeft: '5px' }}>{entry.dataKey.replace('response.', '').charAt(0).toUpperCase() + entry.dataKey.replace('response.', '').slice(1)}: {entry.value}</p>
+                            </div>
+                        ))}
+
+                    </div>
+                );
+            }
+            return null
+        };
+
     return (
-
         <Box sx={{ minWidth: 450 }}>
-            <div className='item_container'>
-                <FormControl className='select_team' sx={{ m: 2, minWidth: 200 }}>
 
-                    <InputLabel id="team_questions"
-                        sx={{
-                            left: '-3px',
-                            top: '-6px',
-                        }}>{ } </InputLabel>
-                    <Select
-                        labelId="team_results"
-                        value={selectedValue}
-                        onChange={handleChange}
-                        label={label_select}
-                        placeholder={text_placeholder}
-                        sx={{
-                            minWidth: 200,
-                            marginBottom: 1
-                        }}>
-                        <MenuItem value="" disabled>
-                            <em>{text_placeholder}</em>
-                        </MenuItem>
-                        {month && months.map((month, index) => (
-                            <MenuItem key={index} value={month}>{month}</MenuItem>
-                        ))}
-                        {kpi && questionsData.map((questionItem: Question) => (
-                            <MenuItem key={questionItem.questionId} value={questionItem.question}>{questionItem.question}</MenuItem>
-                        ))}
+            <FormControl className='select' sx={{ m: 2, minWidth: 350 }}>
 
-                    </Select>
-                </FormControl>
-            </div>
+                <InputLabel className='custom-tooltip' id="team_question"
+                    sx={{
+                        left: '-4px',
+                        top: '-20px',
+                        position: 'relative',
+                        zIndex: 1,
+                        marginBottom: '-35px'
+                    }}>{text_placeholder} </InputLabel>
+                <Select
+                    // className='custom-tooltip' 
+                    labelId="team_results"
+                    value={selectedValue}
+                    onChange={handleChange}
+                    label={label_select}
+                    placeholder={text_placeholder}
+                    sx={{
+                        minWidth: 200,
+                        marginBottom: 1
+                    }}>
+                    {month && months.map((month, index) => (
+                        <MenuItem key={index} value={month}>{month}</MenuItem>
+                    ))}
+                    {kpi && questionsData.map((questionItem: Question) => (
+                        <MenuItem key={questionItem.questionId} value={questionItem.question}>{questionItem.question}</MenuItem>
+                    ))}
+
+                </Select>
+            </FormControl>
+
+
             {month && showChart && (
                 <><div className='item_container_top'>
                     {dataResultsMonth && dataResultsMonth.length > 0 && (
@@ -257,11 +283,12 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                     )}
                     <span> {answers_total}</span>
                 </div>
-                    <BarChart width={1800} height={300} data={dataResultsMonth}>
+                    <BarChart width={1500} height={300} data={dataResultsMonth}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="question"
                             tick={{ fontSize: 10 }} />
                         <YAxis tick={{ fontSize: 10 }} tickFormatter={(value) => `${Math.round(value)}`} />
+                        <Tooltip content={<CustomTooltip />} />
                         <Bar dataKey="response.green" fill="#64A844" barSize={20} />
                         <Bar dataKey="response.orange" fill="#FF9B00" barSize={20} />
                         <Bar dataKey="response.red" fill="#DA0C1F" barSize={20} />
@@ -274,13 +301,13 @@ export const CustomSelect: React.FC<Props> = React.memo(({ month, kpi, teamId, o
                     <span> {answers_total}</span>
                 </div>
 
-                    <BarChart width={1800} height={400} data={dataResultsKpi} >
+                    <BarChart width={1500} height={400} data={dataResultsKpi} >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="month"
                             tick={{ fontSize: 10 }} />
-                        <YAxis tick={{ fontSize: 10 }} tickCount={3} tickFormatter={(value) => `${Math.round(value)}`}  />
+                        <YAxis tick={{ fontSize: 10 }} tickCount={3} tickFormatter={(value) => `${Math.round(value)}`} />
                         <YAxis />
-                        {/* <Tooltip /> */}
+                        <Tooltip content={<CustomTooltip />} />
                         <Bar dataKey="response.green" fill="#64A844" barSize={20} />
                         <Bar dataKey="response.orange" fill="#FF9B00" barSize={20} />
                         <Bar dataKey="response.red" fill="#DA0C1F" barSize={20} />
