@@ -35,6 +35,12 @@ body, html {
   overflow-y: auto;    
 }
 
+@media screen and (min-width: 1200px) {
+  .main{
+    margin-left: 120px;
+    margin-top: 60px;
+  }
+}
 
 .App_form {
   padding: 1%;

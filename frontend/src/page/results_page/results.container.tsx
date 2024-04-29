@@ -5,6 +5,9 @@ import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import { CustomSelect, SelectList } from '../../commons';
 import React, { useEffect, useState } from 'react';
+import { ReactComponent as EmptyStateSVG } from '../../assets/empty_state.svg';
+
+import { ReactComponent as EmptyStateSVG2 } from '../../assets/Empty_State2.svg';
 
 
 
@@ -13,6 +16,7 @@ const MemoizedSelectList = React.memo(SelectList);
 const LITERALS = {
     header: 'Analyze the results',
     p1: 'Visualize the info by',
+    p2: 'Select filters'
 }
 
 export const Results = () => {
@@ -23,6 +27,7 @@ export const Results = () => {
     const [showMonthSelector, setShowMonthSelector] = useState<boolean>(true);
     const [showKpiSelector, setShowKpiSelector] = useState<boolean>(false);
     const [teamChanged, setTeamChanged] = useState<boolean>(false);
+    const [showEmptyState, setShowEmptyState] = useState<boolean>(true);
 
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
@@ -45,37 +50,56 @@ export const Results = () => {
     useEffect(() => {
         if (teamChanged) {
             setTeamChanged(false);
+            setShowEmptyState(true);
         }
     }, [teamChanged]);
 
- 
+
     return (
-       
+
         <div className="App">
             <div className='item-container'>
                 <h2 className='header5'> {LITERALS.header}</h2>
             </div>
             <div className='item-container'>
-                <MemoizedSelectList  onTeamSelect={handleTeamSelect}></MemoizedSelectList>
+                <MemoizedSelectList onTeamSelect={handleTeamSelect}></MemoizedSelectList>
             </div>
+            <div className='item-radiobutton'>
+                <FormLabel className="info_select">{LITERALS.p1}</FormLabel>
+                <RadioGroup
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                    }}
+                    className='results_radiobutton'
+                    aria-labelledby="radio_group_results"
+                    defaultValue="month"
+                    name="radio-buttons-group"
+                    onChange={handleOptionChange}>
+                    <FormControlLabel value="month" control={<Radio />} label="Month" />
+                    <FormControlLabel value="kpi" control={<Radio />} label="KPI" />
+                </RadioGroup>
+            </div>
+            {selectedTeam && showMonthSelector && <CustomSelect month={true} kpi={false} teamId={selectedTeam}
+                onSelectionChange={(value: string) => {
+                    setSelectedOption(value);
+                    setShowEmptyState(false);
+                }} teamChanged={teamChanged} />}
+            {selectedTeam && showKpiSelector && <CustomSelect month={false} kpi={true} teamId={selectedTeam} onSelectionChange={(value: string) => {
+                setSelectedOption(value);
+                setShowEmptyState(false);
+            }} teamChanged={teamChanged} />}
 
-            <FormLabel className="info_select">{LITERALS.p1}</FormLabel>
-            <RadioGroup
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                }}
-                className='results_radiobutton'
-                aria-labelledby="radio_group_results"
-                defaultValue="month"
-                name="radio-buttons-group"
-                onChange={handleOptionChange}>
-                <FormControlLabel value="month" control={<Radio />} label="Month" />
-                <FormControlLabel value="kpi" control={<Radio />} label="KPI" />
-            </RadioGroup>
-            {selectedTeam && showMonthSelector && <CustomSelect month={true} kpi={false} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)} teamChanged={teamChanged} />}
-            {selectedTeam && showKpiSelector && <CustomSelect month={false} kpi={true} teamId={selectedTeam} onSelectionChange={(value: string) => setSelectedOption(value)} teamChanged={teamChanged} />}
-           
+            {showEmptyState && (
+                <>
+                    <div className='data_filters'>
+                        <p className='title'>
+                            {LITERALS.p2} </p>
+                        <EmptyStateSVG2></EmptyStateSVG2>
+                    </div>
+                </>
+            )}
+
         </div>
     )
 };

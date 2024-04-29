@@ -10,7 +10,14 @@
     z-index: 1;
 
 }
+@media screen and (min-width: 1200px) {
+    .App-thermometer {
+      margin-left: 150px; 
+    }
+    .Team_image{
 
+    }
+  }
 
 .App-thermometer {
     height: 115px;
